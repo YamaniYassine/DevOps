@@ -10,7 +10,7 @@ const Home = () => {
     <section className="home-container">
       <div className="content-container">
         <header className="content-header">
-         <div className="logo">CodeBrew</div>
+         <div className="logo">YAMANI</div>
          {location.pathname === "/" ? (
             <p>
               Don't have an account?{" "}
