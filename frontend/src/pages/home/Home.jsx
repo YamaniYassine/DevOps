@@ -5,22 +5,32 @@ import SignIn from "../../components/sign-in/SignIn";
 import "./Home.css";
 
 const Home = () => {
+    const location = useLocation();
   return (
     <section className="home-container">
       <div className="content-container">
-      <header className="content-header">
-          <div className="logo">CodeBrew</div>
-          
+        <header className="content-header">
+         <div className="logo">CodeBrew</div>
+         {location.pathname === "/" ? (
+            <p>
+              Don't have an account?{" "}
+              <Link className="link" to="/sign-up">
+                Sign Up
+              </Link>
+            </p>
+          ) : (
             <p>
               Already have an account?{" "}
-              <span className="link" to="/">
+              <Link className="link" to="/">
                 Sign In
-              </span>
+              </Link>
             </p>
+          )}
+          
           
         </header>
-        <div className="outlet-container">
-          <SignIn />
+    <div className="outlet-container">
+          <Outlet />
         </div>
       
       </div>
