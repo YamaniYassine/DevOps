@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcryptjs");
 
 
 
@@ -37,6 +38,25 @@ const userSchema = new mongoose.Schema({
     },
 
   },{timestamps: true});
+
+
+  userSchema.pre("save", async function (next) {
+    // if password is not modified, return from the function and call the next middleware
+    if (!this.isModified("password")) {
+      return next();
+    }
+  
+    // password is modified, hash it
+    this.password = await bcrypt.hash(this.password, 12);
+    this.confirmPassword = undefined;
+    next();
+  });
+
+  userSchema.methods.comparePassword = async function (passwordEntered) {
+    return await bcrypt.compare(passwordEntered, this.password);
+  };
+
+
 
   const User = mongoose.model("User", userSchema);
   module.exports = User;
