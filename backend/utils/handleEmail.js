@@ -4,7 +4,7 @@ const pug = require("pug");
 class Email {
   constructor(user, url) {
     this.to = user.email;
-    this.from = `Admin <sapta_ch@rediffmail.com`;
+    this.from = ``;
     this.url = url;
     this.name = user.name;
   }
