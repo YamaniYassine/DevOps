@@ -20,19 +20,20 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
   });
 
-  const token = generateToken(newUser._id);
+  // const token = generateToken(newUser._id);
 
   const user = {
     name: newUser.name,
     email: newUser.email,
     _id: newUser._id,
+    role: newUser.role,
   };
 
   res.status(200).json({
     status: "success",
     data: {
       user: user,
-      token: token,
+      // token: token,
     },
   });
 });
@@ -53,25 +54,40 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
     }
 
     if (!password) {
-      message.password = "Password id required!";
+      message.password = "Password is required!";
     }
     return next(new AppError(JSON.stringify(message)), 400);
   }
 
   //2. check if the user exists, and the password is correct
   const user = await User.findOne({ email: email });
+  let allErrors = {};
+  allErrors[`incorrectinfo`] = `Email or password incorrect`;
 
   if (!user || !(await user.comparePassword(password))) {
-    return next(new AppError("Email or password incorrect", 400));
+
+    return next(new AppError(JSON.stringify(allErrors), 400));
   }
 
   // 3. generate token send it to the client
   const token = generateToken(user._id);
 
+  res.cookie('token', token, {
+    httpOnly: true,
+    maxAge: process.env.JWT_EXPIRES_IN,
+    secure: process.env.NODE_ENV === 'production',
+  });
+
+
   res.status(200).json({
     status: "success",
     data: {
-      user: user,
+      user: {
+        name: user.name,
+        email: user.email,
+        _id: user._id,
+        role: user.role
+      },
       token: token,
     },
   });

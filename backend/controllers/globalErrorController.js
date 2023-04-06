@@ -42,7 +42,7 @@ const handleDuplicateFieldsError = (error) => {
   Object.keys(error.keyValue).forEach((item) => {
     return (allErrors[
       item
-    ] = `This value already exists. Please use another value`);
+    ] = `This email already exists. Please use another email`);
   });
 
   return new AppError(JSON.stringify(allErrors), 400);
