@@ -23,7 +23,7 @@ const SignIn = () => {
       handleError(message);
     }
 
-    if (success && user) {
+    if (success || user) {
       navigate("/welcome");
     }
 

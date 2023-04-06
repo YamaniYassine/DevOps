@@ -26,7 +26,7 @@ const SignUp = () => {
     }
 
     if (success && user) {
-      navigate("/users/login");
+      navigate("/login");
     }
 
     return () => {
