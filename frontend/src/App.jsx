@@ -8,6 +8,7 @@ import SignIn from "./components/sign-in/SignIn";
 import Home from "./pages/home/Home";
 import WelcomePage from "./pages/home/welcome/Welcome";
 import PageNotFound from "./pages/not-found/PageNotFound";
+import Accueil from "./pages/accueil/accueil";
 
 
 const App = () => {
@@ -15,17 +16,18 @@ const App = () => {
     <main className="main-container">
       <Routes>
         <Route path="/" element={<Home />}>
+          <Route index element={<Accueil />} />
           <Route path="sign-up" element={<SignUp />} />
-          <Route index element={<SignIn />} />
+          <Route path="/login" element={<SignIn />} />
           <Route path="/welcome" element={<WelcomePage />} />
         </Route>
-        
+
 
         <Route path="/not-found" element={<PageNotFound />} />
 
         <Route path="*" element={<Navigate to="/not-found" />} />
       </Routes>
-      
+
     </main>
   );
 };

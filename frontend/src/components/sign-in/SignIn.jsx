@@ -37,7 +37,7 @@ const SignIn = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  
+
 
   const handleError = (message) => {
     // Parse the error message string
@@ -53,8 +53,8 @@ const SignIn = () => {
   const restBorderColor = () => {
     const formInputs = document.querySelectorAll('.form-item');
     formInputs.forEach((input) => {
-    input.classList.remove('error');
-  });
+      input.classList.remove('error');
+    });
   };
   const changeBorderColorOnError = (inputName) => {
     let formInput = document.getElementById(`${inputName}`);
@@ -71,7 +71,7 @@ const SignIn = () => {
     <section className="form-container">
       <h1 className="form-heading">Sign in</h1>
       <form onSubmit={handleSubmit}>
-      <div className="form-item" id="incorrectinfo">
+        <div className="form-item" id="incorrectinfo">
           <span className="error-text">{formErrors.incorrectinfo}</span>
         </div>
         <div className="form-item" id="email">

@@ -17,7 +17,7 @@ const Home = () => {
     <section className="home-container">
       <div className="content-container">
         <header>
-         <HeaderNav />
+          <HeaderNav />
         </header>
         <div className="outlet-container">
           <Outlet />
@@ -25,7 +25,7 @@ const Home = () => {
         <footer>
           <Footer />
         </footer>
-      
+
       </div>
 
     </section>

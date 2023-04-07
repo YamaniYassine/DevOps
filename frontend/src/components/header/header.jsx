@@ -9,9 +9,9 @@ import { useSelector } from "react-redux";
 const HeaderNav = () => {
   const [showNavbar, setShowNavbar] = useState(false)
   const location = useLocation();
-    const { user } = useSelector((state) => state.auth);
-    const userrole = user ? (user.name ? user.name : user.data.user.role) : null;
-    const username = user ? (user.name ? user.name : user.data.user.name) : null;
+  const { user } = useSelector((state) => state.auth);
+  const userrole = user ? (user.name ? user.name : user.data.user.role) : null;
+  const username = user ? (user.name ? user.name : user.data.user.name) : null;
 
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
@@ -24,7 +24,7 @@ const HeaderNav = () => {
           LOGO
         </div>
         <div className="menu-icon" onClick={handleShowNavbar}>
-        <Icon />
+          <Icon />
         </div>
         <div className={`nav-elements  ${showNavbar && 'active'}`}>
           <ul>
@@ -44,25 +44,25 @@ const HeaderNav = () => {
               <NavLink to="/">Contact</NavLink>
             </li>
             {user ? (
-            userrole === 1 ? (
+              userrole === 1 ? (
 
-              <button className="user-button"><span>{username}</span></button>
+                <button className="user-button"><NavLink to="/welcome">{username}</NavLink></button>
 
-            ) : (
-              <button className="user-button"><span>{username}</span></button>
-
-            )
-
-            ) : (
-              location.pathname === "/" ? (
-                
-                  <button className="user-button"><Link className="link" to="/sign-up">Sign Up</Link></button>
-                
               ) : (
-                <button className="user-button"><Link className="link" to="/">Sign In</Link></button>
+                <button className="user-button"><span>{username}</span></button>
+
+              )
+
+            ) : (
+              location.pathname === "/login" ? (
+
+                <button className="user-button"><Link className="link" to="/sign-up">Sign Up</Link></button>
+
+              ) : (
+                <button className="user-button"><Link className="link" to="/login">Sign In</Link></button>
               )
             )
-          }
+            }
           </ul>
         </div>
       </div>
