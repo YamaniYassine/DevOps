@@ -1,46 +1,107 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { useState } from 'react'
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { ReactComponent as Icon } from './nav-bar.svg'
+import './header.css'
 
-const HeaderNav = () => { 
-    return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        {/* <Navbar.Brand>
-          <Link to="/">
-            <img
-              alt="Logo"
-              src=""
-              width="30"
-              height="30" 
-              className="d-inline-block align-top"
-            />
-            
-          </Link>
-        </Navbar.Brand> */}
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/">Test Page</Nav.Link>
-          </Nav>
-          <Nav>
-            {1 ? (
-              <Nav.Link href="#connected">Connected</Nav.Link>
+//Redux
+import { useSelector } from "react-redux";
+
+const HeaderNav = () => {
+  const [showNavbar, setShowNavbar] = useState(false)
+  const location = useLocation();
+    const { user } = useSelector((state) => state.auth);
+    const userrole = user ? (user.name ? user.name : user.data.user.role) : null;
+    const username = user ? (user.name ? user.name : user.data.user.name) : null;
+
+  const handleShowNavbar = () => {
+    setShowNavbar(!showNavbar)
+  }
+
+  return (
+    <nav className="navbar">
+      <div className="container">
+        <div className="logo">
+          LOGO
+        </div>
+        <div className="menu-icon" onClick={handleShowNavbar}>
+        <Icon />
+        </div>
+        <div className={`nav-elements  ${showNavbar && 'active'}`}>
+          <ul>
+            <li>
+              <NavLink to="/">Accueil</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Page1</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Page 2</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Contact</NavLink>
+            </li>
+            {user ? (
+            userrole === 1 ? (
+
+              <button className="user-button"><span>{username}</span></button>
+
             ) : (
-              <>
-                <Nav.Link as={Link} to="/">Sign In</Nav.Link>
-                <Nav.Link as={Link} to="/">Sign Up</Nav.Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    );
+              <button className="user-button"><span>{username}</span></button>
 
+            )
 
-};
+            ) : (
+              location.pathname === "/" ? (
+                
+                  <button className="user-button"><Link className="link" to="/sign-up">Sign Up</Link></button>
+                
+              ) : (
+                <button className="user-button"><Link className="link" to="/">Sign In</Link></button>
+              )
+            )
+          }
+          </ul>
+        </div>
+      </div>
+    </nav>
+  )
+}
 
 export default HeaderNav;
+
+{/* <header className="content-header">
+         <div className="logo">YAMANI</div>
+          {user ? (
+            userrole === 1 ? (
+
+              <p>Welcome admin <span>{username}!</span></p>
+
+            ) : (
+              <p>Welcome user <span>{username}!</span></p>
+
+            )
+
+            ) : (
+              location.pathname === "/" ? (
+                <p>
+                  Don't have an account?{" "}
+                  <Link className="link" to="/sign-up">
+                    Sign Up
+                  </Link>
+                </p>
+              ) : (
+                <p>
+                  Already have an account?{" "}
+                  <Link className="link" to="/">
+                    Sign In
+                  </Link>
+                </p>
+              )
+            )
+          }
+          
+          
+        </header> */}

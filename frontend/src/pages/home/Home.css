@@ -22,10 +22,12 @@
   }
   
   .content-header {
+    margin-top: 1%;
+    margin-bottom: 1%;
     flex: 1 1 10%;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
   }
   
   .content-header p {
@@ -47,9 +49,12 @@
   
   .outlet-container {
     /* background-color: aqua; */
-    flex: 1 1 80%;
-    width: 70%;
+    flex: 1 1 100%;
+    width: 80%;
+    display: flex;
     align-self: center;
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
   }
   
   @media only screen and (max-width: 998px) {

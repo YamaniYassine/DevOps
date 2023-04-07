@@ -1,0 +1,24 @@
+footer {
+    width: 100%;
+    background: var(--color-red);
+    margin-top: 1.5rem;
+    flex-shrink: 0;
+    font-size: medium;
+}
+
+ul {
+    padding: 1.25rem;
+    text-align: center;
+}
+ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0.25rem 0.75rem;
+}
+ul a {
+    color: #fff;
+    text-decoration: none;
+}
+ul a:hover {
+    text-decoration: underline;
+}
