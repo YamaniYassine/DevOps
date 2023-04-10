@@ -11,6 +11,28 @@
     align-items: flex-start;
     margin: 0 2rem;
   }
+  .title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .fullview{
+    height: 80vh;
+    width: 55%;
+  }
+  @media (max-width: 768px) {
+    .fullview {
+      height: 90vh;
+      width: 100%;
+    }
+  }
   
   .title2 {
     font-size: 2rem;
@@ -28,8 +50,8 @@
   }
   
   .image-container2 img {
-    width: 100%;
-    height: auto;
+    width: 32rem;
+    height: 42rem;
   }
   
   @media (max-width: 768px) {
@@ -87,7 +109,7 @@
     transition: transform 0.3s ease-in-out;
   }
   
-  .product-card h2 {
+  .product-card h3 {
     font-size: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -115,6 +137,15 @@
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
   }
+  .home-button{
+    background-color: var(--color-red);
+    letter-spacing: 0.1rem;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    border-radius: 10rem;
+    font-weight: 500;
+    min-width: 15rem;
+  }
     
   @media (max-width: 768px) {
     .products-section {
@@ -125,4 +156,27 @@
     .product-card {
       width: 100%;
     }
+  }
+
+  .concours-button {
+    background-color: transparent;
+    border-width: 4px;
+    border-color: var(--color-red);
+    letter-spacing: 0.1rem;
+    padding: 1.5rem 3rem;
+    text-transform: uppercase;
+    border-radius: 10rem;
+    cursor: pointer;
+    min-width: 20rem;
+  }
+  .no-decoration {
+    text-decoration: none;
+    font-size: large;
+    font-style: oblique;
+    color: var(--color-red);
+    
+  }
+  .green{
+    color: var(--color-red);
+    font-size: x-large;
   }

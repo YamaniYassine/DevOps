@@ -19,6 +19,63 @@ ul a {
     color: #fff;
     text-decoration: none;
 }
+ul p {
+    color: #fff;
+    text-decoration: none;
+}
 ul a:hover {
     text-decoration: underline;
 }
+ul hr {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    border: none;
+    border-top: 1px solid #fff;
+  }
+
+.newsletter-section {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    color: #fff;
+  }
+  
+  .newsletter-section form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .newsletter-section label {
+    margin-bottom: 0.5rem;
+  }
+  
+  .newsletter-section input[type="email"] {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0 1px #fff;
+  }
+  
+  .newsletter-section button[type="submit"] {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    color: var(--color-red);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+  
+  .newsletter-section button[type="submit"]:hover {
+    background-color: var(--color-red);
+    color: #fff;
+  }
+  
+  

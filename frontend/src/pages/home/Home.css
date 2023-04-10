@@ -1,9 +1,22 @@
 .home-container {
-    /* background-color: antiquewhite; */
-    display: flex;
-    width: 100%;
-    height: 100%;
-  }
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.home-container::before {
+  content: "";
+  background-image: url('./accueil-bg2.jpg');
+  background-size: cover;
+  background-position-y: 85%;
+  transform: scaleX(-1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
   
   .content-container {
     /* background-color: aquamarine; */

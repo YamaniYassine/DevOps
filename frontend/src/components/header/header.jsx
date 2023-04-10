@@ -21,7 +21,7 @@ const HeaderNav = () => {
     <nav className="navbar">
       <div className="container">
         <div className="logo">
-          LOGO
+          ThéTipTop
         </div>
         <div className="menu-icon" onClick={handleShowNavbar}>
           <Icon />
@@ -32,16 +32,10 @@ const HeaderNav = () => {
               <NavLink to="/">Accueil</NavLink>
             </li>
             <li>
-              <NavLink to="/">Page1</NavLink>
+              <NavLink to="/jeu-concours">jeu-concours</NavLink>
             </li>
             <li>
-              <NavLink to="/">Page 2</NavLink>
-            </li>
-            <li>
-              <NavLink to="/">About</NavLink>
-            </li>
-            <li>
-              <NavLink to="/">Contact</NavLink>
+              <NavLink to="/apropos">About</NavLink>
             </li>
             {user ? (
               userrole === 1 ? (

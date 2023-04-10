@@ -5,15 +5,11 @@ import { Link } from "react-router-dom";
 const PageNotFound = () => {
   return (
     <section className="not-found-container">
-      <h1 className="not-found-header">Sorry, couldn't find this page</h1>
+      <h1 className="not-found-header">404 - Page introuvable</h1>
       <p className="not-found-text">
-        If logged in go to
-        <Link className="link" to="/welcome">
-          Welcome
-        </Link>{" "}
-        . Else{" "}
+      Il semblerait que la page que vous recherchez n’existe plus.
         <Link className="link" to="/">
-          Log In
+          Accueil
         </Link>
       </p>
     </section>

@@ -5,7 +5,7 @@
   --color-label: rgba(39, 49, 120, 0.7);
   --color-border: rgba(132, 152, 226, 0.4);
   --color-header: rgba(39, 49, 120);
-  --color-red: #d74590;
+  --color-red: #608146;
   --color-text: #849886;
   --color-input-focus: #6650ef;
   --color-error: #ff4d42;
@@ -32,9 +32,11 @@ body {
 
 /* Form styles */
 .form-container {
-  /* background-color: beige; */
+  background-color: rgba(255, 255, 255, 0.8);
   width: 65%;
-  height: 100%;
+  height: fit-content;
+  padding: 2%;
+  border-radius: 4%;
   
 }
 
