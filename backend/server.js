@@ -9,7 +9,7 @@ dotenv.config({ path: "./config.env" });
 const AppError = require("./utils/appError");
 const globalErrorController = require("./controllers/globalErrorController");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 const dbURI = process.env.DATABASE;
 // DB connection
  mongoose.connect(dbURI, {

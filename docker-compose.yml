@@ -1,0 +1,52 @@
+version: "4.1"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: front-docker
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - mynetwork
+
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: back-docker
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+  db:
+    image: "mongo"
+    container_name: db-docker
+    ports:
+      - "27017:27017"
+    volumes:
+      - data:/data/db
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - mynetwork
+
+volumes:
+  data:
+
+networks:
+  mynetwork:
+    driver: bridge
