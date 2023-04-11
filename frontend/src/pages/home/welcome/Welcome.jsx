@@ -34,6 +34,7 @@ const WelcomePage = () => {
   };
 
   const username = user ? (user.name ? user.name : user.data.user.name) : null;
+  
   return (
     <section className="welcome-container">
       <h1 className="welcome-header">
