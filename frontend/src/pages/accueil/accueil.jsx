@@ -17,11 +17,10 @@ const Accueil = () => {
                 </div>
                 <div class="row-container2 ">
                     <div class="content-container2">
-                        <button className="concours-button"><NavLink className="no-decoration" to="/">Jeu Concours</NavLink></button>
+                        <button className="concours-button"><NavLink className="no-decoration" to="/jeu-concours">Jeu Concours</NavLink></button>
                     </div>
                 </div>
             </div>
-
 
             <div class="row-container2">
                 <div class="content-container2">
@@ -29,12 +28,12 @@ const Accueil = () => {
                     <p class="description2">Le thé est une boisson chaude appréciée dans le monde entier depuis des siècles. Cette boisson raffinée et délicate est non seulement délicieuse, mais elle offre également une multitude de bienfaits pour la santé. De l'arôme subtil du thé vert aux notes épicées du chai, il existe une variété de thés pour tous les goûts. Découvrez la richesse de cette tradition millénaire et offrez-vous une expérience gustative inoubliable avec notre sélection de thés de qualité supérieure.</p>
                 </div>
                 <div class="image-container2">
-                    <img src="https://images.unsplash.com/photo-1504382103100-db7e92322d39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="placeholder image" />
+                    <img src="https://images.unsplash.com/photo-1504382103100-db7e92322d39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
                 </div>
             </div>
             <div class="row-container2">
                 <div class="image-container2">
-                    <img src="https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="placeholder image" />
+                    <img src="https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
                 </div>
                 <div class="content-container2">
                     <h2 class="title2">Le thé noir, une boisson savoureuse pour toutes les occasions</h2>
@@ -70,9 +69,6 @@ const Accueil = () => {
                     </div>
                 </div>
             </div>
-
-
-
         </section>
     );
 };

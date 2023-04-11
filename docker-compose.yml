@@ -1,4 +1,4 @@
-version: "4.1"
+version: "3.8"
 
 services:
   frontend:
@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: front-docker
     ports:
-      - "3000:3000"
+      - "80:3000"
     volumes:
       - ./frontend/src:/app/src
     stdin_open: true

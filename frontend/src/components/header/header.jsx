@@ -43,7 +43,7 @@ const HeaderNav = () => {
                 <button className="user-button"><NavLink to="/welcome">{username}</NavLink></button>
 
               ) : (
-                <button className="user-button"><span>{username}</span></button>
+                <button className="user-button"><NavLink to="/welcome">{username}</NavLink></button>
 
               )
 

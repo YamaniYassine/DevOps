@@ -1,9 +1,5 @@
-import { useState } from 'react'
-import { NavLink, Link, useLocation } from "react-router-dom";
 import './footer.css'
 
-//Redux
-import { useSelector } from "react-redux";
 
 const Footer = () => {
 
@@ -20,15 +16,14 @@ const Footer = () => {
         </div>
       </div>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="/apropos">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="/">Mentions légales</a></li>
+            <li><a href="/">RGPD</a></li>
+            <li><a href="/">CGU</a></li>
+            <li><a href="/">CGV</a></li>
             <hr />
             <p>&copy; ThéTipTop - Ce site est à des fins éducatives. Aucun paiement ne sera traité.</p>
         </ul>
     </footer>
-
-    
   )
 }
 

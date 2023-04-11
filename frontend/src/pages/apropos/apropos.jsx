@@ -19,8 +19,6 @@ const Apropos = () => {
 				<li>Responsabilité - Nous sommes soucieux de notre impact environnemental et social, et nous travaillons avec des fournisseurs responsables et éthiques.</li>
 			</ul>
 		</section>
-        
-        
     );
 };
 

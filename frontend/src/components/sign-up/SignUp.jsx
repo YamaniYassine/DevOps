@@ -35,8 +35,6 @@ const SignUp = () => {
   }, [error, message, user, success, navigate, dispatch]);
 
   const handleError = (message) => {
-    // alert(message);
-    // Parse the error message string
     const messageObject = JSON.parse(message);
     restBorderColor();
     Object.keys(messageObject).forEach((item) => {

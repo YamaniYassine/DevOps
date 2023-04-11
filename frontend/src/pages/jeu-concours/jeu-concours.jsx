@@ -1,5 +1,4 @@
 import './jeu-concours.css'
-import { NavLink } from "react-router-dom";
 
 const Concours = () => {
     function scrollToForm() {
