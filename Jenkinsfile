@@ -1,29 +1,26 @@
 pipeline {
-    agent any
+  agent any
 
-    environment {
-        COMPOSE_PROJECT_NAME = "thetiptop"
-        COMPOSE_FILE = "./docker-compose.yml"
-        PATH = "${PATH}:/usr/local/bin/"
+  stages {
+    stage('Stop containers') {
+      steps {
+        sh 'docker-compose down'
+      }
     }
-
-    stages {
-        stage('Dev') {
-            steps {
-                sh 'cd /root/mon-projet/PFE-YY-OM-V2 && docker-compose pull && docker-compose up -d'
-            }
-        }
-
-        stage('Preproduction') {
-            steps {
-                sh 'cd /root/mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
-            }
-        }
-
-        stage('Production') {
-            steps {
-                sh 'cd /root/mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
-            }
-        }
+    stage('Pull from Git repo') {
+      steps {
+        git url: 'your-git-repo-url'
+      }
     }
+    stage('Start containers') {
+      steps {
+        sh 'docker-compose up -d'
+      }
+    }
+    stage('Show container status') {
+      steps {
+        sh 'docker ps'
+      }
+    }
+  }
 }
