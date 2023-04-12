@@ -24,12 +24,18 @@ pipeline {
       }
     }
     stage('Deploy') {
-      when {
-        branch 'production'
-      }
-      steps {
-        sh 'docker-compose -f docker-compose.yml up -d --build'
-      }
+        when {
+            branch 'main'
+        }
+        steps {
+            sh 'docker-compose -f docker-compose.yml up -d --build'
+            script {
+                def dockercli = docker.image('docker').inside("-v /var/run/docker.sock:/var/run/docker.sock") {
+                    return sh(script: 'which docker', returnStdout: true).trim()
+                }
+                sh "${dockercli} ps -a"
+            }
+        }
     }
   }
 }
