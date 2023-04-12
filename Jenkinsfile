@@ -7,7 +7,7 @@ pipeline {
         sh 'docker-compose down'
       }
     }
-    stage('Show container status') {
+    stage('Show container') {
       steps {
         sh 'docker ps'
       }
