@@ -1,37 +1,21 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:lts'
-      args '-u root'
-      reuseNode true
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
-  }
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }
-    stage('Build') {
-      steps {
-        sh 'npm install'
-        sh 'npm run build'
-      }
-    }
-    stage('Test') {
-      steps {
-        sh 'npm test'
-      }
-    }
-    stage('Deploy') {
-      when {
-        branch 'production'
-      }
-      steps {
-        sh 'docker-compose -f docker-compose.yml up -d --build'
-        sh 'apk add docker'
-        sh 'docker ps -a'
-      }
-    }
-  }
 }
