@@ -4,7 +4,7 @@ pipeline {
     environment {
         COMPOSE_PROJECT_NAME = "thetiptop"
         COMPOSE_FILE = "./docker-compose.yml"
-        PATH = "${PATH}:/usr/local/bin"
+        PATH = "${PATH}:/usr/lib"
     }
 
     stages {
