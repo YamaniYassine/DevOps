@@ -28,7 +28,7 @@ pipeline {
         branch 'production'
       }
       steps {
-        sh 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build'
+        sh 'docker-compose -f docker-compose.yml up -d --build'
       }
     }
   }
