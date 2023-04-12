@@ -4,25 +4,25 @@ pipeline {
     environment {
         COMPOSE_PROJECT_NAME = "thetiptop"
         COMPOSE_FILE = "./docker-compose.yml"
-        PATH = "${PATH}:/usr/lib"
+        PATH = "${PATH}:/usr/local/bin/"
     }
 
     stages {
         stage('Dev') {
             steps {
-                sh 'cd mon-projet/PFE-YY-OM-V2 && docker-compose pull && docker-compose up -d'
+                sh 'cd /root/mon-projet/PFE-YY-OM-V2 && docker-compose pull && docker-compose up -d'
             }
         }
 
         stage('Preproduction') {
             steps {
-                sh 'cd mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
+                sh 'cd /root/mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
             }
         }
 
         stage('Production') {
             steps {
-                sh 'cd mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
+                sh 'cd /root/mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
             }
         }
     }
