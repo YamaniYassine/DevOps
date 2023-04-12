@@ -1,55 +1,28 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:14-alpine'
-            args '-v /usr/local/bin/docker-compose:/usr/local/bin/docker-compose'
-        }
-    }
+    agent any
+
     environment {
-        CI_COMMIT_REF_NAME = "${env.BRANCH_NAME}"
+        COMPOSE_PROJECT_NAME = "thetiptop"
+        COMPOSE_FILE = "./docker-compose.yml"
+        PATH = "${PATH}:/usr/local/bin"
     }
+
     stages {
-        stage('Build') {
+        stage('Dev') {
             steps {
-                sh 'npm install'
+                sh 'cd ~/mon-projet/PFE-YY-OM-V2 && docker-compose pull && docker-compose up -d'
             }
         }
-        stage('Test') {
+
+        stage('Preproduction') {
             steps {
-                sh 'npm test'
+                sh 'cd ~/mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
             }
         }
-        stage('Dev Deploy') {
-            when {
-                branch 'dev'
-            }
-            environment {
-                DOCKER_COMPOSE_FILE = 'docker-compose.dev.yml'
-            }
+
+        stage('Production') {
             steps {
-                sh 'docker-compose -f $DOCKER_COMPOSE_FILE up -d'
-            }
-        }
-        stage('Pre-Production Deploy') {
-            when {
-                branch 'preproduction'
-            }
-            environment {
-                DOCKER_COMPOSE_FILE = 'docker-compose.preproduction.yml'
-            }
-            steps {
-                sh 'docker-compose -f $DOCKER_COMPOSE_FILE up -d'
-            }
-        }
-        stage('Production Deploy') {
-            when {
-                branch 'production'
-            }
-            environment {
-                DOCKER_COMPOSE_FILE = 'docker-compose.production.yml'
-            }
-            steps {
-                sh 'docker-compose -f $DOCKER_COMPOSE_FILE up -d'
+                sh 'cd ~/mon-projet/PFE-YY-OM-V2 && docker-compose -f docker-compose.yml pull && docker-compose -f docker-compose.yml up -d'
             }
         }
     }
