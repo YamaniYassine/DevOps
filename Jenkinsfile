@@ -1,30 +1,34 @@
 pipeline {
-  agent any
-
+  agent {
+    docker {
+      image 'node:lts'
+      args '-u root'
+      reuseNode true
+    }
+  }
   stages {
-    stage('Stop containers') {
+    stage('Checkout') {
       steps {
-        sh 'docker-compose down'
+        checkout scm
       }
     }
-    stage('Show container') {
+    stage('Build') {
       steps {
-        sh 'docker ps'
+        sh 'npm install'
+        sh 'npm run build'
       }
     }
-    stage('Pull from Git repo') {
+    stage('Test') {
       steps {
-        git url: 'https://github.com/IEF2IYYOM/PFE-YY-OM-V2'
+        sh 'npm test'
       }
     }
-    stage('Start containers') {
-      steps {
-        sh 'docker-compose up -d'
+    stage('Deploy') {
+      when {
+        branch 'production'
       }
-    }
-    stage('Show container status') {
       steps {
-        sh 'docker ps'
+        sh 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build'
       }
     }
   }
