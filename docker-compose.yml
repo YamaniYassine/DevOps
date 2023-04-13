@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: front-docker
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`dsp-archiwebf22-yy-om.bio`)"
       - "traefik.http.services.frontend.loadbalancer.server.port=3000"
     depends_on:
@@ -20,7 +21,8 @@ services:
       dockerfile: Dockerfile
     container_name: back-docker
     labels:
-      - "traefik.http.routers.backend.rule=Host(`dsp-archiwebf22-yy-om.bio`)"
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`backend.dsp-archiwebf22-yy-om.bio`)"
       - "traefik.http.services.backend.loadbalancer.server.port=5001"
     depends_on:
       - db
@@ -48,8 +50,11 @@ services:
     restart: always
     user: root
     labels:
-      - "traefik.http.routers.jenkins.rule=Host(`dsp-archiwebf22-yy-om.bio`)"
+      - "traefik.enable=true"
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.dsp-archiwebf22-yy-om.bio`)"
       - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
+      - "traefik.http.routers.jenkins.entrypoints=web"
+      - "traefik.http.routers.jenkins.service=jenkins"
     volumes:
       - jenkins-data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
@@ -66,7 +71,7 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
     ports:
-      - "80:3000"
+      - "80:80"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
