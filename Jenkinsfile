@@ -12,9 +12,9 @@ pipeline {
                 sh 'docker-compose version'
             }
         }
-        stage('shut down') {
+        stage('starting containers') {
             steps {
-                sh ''
+                sh 'docker-compose up -d'
             }
         }
         stage('Testing') {
