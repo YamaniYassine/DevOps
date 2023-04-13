@@ -2,17 +2,11 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-
-
 # Install sudo
 RUN apt-get update && \
     apt-get -y install sudo && \
-    sudo apt install docker.io \
+    apt-get -y install docker.io && \
     rm -rf /var/lib/apt/lists/*
-
-# Install Docker
-RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
-    sh get-docker.sh
 
 # Add jenkins user to sudoers with no password
 RUN echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
