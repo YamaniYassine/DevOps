@@ -1,20 +1,15 @@
 pipeline {
     agent any
-
     stages {
-        stage('Build') {
+        stage('testing') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh '''
+                    docker info
+                    docker version 
+                    docker compose version
+                    curl --version
+                    jq --version
+                '''
             }
         }
     }
