@@ -5,6 +5,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      image: front-docker-image
     container_name: front-docker
     ports:
       - "80:3000"
@@ -21,6 +22,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+      image: back-docker-image
     container_name: back-docker
     ports:
       - "5001:5001"
@@ -48,6 +50,7 @@ services:
     build:
       context: ./jenkins
       dockerfile: Dockerfile
+      image: jenkins-docker-image
     container_name: jenkins
     restart: always
     user: root
