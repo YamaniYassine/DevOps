@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Testing') {
             steps {
-                sh 'docker-compose ps'
+                sh '/usr/bin/docker-compose up'
             }
         }
     }
