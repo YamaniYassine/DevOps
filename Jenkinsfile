@@ -6,6 +6,11 @@ pipeline {
                 sh ''
             }
         }
+        stage('pull the modification') {
+            steps {
+                sh 'git pull'
+            }
+        }
         stage('checking Docker Compose version') {
             steps {
                 sh 'docker-compose version'
