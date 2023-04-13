@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:latest'
-            args '--privileged'
-        }
-    }
+    agent any
     stages {
         stage('testing') {
             steps {
