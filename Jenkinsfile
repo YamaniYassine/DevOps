@@ -11,16 +11,20 @@ pipeline {
                 sh 'docker-compose version'
             }
         }
-        stage('stoping containers') {
+        stage('starting containers') {
             steps {
-                sh 'docker-compose ps'
+                sh 'docker-compose up -d'
             }
         }
         stage('Testing') {
             steps {
                 sh 'docker-compose ps'
+            } 
+        }
+        stage('stoping containers') {
+            steps {
+                sh 'docker-compose down'
             }
-            
         }
     }
 }
