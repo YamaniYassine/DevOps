@@ -14,7 +14,7 @@ pipeline {
         }
         stage('stoping containers') {
             steps {
-                sh 'docker-compose down'
+                sh 'docker-compose --project-name myproject --network mynetwork up -d'
             }
         }
         stage('Testing') {
