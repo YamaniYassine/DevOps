@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Docker buid') {
             steps {
-                sh 'docker build'
+                sh 'docker build --no-cache'
             }
         }
         stage('starting containers') {
