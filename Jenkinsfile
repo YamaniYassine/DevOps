@@ -8,7 +8,8 @@ pipeline {
         }
         stage('pull the modification') {
             steps {
-                sh 'git pull --force origin main'
+                sh "git rev-parse --abbrev-ref HEAD"
+                sh "git rev-parse HEAD"
             }
         }
         stage('checking Docker Compose version') {
