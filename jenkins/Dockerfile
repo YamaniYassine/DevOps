@@ -7,12 +7,7 @@ USER root
 # Install sudo
 RUN apt-get update && \
     apt-get -y install sudo && \
-    sudo apt install docker.io \
     rm -rf /var/lib/apt/lists/*
-
-# Install Docker
-RUN curl -fsSL https://get.docker.com -o get-docker.sh && \
-    sh get-docker.sh
 
 # Add jenkins user to sudoers with no password
 RUN echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
@@ -23,7 +18,5 @@ RUN groupadd -g 999 docker && \
 
 # Add jenkins user to docker group
 RUN usermod -aG docker jenkins
-
-ENV PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
 
 USER jenkins
