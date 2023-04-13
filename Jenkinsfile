@@ -9,6 +9,7 @@ pipeline {
         stage('Clean docker') {
             steps {
                 sh 'docker system prune --all --force --volumes'
+            }
         }
         stage('checking Docker Compose version') {
             steps {
