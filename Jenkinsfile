@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Install Docker Compose') {
             steps {
+                sh ''
             }
         }
         stage('checking Docker Compose version') {
@@ -12,12 +13,12 @@ pipeline {
         }
         stage('stoping containers') {
             steps {
-                sh 'docker-compose up -d --network pfe-yy-om-v2_mynetwork'
+                sh 'docker-compose ps'
             }
         }
         stage('Testing') {
             steps {
-                sh 'docker-compose ps --network pfe-yy-om-v2_mynetwork'
+                sh 'docker-compose ps'
             }
             
         }
