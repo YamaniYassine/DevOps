@@ -7,11 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: front-docker
     ports:
-      - "3000:3000"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`dsp-archiwebf22-yy-om.bio`)"
-      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+      - "80:3000"
     volumes:
       - ./frontend/src:/app/src
     stdin_open: true
@@ -61,21 +57,6 @@ services:
       - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
     networks:
       - mynetwork
-      
-  traefik:
-    image: traefik:v2.4
-    container_name: traefik
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-    networks:
-      - mynetwork
 
 volumes:
   data:
@@ -83,5 +64,3 @@ volumes:
 
 networks:
   mynetwork:
-    external:
-      name: traefik_default
