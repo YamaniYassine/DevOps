@@ -66,7 +66,7 @@ services:
     networks:
       - mynetwork
 
-   traefik:
+  traefik:
     image: "traefik:latest"
     container_name: "traefik"
     command:
