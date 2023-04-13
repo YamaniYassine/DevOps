@@ -1,11 +1,14 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:latest'
+            args '--privileged'
+        }
+    }
     stages {
         stage('testing') {
             steps {
-                sh '''
-                    sudo docker ps
-                '''
+                sh 'docker-compose ps'
             }
         }
     }
