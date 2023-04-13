@@ -3,23 +3,23 @@ pipeline {
     stages {
         stage('Install Docker Compose') {
             steps {
-                sh 'curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
-                sh 'chmod +x /usr/local/bin/docker-compose'
+                sh 'curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin/docker-compose'
+                sh 'chmod +x /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin/docker-compose'
             }
         }
         stage('checking Docker Compose version') {
             steps {
-                sh '/usr/local/bin/docker-compose version'
+                sh 'docker-compose version'
             }
         }
         stage('shut down') {
             steps {
-                sh '/usr/local/bin/docker-compose down'
+                sh ''
             }
         }
         stage('Testing') {
             steps {
-                sh '/usr/local/bin/docker-compose ps'
+                sh 'docker-compose ps'
             }
         }
     }
