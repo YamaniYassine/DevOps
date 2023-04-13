@@ -15,7 +15,7 @@ RUN groupadd -g 999 docker && \
     useradd -r -u 999 -g docker docker
 
 # Add jenkins user to docker group
-RUN usermod -aG docker jenkins
+RUN sudo usermod -aG docker jenkins
 
 USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
