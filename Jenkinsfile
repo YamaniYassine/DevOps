@@ -6,11 +6,9 @@ pipeline {
                 sh ''
             }
         }
-        stage('pull the modification') {
+        stage('Clean docker') {
             steps {
-                sh "git rev-parse --abbrev-ref HEAD"
-                sh "git rev-parse HEAD"
-            }
+                sh 'docker system prune --all --force --volumes'
         }
         stage('checking Docker Compose version') {
             steps {
