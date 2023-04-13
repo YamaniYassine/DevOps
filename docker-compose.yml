@@ -47,6 +47,8 @@ services:
   jenkins:
     image: "jenkins/jenkins:lts"
     container_name: jenkins-docker
+    restart: always
+    user: root
     ports:
       - "8080:8080"
     volumes:
