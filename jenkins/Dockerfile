@@ -2,22 +2,21 @@ FROM jenkins/jenkins:lts
 
 USER root
 
-# Install necessary packages
+# Install Docker prerequisites
 RUN apt-get update && \
-    apt-get -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common && \
-    apt-get -y autoremove && \
-    apt-get -y autoclean
+    apt-get -y install apt-transport-https ca-certificates curl gnupg lsb-release && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Docker CLI
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
-    apt-get update && \
-    apt-get -y install docker-ce-cli && \
-    apt-get -y autoremove && \
-    apt-get -y autoclean
+# Add Docker GPG key
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | tee /usr/share/keyrings/docker-archive-keyring.gpg >/dev/null
 
-# Add jenkins user to sudoers with no password
-RUN echo "jenkins ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+# Add Docker repository
+RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list >/dev/null
+
+# Install Docker
+RUN apt-get update && \
+    apt-get -y install docker-ce docker-ce-cli containerd.io && \
+    rm -rf /var/lib/apt/lists/*
 
 # Add jenkins user to docker group
 RUN usermod -aG docker jenkins
