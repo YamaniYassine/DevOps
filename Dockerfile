@@ -1,6 +1,8 @@
 # Use the latest LTS version of Node.js as the base image
 FROM node:lts
 
+RUN apk add --no-cache git
+
 # Create a directory for the application
 WORKDIR /app
 
@@ -12,6 +14,8 @@ RUN npm install
 
 # nodemon
 RUN npm install --global nodemon
+
+RUN npm install -g sonarqube-scanner
 
 # Copy the application code to the app directory
 COPY . .
