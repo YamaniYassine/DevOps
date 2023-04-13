@@ -64,7 +64,7 @@ services:
     image: sonarqube:latest
     container_name: sonarqube
     ports:
-      - "9000:9000"
+      - "9090:9090"
     networks:
       - mynetwork
 
