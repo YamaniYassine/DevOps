@@ -62,7 +62,7 @@ services:
 
 volumes:
   data:
-  jenkins_home:
+  jenkins-data:
 
 networks:
   mynetwork:
