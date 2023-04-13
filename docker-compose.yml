@@ -67,6 +67,9 @@ services:
       - "9000:9000"
     networks:
       - mynetwork
+    volumes:
+      - data:/data
+      - jenkins-data:/opt/jenkins/data
 
 volumes:
   data:
@@ -74,3 +77,4 @@ volumes:
 
 networks:
   mynetwork:
+    name: "mynetwork"
