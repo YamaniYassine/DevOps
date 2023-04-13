@@ -13,12 +13,12 @@ pipeline {
         }
         stage('starting containers') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker-compose up -d --network pfe-yy-om-v2_mynetwork'
             }
         }
         stage('Testing') {
             steps {
-                sh 'docker-compose ps'
+                sh 'docker-compose ps --network pfe-yy-om-v2_mynetwork'
             } 
         }
     }
