@@ -65,5 +65,3 @@ volumes:
 networks:
   mynetwork:
     driver: bridge
-    external:
-      name: mynetwork
