@@ -7,13 +7,17 @@ services:
       dockerfile: Dockerfile
     container_name: front-docker
     ports:
-      - "80:3000"
+      - "3000:3000"
     volumes:
       - ./frontend/src:/app/src
     stdin_open: true
     tty: true
     depends_on:
       - backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.plausible.rule=Host(`dsp-archiwebf22-yy-om.bio`)"
+      - "traefik.http.routers.plausible.entrypoints=web"
     networks:
       - mynetwork
 
@@ -55,6 +59,31 @@ services:
       - jenkins-data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.plausible.rule=Host(`jinkins.dsp-archiwebf22-yy-om.bio`)"
+      - "traefik.http.routers.plausible.entrypoints=web"
+    networks:
+      - mynetwork
+
+   traefik:
+    image: "traefik:latest"
+    container_name: "traefik"
+    command:
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.dsp-archiwebf22-yy-om.bio`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.routers.traefik.service=api@internal"
     networks:
       - mynetwork
 
