@@ -4,7 +4,7 @@ FROM node:lts
 # Create a directory for the application
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files to the app directory
+# Copy the package.json and package-lock.json files to the app directory.
 COPY package*.json ./
 
 # Install dependencies
