@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Testing') {
             steps {
-                sh 'docker-compose --network mynetwork ps'
+                sh 'docker-compose ps'
             }
         }
     }
