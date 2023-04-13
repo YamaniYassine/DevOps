@@ -9,17 +9,17 @@ pipeline {
         }
         stage('checking Docker Compose version') {
             steps {
-                sh 'docker-compose version'
+                sh '/usr/local/bin/docker-compose version'
             }
         }
         stage('starting container') {
             steps {
-                sh 'docker-compose up'
+                sh '/usr/local/bin/docker-compose up'
             }
         }
         stage('Testing') {
             steps {
-                sh 'docker-compose ps'
+                sh '/usr/local/bin/docker-compose ps'
             }
         }
     }
