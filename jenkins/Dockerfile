@@ -8,7 +8,14 @@ RUN echo "deb [arch=$(dpkg --print-architecture) \
   https://download.docker.com/linux/debian \
   $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 RUN apt-get update && apt-get install -y docker-ce-cli
+
+
+# Create docker user
+RUN groupadd -g 999 docker && \
+    useradd -r -u 999 -g docker docker
+
 # Add jenkins user to docker group
-RUN sudo usermod -aG docker jenkins
+RUN usermod -aG docker jenkins
+
 USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
