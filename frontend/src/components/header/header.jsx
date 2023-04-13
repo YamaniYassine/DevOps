@@ -40,7 +40,7 @@ const HeaderNav = () => {
             {user ? (
               userrole === 1 ? (
 
-                <button className="user-button"><NavLink to="/welcome">{username}</NavLink></button>
+                <button className="user-button"><NavLink to="/dashboard">{username}</NavLink></button>
 
               ) : (
                 <button className="user-button"><NavLink to="/welcome">{username}</NavLink></button>
