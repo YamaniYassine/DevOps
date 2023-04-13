@@ -55,7 +55,8 @@ services:
       - jenkins-data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
-    network_mode: "mynetwork"
+    networks:
+      - mynetwork
 
 volumes:
   data:
@@ -64,3 +65,4 @@ volumes:
 networks:
   mynetwork:
     driver: bridge
+    external: true
