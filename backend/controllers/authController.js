@@ -18,6 +18,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     confirmPassword: req.body.confirmPassword,
+    role: req.body.role,
   });
 
   // const token = generateToken(newUser._id);
