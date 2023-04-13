@@ -21,6 +21,7 @@ pipeline {
             steps {
                 sh 'docker-compose ps --network pfe-yy-om-v2_mynetwork'
             }
+            
         }
     }
 }
