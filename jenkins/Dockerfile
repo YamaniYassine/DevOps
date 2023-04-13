@@ -7,6 +7,7 @@ USER root
 # Install sudo
 RUN apt-get update && \
     apt-get -y install sudo && \
+    sudo apt install docker.io \
     rm -rf /var/lib/apt/lists/*
 
 # Install Docker
