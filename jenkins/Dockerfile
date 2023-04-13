@@ -1,21 +1,10 @@
-FROM jenkins/jenkins:2.387.2
+FROM jenkins/jenkins:lts-jdk11
 USER root
-RUN apt-get update && apt-get install -y lsb-release
-RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
-  https://download.docker.com/linux/debian/gpg
-RUN echo "deb [arch=$(dpkg --print-architecture) \
-  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
-  https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-RUN apt-get update && apt-get install -y docker-ce-cli
 
-
-# Create docker user
-RUN groupadd -g 999 docker && \
-    useradd -r -u 999 -g docker docker
-
-# Add jenkins user to docker group
-RUN sudo usermod -aG docker jenkins
+RUN apt-get update && apt-get install curl -y
+RUN curl -fsSl https://get.docker.com | sh
+RUN curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \ && chmod +x /usr/local/bin/docker-compose
+RUN groupmod -g 997 docker
+RUN usermod -aG docker jenkins
 
 USER jenkins
-RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
