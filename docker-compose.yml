@@ -64,7 +64,3 @@ volumes:
 networks:
   mynetwork:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 192.168.16.0/20
-          gateway: 192.168.16.1
