@@ -28,6 +28,7 @@ services:
       - db
     networks:
       - mynetwork
+    network_mode: host
 
   db:
     image: "mongo"
@@ -43,6 +44,7 @@ services:
       retries: 5
     networks:
       - mynetwork
+
   jenkins:
     image: jenkins/jenkins:lts-jdk11
     container_name: jenkins
