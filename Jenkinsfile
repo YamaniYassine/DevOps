@@ -11,9 +11,9 @@ pipeline {
                 sh 'docker-compose version'
             }
         }
-        stage('Docker down') {
+        stage('Docker buid') {
             steps {
-                sh ''
+                sh 'docker-compose build'
             }
         }
         stage('starting containers') {
