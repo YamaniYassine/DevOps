@@ -8,7 +8,7 @@ pipeline {
         }
         stage('pull the modification') {
             steps {
-                sh 'git pull'
+                sh 'git pull origin main'
             }
         }
         stage('checking Docker Compose version') {
