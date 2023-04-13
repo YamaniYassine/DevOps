@@ -23,4 +23,6 @@ RUN groupadd -g 999 docker && \
 # Add jenkins user to docker group
 RUN usermod -aG docker jenkins
 
+ENV PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
+
 USER jenkins
