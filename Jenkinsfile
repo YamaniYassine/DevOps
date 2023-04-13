@@ -12,11 +12,6 @@ pipeline {
                 sh '/usr/local/bin/docker-compose version'
             }
         }
-        stage('starting container') {
-            steps {
-                sh '/usr/local/bin/docker-compose up'
-            }
-        }
         stage('Testing') {
             steps {
                 sh '/usr/local/bin/docker-compose ps'
