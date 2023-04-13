@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('stoping containers') {
             steps {
-                sh 'docker stop $(docker ps -q)'
+                sh ''
             }
         }
         stage('checking Docker Compose version') {
@@ -13,12 +13,12 @@ pipeline {
         }
         stage('Docker down') {
             steps {
-                sh 'docker-compose down'
+                sh ''
             }
         }
         stage('starting containers') {
             steps {
-                sh 'docker-compose up -d'
+                sh ''
             }
         }
         stage('Testing') {
