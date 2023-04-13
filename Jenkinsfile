@@ -12,6 +12,11 @@ pipeline {
                 sh '/usr/local/bin/docker-compose version'
             }
         }
+        stage('shut down') {
+            steps {
+                sh '/usr/local/bin/docker-compose down'
+            }
+        }
         stage('Testing') {
             steps {
                 sh '/usr/local/bin/docker-compose ps'
