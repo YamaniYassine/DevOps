@@ -7,6 +7,11 @@ pipeline {
                 sh 'chmod +x /usr/local/bin/docker-compose'
             }
         }
+        stage('checking Docker Compose version') {
+            steps {
+                sh 'docker-compose version'
+            }
+        }
         stage('starting container') {
             steps {
                 sh 'docker-compose up'
@@ -14,7 +19,7 @@ pipeline {
         }
         stage('Testing') {
             steps {
-                sh '/usr/bin/docker-compose up'
+                sh 'docker-compose ps'
             }
         }
     }
