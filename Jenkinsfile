@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Install Docker Compose') {
+        stage('stoping containers') {
             steps {
-                sh ''
+                sh 'docker-compose down'
             }
         }
         stage('checking Docker Compose version') {
@@ -20,11 +20,6 @@ pipeline {
             steps {
                 sh 'docker-compose ps'
             } 
-        }
-        stage('stoping containers') {
-            steps {
-                sh 'docker-compose down'
-            }
         }
     }
 }
