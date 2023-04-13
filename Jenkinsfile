@@ -14,7 +14,7 @@ pipeline {
         }
         stage('stoping containers') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker-compose up -d --network pfe-yy-om-v2_mynetwork'
             }
         }
         stage('Testing') {
