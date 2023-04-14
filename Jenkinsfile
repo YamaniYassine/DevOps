@@ -20,5 +20,10 @@ pipeline {
                 sh 'docker ps'
             } 
         }
+        stage('Logs') {
+            steps {
+                sh 'docker logs'
+            } 
+        }
     }
 }
