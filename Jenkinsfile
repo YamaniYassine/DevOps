@@ -6,7 +6,7 @@ pipeline {
                 sh ''
             }
         }
-        stage('Clean container') {
+        stage('pull the modification') {
             steps {
                 sh ''
             }
@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Docker buid') {
             steps {
-                sh 'docker-compose build --no-cache'
+                sh ''
             }
         }
         stage('starting containers') {
