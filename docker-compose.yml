@@ -61,7 +61,7 @@ services:
       - mynetwork
 
   sonarqube:
-    image: sonarqube:latest
+    image: "sonarqube:9.3-community"
     container_name: sonarqube
     ports:
       - "9000:9000"
@@ -69,7 +69,6 @@ services:
       - mynetwork
     volumes:
       - data:/data
-      - jenkins-data:/opt/jenkins/data
 
 volumes:
   data:
