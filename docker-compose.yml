@@ -89,7 +89,8 @@ services:
       - "80:80"
       - "9090:9090"
     volumes:
-      - ./traefik/traefik.toml:/traefik.toml
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
     networks:
       - mynetwork
 
