@@ -90,7 +90,7 @@ services:
       - "9090:9090"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/traefik.toml
+      - ./traefik:/traefik.toml
     networks:
       - mynetwork
 
