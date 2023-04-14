@@ -11,11 +11,6 @@ pipeline {
                 sh 'git pull origin main'
             }
         }
-        stage('re-building the images') {
-            steps {
-                sh 'docker-compose up -d'
-            }
-        }
         stage('Testing') {
             steps {
                 sh 'docker ps'
