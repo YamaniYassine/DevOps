@@ -21,10 +21,5 @@ pipeline {
                 sh 'docker-compose logs'
             } 
         }
-        stage('echo') {
-            steps {
-                sh 'echo test'
-            } 
-        }
     }
 }
