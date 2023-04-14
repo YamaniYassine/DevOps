@@ -1,7 +1,6 @@
 # Use the latest LTS version of Node.js as the base image
 FROM node:lts
 
-# RUN apk add --no-cache git
 
 # Create a directory for the application
 WORKDIR /app
