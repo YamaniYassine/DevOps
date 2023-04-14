@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: front-docker
     ports:
-      - "3000:3000"
+      - "80:3000"
     volumes:
       - ./frontend/src:/app/src
     stdin_open: true
@@ -78,21 +78,21 @@ services:
     volumes:
       - ./sonarqube_data:/var/lib/sonarqube/data
       
-  traefik:
-    image: "traefik:v2.5"
-    container_name: traefik
-    command:
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-    ports:
-      - "80:80"
-      - "9090:9090"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik/traefik.toml:/traefik.toml
-    networks:
-      - mynetwork
+#  traefik:
+#    image: "traefik:v2.5"
+#    container_name: traefik
+#    command:
+#      - "--providers.docker=true"
+#      - "--providers.docker.exposedbydefault=false"
+#      - "--entrypoints.web.address=:80"
+#    ports:
+#      - "80:80"
+#      - "9090:9090"
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - ./traefik/traefik.toml:/traefik.toml
+#    networks:
+#      - mynetwork
 
 volumes:
   data:
