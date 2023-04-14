@@ -1,34 +1,29 @@
 pipeline {
     agent any
     stages {
-        stage('stoping containers') {
-            steps {
-                sh ''
-            }
-        }
-        stage('pull the modification') {
-            steps {
-                sh 'git pull origin main'
-            }
-        }
         stage('checking Docker Compose version') {
             steps {
                 sh 'docker-compose version'
             }
         }
-        stage('Docker buid') {
+        stage('Pulling the new commit') {
             steps {
-                sh 'docker-compose build'
+                sh 'git pull origin main'
             }
         }
-        stage('starting containers') {
+        stage('re-building the images') {
             steps {
-                sh ''
+                sh 'docker-compose up -d'
             }
         }
         stage('Testing') {
             steps {
                 sh 'docker ps'
+            } 
+        }
+        stage('Logs') {
+            steps {
+                sh 'docker logs'
             } 
         }
     }
