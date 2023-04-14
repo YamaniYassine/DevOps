@@ -1,58 +1,30 @@
 pipeline {
     agent any
     stages {
-        stage('Install Node.js and npm') {
+        stage('stoping containers') {
             steps {
-                sh 'curl -sL https://deb.nodesource.com/setup_14.x | bash -'
-                sh 'apt-get install -y nodejs'
-                sh 'npm install -g npm@latest'
+                sh ''
             }
         }
-        stage('Build') {
+        stage('checking Docker Compose version') {
             steps {
-                script {
-                    // Check if there are changes in the frontend directory
-                    def frontendChanges = sh(returnStdout: true, script: 'git diff --name-only HEAD^ HEAD -- frontend/').trim()
-
-                    // Check if there are changes in the backend directory
-                    def backendChanges = sh(returnStdout: true, script: 'git diff --name-only HEAD^ HEAD -- backend/').trim()
-
-                    // Build and test the frontend if changes were made
-                    if (frontendChanges) {
-                        dir('frontend') {
-                            sh 'npm install'
-                            sh 'npm run build'
-                            sh 'npm run test'
-                        }
-                    }
-
-                    // Build and test the backend if changes were made
-                    if (backendChanges) {
-                        dir('backend') {
-                            sh 'npm install'
-                            sh 'npm run build'
-                            sh 'npm run test'
-                        }
-                    }
-                }
+                sh 'docker-compose version'
             }
         }
-        
-        stage('Test') {
+        stage('Docker buid') {
             steps {
-                sh 'cd frontend && npm run test'
-                sh 'cd backend && npm run test'
+                sh ''
             }
         }
-        
-        stage('Deploy') {
-            when {
-                branch 'main'
-            }
+        stage('starting containers') {
             steps {
-                sh 'docker-compose down'
-                sh 'docker-compose up -d --build'
+                sh ''
             }
+        }
+        stage('Testing') {
+            steps {
+                sh 'docker ps'
+            } 
         }
     }
 }
