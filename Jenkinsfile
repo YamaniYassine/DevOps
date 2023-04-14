@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Logs') {
             steps {
-                sh 'docker logs'
+                sh 'docker-compose logs'
             } 
         }
     }
