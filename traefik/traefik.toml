@@ -1,0 +1,9 @@
+[api]
+dashboard = true
+
+[providers.docker]
+exposedbydefault = false
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
