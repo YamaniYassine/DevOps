@@ -64,7 +64,6 @@ services:
     image: "sonarqube:9.3-community"
     container_name: sonarqube
     environment:
-      - SONARQUBE_JDBC_URL=jdbc:mongodb://db-docker:27017/sonarqube?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
       - SONARQUBE_JDBC_USERNAME=sonarqube
       - SONARQUBE_JDBC_PASSWORD=sonarqube
     ports:
