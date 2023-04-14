@@ -16,6 +16,11 @@ services:
       - backend
     networks:
       - mynetwork
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`http://www.dsp-archiwebf22-yy-om.bio/`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
 
   backend:
     build:
@@ -84,7 +89,7 @@ services:
       - "80:80"
       - "9090:9090"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.toml:/traefik.toml
     networks:
       - mynetwork
 
