@@ -1,35 +1,28 @@
 pipeline {
     agent any
     stages {
-        stage('stoping containers') {
+        stage('Build') {
             steps {
-                sh ''
+                sh 'cd frontend && npm install && npm run build'
+                sh 'cd backend && npm install && npm run build'
             }
         }
-        stage('checking Docker Compose version') {
+        
+        stage('Test') {
             steps {
-                sh 'docker-compose version'
+                sh 'cd frontend && npm run test'
+                sh 'cd backend && npm run test'
             }
         }
-        stage('pull the modification') {
-            steps {
-                sh 'git pull origin main'
+        
+        stage('Deploy') {
+            when {
+                branch 'main'
             }
-        }
-        stage('Docker buid') {
             steps {
-                sh ''
+                sh 'docker-compose down'
+                sh 'docker-compose up -d --build'
             }
-        }
-        stage('starting containers') {
-            steps {
-                sh ''
-            }
-        }
-        stage('Testing') {
-            steps {
-                sh 'docker ps'
-            } 
         }
     }
 }
