@@ -6,7 +6,7 @@ pipeline {
                 sh ''
             }
         }
-        stage('Clean docker') {
+        stage('Clean container') {
             steps {
                 sh 'docker system prune --all --force --volumes'
             }
