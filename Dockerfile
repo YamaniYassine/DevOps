@@ -10,7 +10,7 @@ COPY package*.json ./
 
 # Install dependencies
 RUN npm install
-
+#test
 # nodemon
 RUN npm install --global nodemon
 
