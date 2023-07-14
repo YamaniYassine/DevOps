@@ -13,8 +13,12 @@ pipeline {
         }
         stage('Testing') {
             steps {
-                // Run frontend tests
-                sh 'docker run -v $PWD/frontend:/frontend -w /frontend node:14 npm install && npm test'
+                dir('frontend') {
+                    sh 'npm test'
+                }
+                dir('backend') {
+                    sh 'npm test'
+                }
             }
         }
         stage('Logs') {
