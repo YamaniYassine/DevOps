@@ -13,8 +13,13 @@ pipeline {
         }
         stage('Testing') {
             steps {
-                sh 'docker ps'
-            } 
+                dir('frontend') {
+                    sh 'npm install && npm test'
+                }
+                dir('.') {
+                    sh 'mvn test'
+                }
+            }
         }
         stage('Logs') {
             steps {
