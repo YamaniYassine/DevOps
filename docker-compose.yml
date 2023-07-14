@@ -60,18 +60,18 @@ services:
     networks:
       - mynetwork
 
-  sonarqube:
-    image: "sonarqube:9.3-community"
-    container_name: sonarqube
-    environment:
-      - SONARQUBE_JDBC_USERNAME=sonarqube
-      - SONARQUBE_JDBC_PASSWORD=sonarqube
-    ports:
-      - "9000:9000"
-    networks:
-      - mynetwork
-    volumes:
-      - ./sonarqube_data:/var/lib/sonarqube/data
+  # sonarqube:
+  #   image: "sonarqube:9.3-community"
+  #   container_name: sonarqube
+  #   environment:
+  #     - SONARQUBE_JDBC_USERNAME=sonarqube
+  #     - SONARQUBE_JDBC_PASSWORD=sonarqube
+  #   ports:
+  #     - "9000:9000"
+  #   networks:
+  #     - mynetwork
+  #   volumes:
+  #     - ./sonarqube_data:/var/lib/sonarqube/data
       
 #  traefik:
 #    image: "traefik:v2.5"
