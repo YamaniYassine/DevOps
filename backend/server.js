@@ -29,9 +29,10 @@ if (process.env.NODE_ENV === "developement") {
 
 //Routes
 const userRoutes = require("./routes/userRoutes");
+const ticketRoutes = require('./routes/ticketRoutes');
 
 app.use(`/users`, userRoutes);
-
+app.use('/ticketApi', ticketRoutes);
 
 
 
