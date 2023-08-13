@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 const Ticket = require('./models/ticketModel');
 const crypto = require('crypto');
+const morgan = require("morgan");
+const dotenv = require("dotenv");
+dotenv.config({ path: "../config.env" });
+
 const dbURI = process.env.DATABASE;
 
-mongoose.connect('mongodb://127.0.0.1:27017/PFE', {
+
+mongoose.connect(dbURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
