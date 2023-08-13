@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Ticket = require('./models/ticketModel');
+const crypto = require('crypto');
 const dbURI = process.env.DATABASE;
 
-// Connectez-vous à votre base de données
 mongoose.connect('mongodb://127.0.0.1:27017/PFE', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -13,7 +13,7 @@ const generateTickets = async () => {
   const ticketData = [];
 
   for (let i = 1; i <= totalTickets; i++) {
-    const randomAmount = Math.random() * 100 + 49; // Montant aléatoire supérieur à 49
+    const randomAmount = Math.random() * 100 + 49;
     let gain;
 
     // Logique pour déterminer le gain en fonction de la répartition
@@ -29,8 +29,11 @@ const generateTickets = async () => {
       gain = 'coffret69';
     }
 
+    // Générez un numéro de ticket unique à 10 chiffres en utilisant crypto
+    const ticketNumber = crypto.randomBytes(5).toString('hex');
+
     ticketData.push({
-      number: i,
+      number: ticketNumber,
       amount: randomAmount.toFixed(2),
       gain: gain,
     });
@@ -43,8 +46,7 @@ const generateTickets = async () => {
     console.error('Erreur lors de la génération et du stockage des tickets', error);
   }
 
-  // Déconnectez-vous de la base de données après avoir terminé
   mongoose.disconnect();
 };
 
-generateTickets(); // Appelez la fonction pour générer et stocker les tickets
+generateTickets();
