@@ -10,16 +10,37 @@ const Concours = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+  
     const ticketCode = event.target['ticket-code'].value;
-
+  
     try {
       const response = await fetch(`/ticketApi/check-ticket/${ticketCode}`);
       const data = await response.json();
-
+  
       if (data.success) {
         setTicketInfo(data.ticket);
         await fetch(`/ticketApi/mark-ticket-used/${ticketCode}`, { method: 'POST' });
+  
+        // Add the winner's information to the "Winners" table
+        const winnerData = {
+          name: event.target['name'].value,
+          email: event.target['email'].value,
+          ticketCode: ticketCode,
+        };
+  
+        const addWinnerResponse = await fetch(`/ticketApi/add-winner`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(winnerData),
+        });
+  
+        if (addWinnerResponse.ok) {
+          console.log('Winner added to the "Winners" table');
+        } else {
+          console.error('Error adding winner to the "Winners" table');
+        }
       } else {
         alert(data.message);
       }
@@ -28,6 +49,7 @@ const Concours = () => {
       alert('An error occurred while processing your request.');
     }
   };
+  
 
   const renderPopup = () => {
     if (ticketInfo) {

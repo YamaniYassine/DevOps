@@ -1,5 +1,6 @@
 const express = require('express');
 const Ticket = require('../models/ticketModel');
+const Winner = require("../models/winnerModel");
 const router = express.Router();
 
 router.get('/check-ticket/:ticketCode', async (req, res) => {
@@ -46,5 +47,17 @@ router.get('/check-ticket/:ticketCode', async (req, res) => {
       res.status(500).json({ success: false, message: 'Server error' });
     }
   });   
+
+  router.post("/add-winner", async (req, res) => {
+    const { name, email, ticketCode, prize } = req.body;
+  
+    try {
+      const winner = await Winner.create({ name, email, ticketCode, prize });
+      res.json({ success: true, message: "Winner added successfully", winner });
+    } catch (error) {
+      console.error("Error adding winner:", error);
+      res.status(500).json({ success: false, message: "Server error" });
+    }
+  });
 
 module.exports = router;
