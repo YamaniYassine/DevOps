@@ -60,4 +60,14 @@ router.get('/check-ticket/:ticketCode', async (req, res) => {
     }
   });
 
+  router.get('/winners', async (req, res) => {
+    try {
+      const winners = await Winner.find();
+      res.json({ success: true, winners });
+    } catch (error) {
+      console.error('Error fetching winners:', error);
+      res.status(500).json({ success: false, message: 'Server error' });
+    }
+  });
+
 module.exports = router;

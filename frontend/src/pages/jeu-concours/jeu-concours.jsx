@@ -16,6 +16,7 @@ const Concours = () => {
     try {
       const response = await fetch(`/ticketApi/check-ticket/${ticketCode}`);
       const data = await response.json();
+      console.log(data);
   
       if (data.success) {
         setTicketInfo(data.ticket);
@@ -26,6 +27,7 @@ const Concours = () => {
           name: event.target['name'].value,
           email: event.target['email'].value,
           ticketCode: ticketCode,
+          prize: data.ticket.gain,
         };
   
         const addWinnerResponse = await fetch(`/ticketApi/add-winner`, {

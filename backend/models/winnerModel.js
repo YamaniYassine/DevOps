@@ -16,7 +16,9 @@ const winnerSchema = new mongoose.Schema({
     required: [true, "Ticket code is required!"],
     unique: true,
   },
-  prize: String,
+  prize: {
+    type: String, // Adjust the data type based on your prize structure
+  },
 });
 
 const Winner = mongoose.model("Winner", winnerSchema);
