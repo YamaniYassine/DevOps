@@ -13,30 +13,80 @@ const generateToken = (userid) => {
 };
 
 exports.signup = asyncErrorHandler(async (req, res, next) => {
+  const { name, email, password, confirmPassword } = req.body;
+
+  // Check for missing fields
+  if (!name || !email || !password || !confirmPassword) {
+    let errors = {};
+
+    if (!name) {
+      errors.name = "Name is required";
+    }
+
+    if (!email) {
+      errors.email = "Email is required";
+    }
+
+    if (!password) {
+      errors.password = "Password is required";
+    }
+
+    if (!confirmPassword) {
+      errors.confirmPassword = "Confirm Password is required";
+    }
+
+    return next(new AppError(JSON.stringify(errors), 400));
+  }
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    let allErrors = {};
+    allErrors[`incorrectconfirmation`] = `passwords don't match`;
+    return next(new AppError(JSON.stringify(allErrors), 400));
+  }
+
+  // Check if the email is already in use
+  const existingUser = await User.findOne({ email });
+
+  if (existingUser) {
+    let allErrors = {};
+    allErrors[`alreadyused`] = `emal already used`;
+    return next(new AppError(JSON.stringify(allErrors), 400));
+  }
+
+  // Create new user
   const newUser = await User.create({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
+    name,
+    email,
+    password,
+    confirmPassword,
   });
 
-  // const token = generateToken(newUser._id);
+  // Generate token
+  const token = generateToken(newUser._id);
 
-  const user = {
-    name: newUser.name,
-    email: newUser.email,
-    _id: newUser._id,
-    role: newUser.role,
-  };
+  // Set token as cookie
+  res.cookie("token", token, {
+    httpOnly: true,
+    maxAge: process.env.JWT_EXPIRES_IN,
+    secure: process.env.NODE_ENV === "production",
+  });
 
+  // Send success response
   res.status(200).json({
     status: "success",
     data: {
-      user: user,
-      // token: token,
+      user: {
+        name: newUser.name,
+        email: newUser.email,
+        _id: newUser._id,
+        role: newUser.role,
+      },
+      token: token,
     },
   });
 });
+
 
 exports.login = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req.body;
