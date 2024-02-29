@@ -18,7 +18,7 @@ const HeaderNav = () => {
   }
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" data-testid="test1">
       <div className="container">
         <div className="logo">
           ThéTipTop

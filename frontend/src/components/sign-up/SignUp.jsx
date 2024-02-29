@@ -13,13 +13,14 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 
-const SignUp = () => {
+const SignUp = ({ localStorage }) => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [formErrors, setFormErrors] = useState({});
   
   const { user, error, success, message } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const resetBorderColor = () => {
     const formInputs = document.querySelectorAll('.form-item');
     formInputs.forEach((input) => {
@@ -31,6 +32,7 @@ const SignUp = () => {
     let formInput = document.getElementById(`${inputName}`);
     formInput.classList.add("error");
   };
+
   const handleError = useCallback((message) => {
     // Parse the error message string
     const messageObject = JSON.parse(message);
@@ -61,11 +63,8 @@ const SignUp = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  
-
   const handleSubmit = (event) => {
-    event.preventDefault();
-    
+    event.preventDefault();    
     dispatch(registerUser(formFields));
   };
 

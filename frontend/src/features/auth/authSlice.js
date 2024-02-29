@@ -1,11 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { registerUser, loginUser } from "./authActions";
 
-// Get user from the local storage
-const user = JSON.parse(localStorage.getItem("user"));
-
 const initialState = {
-  user: user ? user : null,
+  user: null,
   loading: false,
   error: false,
   success: false,
@@ -24,6 +21,7 @@ export const authSlice = createSlice({
     },
 
     logout: (state) => {
+      // Access localStorage via injected dependency
       localStorage.removeItem("user");
       state.loading = false;
       state.user = null;
