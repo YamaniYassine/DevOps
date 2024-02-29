@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home page -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.bio/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Sign-up page -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.bio/sign-up</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sign-in page -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.bio/login</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Welcome page -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.bio/welcome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Dashboard page (not included due to disallow rule in robots.txt) -->
+
+  <!-- About page -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.bio/apropos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Contest page -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.biojeu-concours</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
