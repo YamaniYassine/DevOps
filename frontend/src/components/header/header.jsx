@@ -65,37 +65,3 @@ const HeaderNav = () => {
 }
 
 export default HeaderNav;
-
-{/* <header className="content-header">
-         <div className="logo">YAMANI</div>
-          {user ? (
-            userrole === 1 ? (
-
-              <p>Welcome admin <span>{username}!</span></p>
-
-            ) : (
-              <p>Welcome user <span>{username}!</span></p>
-
-            )
-
-            ) : (
-              location.pathname === "/" ? (
-                <p>
-                  Don't have an account?{" "}
-                  <Link className="link" to="/sign-up">
-                    Sign Up
-                  </Link>
-                </p>
-              ) : (
-                <p>
-                  Already have an account?{" "}
-                  <Link className="link" to="/">
-                    Sign In
-                  </Link>
-                </p>
-              )
-            )
-          }
-          
-          
-        </header> */}

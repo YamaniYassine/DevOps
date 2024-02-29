@@ -2,7 +2,6 @@ const User = require("../models/userModel");
 const asyncErrorHandler = require("../utils/asyncErrorHanlder");
 const jwt = require("jsonwebtoken");
 const AppError = require("../utils/appError");
-// const Email = require("../utils/handleEmail");
 
 const generateToken = (userid) => {
   const token = jwt.sign({ id: userid }, process.env.JWT_SECRET, {
@@ -91,10 +90,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
 exports.login = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
-  // 1. check if the email and the password
-  // if (!email || !password) {
-  //   return next(new AppError("Email and Password are required!"), 400);
-  // }
+
 
   if (!email || !password) {
     let message = {};
