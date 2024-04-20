@@ -5,9 +5,9 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: front-docker
+    container_name: pfe-frontend
     ports:
-      - "80:3000"
+      - "3000:3000"
     volumes:
       - ./frontend/src:/app/src
     stdin_open: true
@@ -15,19 +15,19 @@ services:
     depends_on:
       - backend
     networks:
-      - mynetwork
+      - my_network
 
   backend:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: back-docker
+    container_name: pfe-backend
     ports:
       - "5001:5001"
     depends_on:
       - db
     networks:
-      - mynetwork
+      - my_network
 
   db:
     image: "mongo"
@@ -42,23 +42,23 @@ services:
       timeout: 10s
       retries: 5
     networks:
-      - mynetwork
+      - my_network
 
-  jenkins:
-    build:
-      context: ./jenkins
-      dockerfile: Dockerfile
-    container_name: jenkins
-    restart: always
-    user: root
-    ports:
-      - "8080:8080"
-    volumes:
-      - jenkins-data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
-    networks:
-      - mynetwork
+  # jenkins:
+  #   build:
+  #     context: ./jenkins
+  #     dockerfile: Dockerfile
+  #   container_name: jenkins
+  #   restart: always
+  #   user: root
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - jenkins-data:/var/jenkins_home
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
+  #   networks:
+  #     - mynetwork
 
   # sonarqube:
   #   image: "sonarqube:9.3-community"
@@ -91,8 +91,9 @@ services:
 
 volumes:
   data:
-  jenkins-data:
+  # jenkins-data:
 
 networks:
-  mynetwork:
-    name: "mynetwork"
+  my_network:
+    name: "my_network"
+    internal: true

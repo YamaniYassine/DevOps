@@ -1,9 +1,26 @@
-[api]
-dashboard = true
+#[api]
+#dashboard = true
 
-[providers.docker]
-exposedbydefault = false
+# defaultEntryPoints = ["http", "https"]
+defaultEntryPoints = ["http"]
 
 [entryPoints]
-  [entryPoints.web]
+  [entryPoints.http]
     address = ":80"
+#      [entryPoints.http.redirect]
+#         entryPoint = "https"
+#   [entryPoints.https]
+#     address = ":443"
+#       [entryPoints.https.tls]
+  
+# [certificatesResolvers.myresolver.acme]
+#   email = "info@example.com"
+#   storage = "acme.json"
+#   [certificatesResolvers.myresolver.acme.httpChallenge]
+#     # used during the challenge
+#     entryPoint = "web"
+
+[docker]
+# domain = "mydomain.com"
+watch = true
+network = "web"
