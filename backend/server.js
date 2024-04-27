@@ -1,4 +1,5 @@
 const express = require("express");
+const promClient = require('prom-client');
 const app = express();
 const morgan = require("morgan");
 const mongoose = require('mongoose');
@@ -26,6 +27,35 @@ app.use(express.json());
 if (process.env.NODE_ENV === "developement") {
   app.use(morgan("dev"));
 }
+
+// Create a Prometheus Registry
+const register = new promClient.Registry();
+
+// Enable collection of default metrics
+promClient.collectDefaultMetrics({ register });
+
+// Define a custom metric
+const customMetric = new promClient.Gauge({
+  name: 'custom_metric',
+  help: 'Example custom metric',
+  registers: [register]
+});
+
+// Increment the custom metric
+customMetric.inc(1);
+
+// Expose Prometheus metrics endpoint
+app.get('/metrics', async (req, res) => {
+  try {
+    res.set('Content-Type', register.contentType);
+    res.end(await register.metrics());
+  } catch (ex) {
+    res.status(500).end(ex);
+  }
+});
+
+
+
 
 //Routes
 const userRoutes = require("./routes/userRoutes");
