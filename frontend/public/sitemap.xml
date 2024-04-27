@@ -3,28 +3,28 @@
 
   <!-- Home page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.bio/</loc>
+    <loc>www.dsp-archiwebf22-yy-om.site/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Sign-up page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.bio/sign-up</loc>
+    <loc>www.dsp-archiwebf22-yy-om.site/sign-up</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Sign-in page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.bio/login</loc>
+    <loc>www.dsp-archiwebf22-yy-om.site/login</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Welcome page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.bio/welcome</loc>
+    <loc>www.dsp-archiwebf22-yy-om.site/welcome</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -33,14 +33,14 @@
 
   <!-- About page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.bio/apropos</loc>
+    <loc>www.dsp-archiwebf22-yy-om.site/apropos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Contest page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.biojeu-concours</loc>
+    <loc>www.dsp-archiwebf22-yy-om.site/jeu-concours</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
