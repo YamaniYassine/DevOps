@@ -7,7 +7,7 @@ const Accueil = () => {
             <div class="fullview">
                 <div class="row-container2 ">
                     <div class="content-container2">
-                        <h1 class="title">Thé Tip Top !!! </h1>
+                        <h1 class="title">Thé Tip Top  </h1>
                     </div>
                 </div>
                 <div class="row-container2 ">
