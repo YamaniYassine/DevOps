@@ -38,7 +38,7 @@ const WelcomePage = () => {
   return (
     <section className="welcome-container">
       <h1 className="welcome-header">
-        Welcome <span>{username}!</span>
+        Welcome! <span>{username}!</span>
       </h1>
       <div className="button-container">
         <button className="logout-button" onClick={handleLogout}>
