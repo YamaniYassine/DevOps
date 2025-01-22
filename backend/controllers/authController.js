@@ -134,7 +134,7 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
     secure: process.env.NODE_ENV === 'production',
   });
 
-
+  console.log('Before res.status');
   res.status(200).json({
     status: "success",
     data: {
@@ -147,4 +147,5 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
       token: token,
     },
   });
+  console.log('After res.status');
 });

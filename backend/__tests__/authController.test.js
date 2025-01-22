@@ -60,22 +60,20 @@ describe('AuthController - Signup', () => {
       email: 'test@test.com',
       _id: 'mockUserId',
       role: 0,
-    }); // Mock new user creation
-
+    });
+  
     const req = mockRequest({
       body: { name: 'test', email: 'test@test.com', password: 'testtest', confirmPassword: 'testtest' },
     });
     const res = mockResponse();
     const next = mockNext();
-
+  
     await signup(req, res, next);
-
-    // Log the response status to see if it's called
-    console.log(res.status.mock.calls);
-
-    // Ensure status and JSON responses are properly called
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
+  
+    console.log('After signup function');
+  
+    await expect(res.status).toHaveBeenCalledWith(200); // Use await here
+    await expect(res.json).toHaveBeenCalledWith({
       status: 'success',
       data: {
         user: {
@@ -87,6 +85,6 @@ describe('AuthController - Signup', () => {
         token: 'mockToken',
       },
     });
-    console.log('Mocked User:', User.create.mockResolvedValueOnce);
   });
+  console.log('Mocked User:', User.create.mockResolvedValueOnce);
 });
