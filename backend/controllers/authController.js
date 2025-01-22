@@ -14,6 +14,8 @@ const generateToken = (userid) => {
 exports.signup = asyncErrorHandler(async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
 
+  console.log('Signup started'); // Add this log to track if signup is being called
+
   // Check for missing fields
   if (!name || !email || !password || !confirmPassword) {
     let errors = {};
@@ -34,6 +36,8 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
       errors.confirmPassword = "Confirm Password is required";
     }
 
+    console.log('Missing fields:', errors); // Log the errors to check if they're triggering
+
     return next(new AppError(JSON.stringify(errors), 400));
   }
 
@@ -41,6 +45,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
   if (password !== confirmPassword) {
     let allErrors = {};
     allErrors[`incorrectconfirmation`] = `passwords don't match`;
+    console.log('Passwords do not match:', allErrors); // Log if passwords don't match
     return next(new AppError(JSON.stringify(allErrors), 400));
   }
 
@@ -50,6 +55,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
   if (existingUser) {
     let allErrors = {};
     allErrors[`alreadyused`] = `emal already used`;
+    console.log('Email already in use:', allErrors); // Log if email is already used
     return next(new AppError(JSON.stringify(allErrors), 400));
   }
 
@@ -60,6 +66,8 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     password,
     confirmPassword,
   });
+
+  console.log('User created:', newUser); // Log the new user creation
 
   // Generate token
   const token = generateToken(newUser._id);
@@ -72,6 +80,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
   });
 
   // Send success response
+  console.log('Sending response'); // Log before sending response
   res.status(200).json({
     status: "success",
     data: {
@@ -85,6 +94,7 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     },
   });
 });
+
 
 
 exports.login = asyncErrorHandler(async (req, res, next) => {

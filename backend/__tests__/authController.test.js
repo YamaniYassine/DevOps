@@ -87,5 +87,6 @@ describe('AuthController - Signup', () => {
         token: 'mockToken',
       },
     });
+    console.log('Mocked User:', User.create.mockResolvedValueOnce);
   });
 });
