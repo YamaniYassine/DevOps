@@ -3,6 +3,8 @@ const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const { mockRequest, mockResponse, mockNext } = require('../utils/testUtils');
 
+let server;
+
 beforeAll((done) => {
   server = app.listen(5001, done); // Start server before tests
 });
