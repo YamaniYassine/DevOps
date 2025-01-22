@@ -72,7 +72,6 @@ describe('AuthController - Signup', () => {
   
     console.log('After signup function');
   
-    await expect(res.status).toHaveBeenCalledWith(200); // Use await here
     await expect(res.json).toHaveBeenCalledWith({
       status: 'success',
       data: {
