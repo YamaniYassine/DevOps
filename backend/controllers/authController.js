@@ -14,8 +14,6 @@ const generateToken = (userid) => {
 exports.signup = asyncErrorHandler(async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
 
-  console.log('Signup started'); // Add this log to track if signup is being called
-
   // Check for missing fields
   if (!name || !email || !password || !confirmPassword) {
     let errors = {};
@@ -35,8 +33,6 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     if (!confirmPassword) {
       errors.confirmPassword = "Confirm Password is required";
     }
-
-    console.log('Missing fields:', errors); // Log the errors to check if they're triggering
 
     return next(new AppError(JSON.stringify(errors), 400));
   }
@@ -65,8 +61,6 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     confirmPassword,
   });
 
-  console.log('User created:', newUser); // Log the new user creation
-
   // Generate token
   const token = generateToken(newUser._id);
 
@@ -78,7 +72,6 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
   });
 
   // Send success response
-  console.log('Sending response'); // Log before sending response
   res.status(200).json({
     status: "success",
     data: {
@@ -92,7 +85,6 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
     },
   });
 });
-
 
 
 exports.login = asyncErrorHandler(async (req, res, next) => {
@@ -131,6 +123,7 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
     maxAge: process.env.JWT_EXPIRES_IN,
     secure: process.env.NODE_ENV === 'production',
   });
+
 
   res.status(200).json({
     status: "success",
