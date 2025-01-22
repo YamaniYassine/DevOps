@@ -4,12 +4,15 @@ const app = require('../server'); // Import your app from server.js
 let server;
 
 beforeAll((done) => {
-  server = app.listen(5002, done); // Start server before tests
-});
-
-afterAll((done) => {
-  server.close(done); // Close the server after tests
-});
+    server = app.listen(0, () => {
+      console.log('Test server is running on port', server.address().port);
+      done();
+    });
+  });
+  
+  afterAll((done) => {
+    server.close(done); // Close the server after tests
+  });
 
 describe('AuthController - Signup API', () => {
   it('should signup a user and return token if valid data is provided', async () => {
