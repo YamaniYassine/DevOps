@@ -70,6 +70,9 @@ describe('AuthController - Signup', () => {
 
     await signup(req, res, next);
 
+    // Log the response status to see if it's called
+    console.log(res.status.mock.calls);
+
     // Ensure status and JSON responses are properly called
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
