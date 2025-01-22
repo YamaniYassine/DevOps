@@ -3,16 +3,6 @@ const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const { mockRequest, mockResponse, mockNext } = require('../utils/testUtils');
 
-let server;
-
-beforeAll((done) => {
-  server = app.listen(5001, done); // Start server before tests
-});
-
-afterAll((done) => {
-  server.close(done); // Close the server after tests
-});
-
 
 jest.mock('../models/userModel'); // Mock the User model
 jest.mock('jsonwebtoken', () => ({

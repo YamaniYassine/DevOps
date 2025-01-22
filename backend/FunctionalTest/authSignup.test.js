@@ -1,13 +1,17 @@
 const request = require('supertest');
 const app = require('../server'); // Your Express app
 
+let server;
+
 beforeAll((done) => {
-    server = app.listen(5001, done); // Start server before tests
-  });
-  
-  afterAll((done) => {
-    server.close(done); // Close the server after tests
-  });
+  server = app.listen(5001, done); // Start server before tests
+});
+
+afterAll((done) => {
+  server.close(done); // Close the server after tests
+});
+
+
 
 describe('AuthController - Signup API', () => {
   it('should signup a user and return token if valid data is provided', async () => {
