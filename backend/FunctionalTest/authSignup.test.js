@@ -17,7 +17,7 @@ beforeAll((done) => {
 describe('AuthController - Signup API', () => {
   it('should signup a user and return token if valid data is provided', async () => {
     const res = await request(app)
-      .post('/api/v1/auth/signup')
+      .post('/users/signup')
       .send({
         name: 'test',
         email: 'test@test.com',
