@@ -4,10 +4,7 @@ const app = require('../server'); // Import your app from server.js
 let server;
 
 beforeAll((done) => {
-    server = app.listen(0, () => {
-    console.log(`Test server running on port ${server.address().port}`);
-    done();
-    });
+  server = app.listen(5002, done); // Start server before tests
 });
 
 afterAll((done) => {
