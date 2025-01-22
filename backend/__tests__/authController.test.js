@@ -1,6 +1,6 @@
 const { signup } = require('../controllers/authController');
 const User = require('../models/userModel');
-const AppError = require('./utils/appError');
+const AppError = require('../utils/appError');
 const { mockRequest, mockResponse, mockNext } = require('../utils/testUtils');
 
 jest.mock('../models/userModel'); // Mock the User model
