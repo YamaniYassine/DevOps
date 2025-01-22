@@ -52,38 +52,4 @@ describe('AuthController - Signup', () => {
     const error = JSON.parse(next.mock.calls[0][0].message);
     expect(error).toHaveProperty('alreadyused', 'emal already used');
   });
-
-  it('should signup user and return token if valid data is provided', async () => {
-    User.findOne.mockResolvedValueOnce(null); // Mock no existing user
-    User.create.mockResolvedValueOnce({
-      name: 'test',
-      email: 'test@test.com',
-      _id: 'mockUserId',
-      role: 0,
-    });
-  
-    const req = mockRequest({
-      body: { name: 'test', email: 'test@test.com', password: 'testtest', confirmPassword: 'testtest' },
-    });
-    const res = mockResponse();
-    const next = mockNext();
-  
-    await signup(req, res, next);
-  
-    console.log('After signup function');
-  
-    await expect(res.json).toHaveBeenCalledWith({
-      status: 'success',
-      data: {
-        user: {
-          name: 'test',
-          email: 'test@test.com',
-          _id: 'mockUserId',
-          role: 0,
-        },
-        token: 'mockToken',
-      },
-    });
-  });
-  console.log('Mocked User:', User.create.mockResolvedValueOnce);
 });

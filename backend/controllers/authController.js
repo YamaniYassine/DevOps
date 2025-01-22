@@ -45,7 +45,6 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
   if (password !== confirmPassword) {
     let allErrors = {};
     allErrors[`incorrectconfirmation`] = `passwords don't match`;
-    console.log('Passwords do not match:', allErrors); // Log if passwords don't match
     return next(new AppError(JSON.stringify(allErrors), 400));
   }
 
@@ -55,7 +54,6 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
   if (existingUser) {
     let allErrors = {};
     allErrors[`alreadyused`] = `emal already used`;
-    console.log('Email already in use:', allErrors); // Log if email is already used
     return next(new AppError(JSON.stringify(allErrors), 400));
   }
 
@@ -134,7 +132,6 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
     secure: process.env.NODE_ENV === 'production',
   });
 
-  console.log('Before res.status');
   res.status(200).json({
     status: "success",
     data: {
@@ -147,5 +144,4 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
       token: token,
     },
   });
-  console.log('After res.status');
 });
