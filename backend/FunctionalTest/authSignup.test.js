@@ -1,6 +1,16 @@
 const request = require('supertest');
 const app = require('../server'); // This is your live app instance
 
+let server; // Store the server instance
+
+beforeAll((done) => {
+  server = app.listen(5001, done); // Start the server on port 5001 before running tests
+});
+
+afterAll((done) => {
+  server.close(done); // Close the server after all tests are complete
+});
+
 describe('AuthController - Signup API', () => {
   it('should signup a user and return token if valid data is provided', async () => {
     const res = await request(app)  // Test against live server
