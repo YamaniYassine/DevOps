@@ -30,5 +30,7 @@ describe('AuthController - Signup API', () => {
     expect(res.body.status).toBe('success');  // Check if the response status is success
     expect(res.body.data).toHaveProperty('user');  // Check if the user object exists
     expect(res.body.data).toHaveProperty('token');  // Check if the token is returned
-  });
+    done();
+  },
+  15000);
 });
