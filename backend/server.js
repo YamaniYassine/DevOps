@@ -96,3 +96,5 @@ app.use(globalErrorController);
 app.listen(port, () => {
   console.log(`App is running at port ${port}`);
 });
+
+module.exports = app;
