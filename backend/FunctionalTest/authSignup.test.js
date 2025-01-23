@@ -2,9 +2,13 @@ const request = require('supertest');
 const app = require('../server'); // This is your live app instance
 
 let server; // Store the server instance
+let port;   // Store the dynamically assigned port
 
 beforeAll((done) => {
-  server = app.listen(5001, done); // Start the server on port 5001 before running tests
+  server = app.listen(0, () => { // Pass 0 to let the OS assign an available port
+    port = server.address().port; // Get the dynamically assigned port
+    done();
+  });
 });
 
 afterAll((done) => {
