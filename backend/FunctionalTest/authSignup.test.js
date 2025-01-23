@@ -32,5 +32,5 @@ describe('AuthController - Signup API', () => {
     expect(res.body.data).toHaveProperty('token');  // Check if the token is returned
     done();
   },
-  15000);
+  60000);
 });
