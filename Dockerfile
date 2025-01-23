@@ -14,7 +14,7 @@ RUN npm install
 # nodemon
 RUN npm install --global nodemon
 
-RUN npm install -g sonarqube-scanner
+#RUN npm install -g sonarqube-scanner
 
 # Copy the application code to the app directory
 COPY . .
