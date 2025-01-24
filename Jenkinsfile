@@ -28,11 +28,11 @@ pipeline {
                     sh 'npm install'
                 }
                 // shutdown backend server before running tests
-                // sh 'docker stop pfe-backend'
+                 sh 'docker stop pfe-backend'
                 echo 'Testing code...'
                 sh 'npx jest'
                 // startup backend
-                // sh 'docker start pfe-backend'
+                 sh 'docker start pfe-backend'
             }
         }
         

@@ -17,6 +17,7 @@ afterAll((done) => {
 
 describe('AuthController - Signup API', () => {
   it('should signup a user and return token if valid data is provided', async () => {
+    console.log('Starting signup test...');
     const res = await request(app)  // Test against live server
       .post('/users/signup')
       .send({
@@ -26,10 +27,12 @@ describe('AuthController - Signup API', () => {
         confirmPassword: 'testtest',
       });
 
+      console.log('Received response:', res.body);
+
     expect(res.status).toBe(200);  // Check if the status is 200 OK
     expect(res.body.status).toBe('success');  // Check if the response status is success
     expect(res.body.data).toHaveProperty('user');  // Check if the user object exists
     expect(res.body.data).toHaveProperty('token');  // Check if the token is returned
   },
-  60000*60);
+  60000*5);
 });
