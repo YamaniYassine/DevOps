@@ -14,7 +14,7 @@ describe('AuthController - Signup', () => {
 
     // Mock User.create to simulate database behavior
     User.create = jest.fn().mockImplementation(async (userData) => {
-      // Simulate Mongoose pre-save middleware
+      // Simulate Mongoose pre-save middleware behavior
       userData.password = await bcrypt.hash(userData.password, 12);
       return {
         ...userData,
@@ -51,7 +51,7 @@ describe('AuthController - Signup', () => {
     expect(User.create).toHaveBeenCalledWith(expect.objectContaining({
       name: 'test2',
       email: 'test2@test.com',
-      password: 'hashedPassword123',
+      password: 'hashedPassword123', // Ensure the hashed password is passed
     }));
 
     expect(jwt.sign).toHaveBeenCalledWith(
