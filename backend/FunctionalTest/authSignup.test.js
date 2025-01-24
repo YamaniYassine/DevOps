@@ -1,78 +1,33 @@
-jest.mock('../models/userModel'); // Mock the User model
-jest.mock('jsonwebtoken'); // Mock the token generation library
-jest.mock('bcryptjs'); // Mock bcrypt for password hashing
+const request = require('supertest');
+const app = require('../server'); // Your Express app instance
 
-const { signup } = require('../controllers/authController');
-const User = require('../models/userModel');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-
-describe('AuthController - Signup', () => {
-  it('should signup a user and return token', async () => {
-    // Mock bcrypt.hash to simulate password hashing
-    bcrypt.hash = jest.fn().mockResolvedValue('hashedPassword123');
-
-    // Mock User.create to simulate database behavior
-    User.create = jest.fn().mockImplementation(async (userData) => {
-      // Simulate Mongoose pre-save middleware behavior
-      userData.password = await bcrypt.hash(userData.password, 12);
-      return {
-        ...userData,
-        id: '12345',
-        role: 'user',
-      };
-    });
-
-    // Mock jwt.sign to simulate token creation
-    jwt.sign = jest.fn().mockReturnValue('mockToken123');
-
-    // Mock request, response, and next objects
-    const req = {
-      body: {
-        name: 'test2',
-        email: 'test2@test.com',
-        password: 'testtest',
-        confirmPassword: 'testtest',
-      },
-    };
-
-    const res = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    };
-
-    const next = jest.fn(); // Mock next function
-
-    // Call the signup function
-    await signup(req, res, next);
+describe('AuthController - Login', () => {
+  it('should login a user and return a token if valid credentials are provided', async () => {
+    const res = await request(app) // Send the request to the live server
+      .post('/users/login') // Your login endpoint
+      .send({
+        email: 'test@test.com', // The email to test
+        password: 'testtest',    // The password to test
+      });
 
     // Assertions
-    expect(bcrypt.hash).toHaveBeenCalledWith('testtest', expect.any(Number)); // Ensure password is hashed
-    expect(User.create).toHaveBeenCalledWith(expect.objectContaining({
-      name: 'test2',
-      email: 'test2@test.com',
-      password: 'hashedPassword123', // Ensure the hashed password is passed
-    }));
+    expect(res.status).toBe(200);  // Check if the status is 200 OK
+    expect(res.body.status).toBe('success');  // Check if the response status is success
+    expect(res.body.data).toHaveProperty('user');  // Check if the user object exists
+    expect(res.body.data).toHaveProperty('token');  // Check if the token is returned
+  });
 
-    expect(jwt.sign).toHaveBeenCalledWith(
-      { id: '12345' }, // Payload
-      expect.any(String), // Secret key
-      { expiresIn: expect.any(String) } // Options
-    );
+  it('should return an error if invalid credentials are provided', async () => {
+    const res = await request(app) // Send the request to the live server
+      .post('/users/login') // Your login endpoint
+      .send({
+        email: 'wrongemail@test.com', // Invalid email
+        password: 'wrongpassword',    // Invalid password
+      });
 
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-      status: 'success',
-      data: expect.objectContaining({
-        user: expect.objectContaining({
-          name: 'test2',
-          email: 'test2@test.com',
-        }),
-        token: 'mockToken123',
-      }),
-    }));
-
-    // Ensure next was not called (no errors)
-    expect(next).not.toHaveBeenCalled();
+    // Assertions for error case
+    expect(res.status).toBe(400);  // Check if the status is 400 for invalid credentials
+    expect(res.body.status).toBe('fail');  // Check if the response status is fail
+    expect(res.body.message).toBe('Email or password incorrect');  // Check for the correct error message
   });
 });
