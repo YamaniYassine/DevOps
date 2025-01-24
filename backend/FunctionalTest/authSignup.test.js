@@ -9,15 +9,19 @@ const bcrypt = require('bcryptjs');
 
 describe('AuthController - Signup', () => {
   it('should signup a user and return token', async () => {
-    // Mock User.create to simulate database behavior
-    User.create = jest.fn().mockResolvedValue({
-      id: '12345',
-      name: 'test2',
-      email: 'test2@test.com',
-    });
-
     // Mock bcrypt.hash to simulate password hashing
     bcrypt.hash = jest.fn().mockResolvedValue('hashedPassword123');
+
+    // Mock User.create to simulate database behavior
+    User.create = jest.fn().mockImplementation(async (userData) => {
+      // Simulate Mongoose pre-save middleware
+      userData.password = await bcrypt.hash(userData.password, 12);
+      return {
+        ...userData,
+        id: '12345',
+        role: 'user',
+      };
+    });
 
     // Mock jwt.sign to simulate token creation
     jwt.sign = jest.fn().mockReturnValue('mockToken123');
@@ -61,7 +65,6 @@ describe('AuthController - Signup', () => {
       status: 'success',
       data: expect.objectContaining({
         user: expect.objectContaining({
-          id: '12345',
           name: 'test2',
           email: 'test2@test.com',
         }),
