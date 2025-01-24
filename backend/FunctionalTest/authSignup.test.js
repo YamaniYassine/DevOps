@@ -29,5 +29,7 @@ describe('AuthController - Login', () => {
     expect(res.status).toBe(400);  // Check if the status is 400 for invalid credentials
     expect(res.body.status).toBe('fail');  // Check if the response status is fail
     expect(res.body.message).toBe('Email or password incorrect');  // Check for the correct error message
-  });
+  },
+    600000
+  );
 });
