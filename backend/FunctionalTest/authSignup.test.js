@@ -1,9 +1,11 @@
 jest.mock('../models/userModel'); // Mock the User model
 jest.mock('jsonwebtoken'); // Mock the token generation library
+jest.mock('bcrypt'); // Mock bcrypt for password hashing
 
 const { signup } = require('../controllers/authController');
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 describe('AuthController - Signup', () => {
   it('should signup a user and return token', async () => {
@@ -14,10 +16,13 @@ describe('AuthController - Signup', () => {
       email: 'test2@test.com',
     });
 
+    // Mock bcrypt.hash to simulate password hashing
+    bcrypt.hash = jest.fn().mockResolvedValue('hashedPassword123');
+
     // Mock jwt.sign to simulate token creation
     jwt.sign = jest.fn().mockReturnValue('mockToken123');
 
-    // Mock request and response objects
+    // Mock request, response, and next objects
     const req = {
       body: {
         name: 'test2',
@@ -32,14 +37,17 @@ describe('AuthController - Signup', () => {
       json: jest.fn(),
     };
 
+    const next = jest.fn(); // Mock next function
+
     // Call the signup function
-    await signup(req, res);
+    await signup(req, res, next);
 
     // Assertions
+    expect(bcrypt.hash).toHaveBeenCalledWith('testtest', expect.any(Number)); // Ensure password is hashed
     expect(User.create).toHaveBeenCalledWith(expect.objectContaining({
       name: 'test2',
       email: 'test2@test.com',
-      password: expect.any(String), // Ensure the password is hashed
+      password: 'hashedPassword123',
     }));
 
     expect(jwt.sign).toHaveBeenCalledWith(
@@ -60,5 +68,8 @@ describe('AuthController - Signup', () => {
         token: 'mockToken123',
       }),
     }));
+
+    // Ensure next was not called (no errors)
+    expect(next).not.toHaveBeenCalled();
   });
 });
