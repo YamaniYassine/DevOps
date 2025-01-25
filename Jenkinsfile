@@ -23,6 +23,10 @@ pipeline {
         stage('Test code') {
             steps {
                 echo 'Installing dependencies...'
+                // how to integrate this line of code : df -h , du -sh /home/jenkins/.npm/_cacache/tmp
+                sh 'df -h && du -sh /home/jenkins/.npm/_cacache/tmp
+
+
                 sh 'npm install'
                 dir('frontend') {
                     sh 'npm install'
