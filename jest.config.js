@@ -1,5 +1,5 @@
 module.exports = {
   testEnvironment: "node",
   maxWorkers: 1,
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(node-fetch)/)'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(node-fetch|fetch-blob)/)'],
 };
