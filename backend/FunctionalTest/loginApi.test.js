@@ -16,11 +16,11 @@ describe('Login API', () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(testUser  )
+      body: JSON.stringify(testUser   )
     });
     expect(response.status).toBe(200);
     const responseBody = await response.json();
-    expect(responseBody).toHaveProperty('token');
+    expect(responseBody.data).toHaveProperty('token');
   });
 
   it('should return an error response with invalid credentials', async () => {
