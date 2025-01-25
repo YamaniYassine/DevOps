@@ -16,10 +16,10 @@ const Footer = () => {
         </div>
       </div>
         <ul>
-            <li><a href="/">Mentions légales</a></li>
+            <li><a href="/mentions-legales">Mentions légales</a></li>
             <li><a href="/rgpd">RGPD</a></li>
-            <li><a href="/">CGU</a></li>
-            <li><a href="/">CGV</a></li>
+            <li><a href="/cgu">CGU</a></li>
+            <li><a href="/cgv">CGV</a></li>
             <hr />
             <p>&copy; ThéTipTop - Ce site est à des fins éducatives. Aucun paiement ne sera traité.</p>
         </ul>
