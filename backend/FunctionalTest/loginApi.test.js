@@ -3,8 +3,8 @@ import fetch from 'node-fetch';
 import { expect } from '@jest/globals';
 
 const loginApi = 'http://152.42.139.102:5001/users/login';
-const testUser  = {
-  username: 'test',
+const testUser   = {
+  email: 'test@test.com',
   password: 'testtest'
 };
 
@@ -16,7 +16,7 @@ describe('Login API', () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(testUser )
+      body: JSON.stringify(testUser  )
     });
     expect(response.status).toBe(200);
     const responseBody = await response.json();
@@ -24,8 +24,8 @@ describe('Login API', () => {
   });
 
   it('should return an error response with invalid credentials', async () => {
-    const invalidUser  = {
-      username: 'test',
+    const invalidUser   = {
+      email: 'test@test.com',
       password: 'wrongpassword'
     };
     const response = await fetch(loginApi, {
@@ -33,7 +33,7 @@ describe('Login API', () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(invalidUser )
+      body: JSON.stringify(invalidUser  )
     });
     expect(response.status).toBe(401);
     const responseBody = await response.json();
