@@ -53,17 +53,35 @@ const Dashboard = () => {
         </button>
       </div>
 
-      <div className="users-container">
-        <h2>Users</h2>
-        <ul>
+      <div className="users-table">
+  <h2>Users List</h2>
+  <div className="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
         {user.data && user.data.users && user.data.users.map((user) => (
-          <li key={user._id}>
-            <span>{user.name}</span>
-            <button onClick={() => handleDeleteUser  (user._id)}>Delete</button>
-          </li>
+          <tr key={user._id}>
+            <td>{user._id}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.role}</td>
+            <td>
+              <button onClick={() => handleDeleteUser   (user._id)}>Delete</button>
+            </td>
+          </tr>
         ))}
-        </ul>
-      </div>
+      </tbody>
+    </table>
+  </div>
+</div>
 
       <div className="winner-table">
         <h2>Winners List</h2>
