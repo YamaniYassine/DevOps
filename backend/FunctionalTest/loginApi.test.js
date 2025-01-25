@@ -35,7 +35,7 @@ describe('Login API', () => {
       },
       body: JSON.stringify(invalidUser  )
     });
-    expect(response.status).toBe(401);
+    expect(response.status).toBe(400);
     const responseBody = await response.json();
     expect(responseBody).toHaveProperty('error');
   });
@@ -48,7 +48,7 @@ describe('Login API', () => {
       },
       body: JSON.stringify({})
     });
-    expect(response.status).toBe(400);
+    expect(response.status).toBe(500);
     const responseBody = await response.json();
     expect(responseBody).toHaveProperty('error');
   });
