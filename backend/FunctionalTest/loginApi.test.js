@@ -8,6 +8,7 @@ const testUser  = {
   password: 'testtest'
 };
 
+
 describe('Login API', () => {
   it('should return a successful response with valid credentials', async () => {
     const response = await fetch(loginApi, {
