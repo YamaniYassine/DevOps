@@ -6,22 +6,20 @@ import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice"
 
 const Dashboard = () => {
   const { user, error } = useSelector((state) => state.auth);
-  const winners = useSelector(selectWinners); // Add this line
-
+  const winners = useSelector(selectWinners);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userrole = user ? (user.name ? user.name : user.data.user.role) : null;
 
   useEffect(() => {
     if (error) {
       console.log(error);
     }
-  
+
     if (!user || (user.data && user.data.user.role !== 1)) {
       navigate("/");
     }
-  
-    dispatch(fetchWinners()); // Fetch winners' data
+
+    dispatch(fetchWinners());
     return () => {
       dispatch(reset());
     };
@@ -32,12 +30,22 @@ const Dashboard = () => {
     navigate("/");
   };
 
-  const username = user ? (user.name ? user.name : user.data.user.name) : null;
+  const handleDeleteUser  = (id) => {
+    // Call API to delete user
+    // For example:
+    // axios.delete(`/api/users/${id}`)
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+  };
 
   return (
     <section className="dashboard-container">
       <h1 className="welcome-header">
-        Welcome <span>{username}!</span> to the dashboard
+        Welcome <span>{user.name}</span> to the dashboard
       </h1>
       <div className="button-container">
         <button className="logout-button" onClick={handleLogout}>
@@ -45,7 +53,18 @@ const Dashboard = () => {
         </button>
       </div>
 
-      {/* Winners' Table */}
+      <div className="users-container">
+        <h2>Users</h2>
+        <ul>
+          {user.data.users.map((user) => (
+            <li key={user._id}>
+              <span>{user.name}</span>
+              {/* <button onClick={() => handleDeleteUser (user._id)}>Delete</button> */}
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <div className="winner-table">
         <h2>Winners List</h2>
         <div className="table-container">
