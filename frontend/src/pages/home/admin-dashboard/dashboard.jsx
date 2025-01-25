@@ -56,12 +56,12 @@ const Dashboard = () => {
       <div className="users-container">
         <h2>Users</h2>
         <ul>
-          {user.data.users.map((user) => (
-            <li key={user._id}>
-              <span>{user.name}</span>
-              {/* <button onClick={() => handleDeleteUser (user._id)}>Delete</button> */}
-            </li>
-          ))}
+        {user.data && user.data.users && user.data.users.map((user) => (
+          <li key={user._id}>
+            <span>{user.name}</span>
+            <button onClick={() => handleDeleteUser  (user._id)}>Delete</button>
+          </li>
+        ))}
         </ul>
       </div>
 
