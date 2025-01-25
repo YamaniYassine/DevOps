@@ -13,6 +13,7 @@ import Accueil from "./pages/accueil/accueil";
 import Apropos from "./pages/apropos/apropos";
 import Concours from "./pages/jeu-concours/jeu-concours";
 import Dashboard from "./pages/home/admin-dashboard/dashboard";
+import RGPD from "./pages/RGPD/RGPD";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/apropos" element={<Apropos />} />
           <Route path="/jeu-concours" element={<Concours />} />
+          <Route path="/rgpd" element={<RGPD />} />
         </Route>
         <Route path="/not-found" element={<PageNotFound />} />
 

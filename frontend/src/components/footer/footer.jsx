@@ -17,7 +17,7 @@ const Footer = () => {
       </div>
         <ul>
             <li><a href="/">Mentions légales</a></li>
-            <li><a href="/">RGPD</a></li>
+            <li><a href="/rgpd">RGPD</a></li>
             <li><a href="/">CGU</a></li>
             <li><a href="/">CGV</a></li>
             <hr />
