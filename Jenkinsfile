@@ -53,6 +53,7 @@ pipeline {
             }
         }
         
+        
         stage('Push images') {
             steps{
                 script {
