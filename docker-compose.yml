@@ -113,4 +113,3 @@ volumes:
 networks:
   my_network:
     name: "my_network"
-    internal: true
