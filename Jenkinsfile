@@ -32,12 +32,8 @@ pipeline {
                 dir('frontend') {
                     sh 'npm install'
                 }
-                // shutdown backend server before running tests
-                //  sh 'docker start pfe-backend'
                 echo 'Testing code...'
-                //sh 'npx jest --verbose'
-                // startup backend
-                // sh 'docker start pfe-backend'
+                sh 'npx jest --verbose'
             }
         }
         
