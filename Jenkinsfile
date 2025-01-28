@@ -10,7 +10,8 @@ pipeline {
         registryCredential = 'dockerhub_pat'
         backendImage = ''
         frontendImage = ''
-        DB_URL = "mongodb://db-docker:27017/PFE"
+        DB_URL = "mongodb://admin:YthetiptopO123.@db-docker:27017/PFE?authSource=admin"
+
     }
     
     stages{
@@ -95,12 +96,12 @@ pipeline {
             }
         }
         
-        
+
         stage('Run reverse proxy'){
             steps {
                 script {
                     sh 'docker stop reverse-proxy || true && docker rm reverse-proxy || true'
-                    docker.image(reverseProxy + ':latest').run('--name reverse-proxy --network my_network -p 80:80 -v /root/reverse_proxy.conf:/etc/nginx/conf.d/default.conf')
+                    docker.image(reverseProxy + ':latest').run('--name reverse-proxy --network my_network -p 80:80 -v /root/nginx.conf:/etc/nginx/nginx.conf')
                 }
             }
         }
