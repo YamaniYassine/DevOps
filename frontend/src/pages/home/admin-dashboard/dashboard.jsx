@@ -72,9 +72,11 @@ const Dashboard = () => {
                 <tr key={user._id}>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>{user.role}</td>
+                  <td>{user.role === 1 ? "Admin" : "User"}</td>
                   <td>
-                    <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
+                      {user.role !== 1 && ( 
+                        <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
+                      )}
                   </td>
                 </tr>
               ))}
