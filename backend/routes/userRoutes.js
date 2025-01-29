@@ -14,5 +14,6 @@ router.route("/login").post(authController.login);
 router.route("/").post(userController.createUser);
 
 router.route("/:id").get(userController.getUser);
+router.route("/").get(userController.getAllUsers);
 
 module.exports = router;

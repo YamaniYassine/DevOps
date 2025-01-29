@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../../../features/auth/authSlice";
-import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice"; // Add this import
+import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
+import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 
 const Dashboard = () => {
   const { user, error } = useSelector((state) => state.auth);
   const winners = useSelector(selectWinners);
+  const users = useSelector(selectUsers);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,6 +22,7 @@ const Dashboard = () => {
     }
 
     dispatch(fetchWinners());
+    dispatch(fetchUsers()); // Fetch users from backend
     return () => {
       dispatch(reset());
     };
@@ -30,16 +33,15 @@ const Dashboard = () => {
     navigate("/");
   };
 
-  const handleDeleteUser  = (id) => {
+  const handleDeleteUser = (id) => {
     // Call API to delete user
-    // For example:
-    // axios.delete(`/api/users/${id}`)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+    fetch(`/users/${id}`, { method: "DELETE" })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("User deleted:", data);
+        dispatch(fetchUsers()); // Refresh user list after deletion
+      })
+      .catch((error) => console.error("Error deleting user:", error));
   };
 
   return (
@@ -54,34 +56,32 @@ const Dashboard = () => {
       </div>
 
       <div className="users-table">
-  <h2>Users List</h2>
-  <div className="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {user.data && user.data.users && user.data.users.map((user) => (
-          <tr key={user._id}>
-            <td>{user._id}</td>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.role}</td>
-            <td>
-              <button onClick={() => handleDeleteUser   (user._id)}>Delete</button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
+        <h2>Users List</h2>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user._id}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
+                  <td>
+                    <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <div className="winner-table">
         <h2>Winners List</h2>
