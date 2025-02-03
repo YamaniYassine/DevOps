@@ -6,7 +6,7 @@ import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice"
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 
 // Import Material-UI components
-import { Box, Button, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, AppBar, Toolbar } from "@mui/material";
+import { Box, Button, Container, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, AppBar, Toolbar, Tabs, Tab } from "@mui/material";
 
 const Dashboard = () => {
   const { user, error } = useSelector((state) => state.auth);
