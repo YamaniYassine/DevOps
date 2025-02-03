@@ -46,81 +46,96 @@ const Dashboard = () => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      {/* Header remains the same */}
+      {/* Header with AppBar */}
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Welcome {user.name} to the Dashboard
           </Typography>
+          {/* Tabs for switching between Users and Winners */}
+          <Tabs
+            value={tab}
+            onChange={handleTabChange}
+            textColor="inherit"
+            indicatorColor="secondary"
+            sx={{ marginRight: 2 }}
+          >
+            <Tab label="Users" value="users" />
+            <Tab label="Winners" value="winners" />
+          </Tabs>
           <Button color="inherit" onClick={handleLogout}>
             Log Out
           </Button>
         </Toolbar>
       </AppBar>
 
-      {/* Users Section (unchanged) */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Users List
-        </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Role</TableCell>
-                <TableCell>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {users.map((u) => (
-                <TableRow key={u._id}>
-                  <TableCell>{u.name}</TableCell>
-                  <TableCell>{u.email}</TableCell>
-                  <TableCell>{u.role === 1 ? "Admin" : "User"}</TableCell>
-                  <TableCell>
-                    {u.role !== 1 && (
-                      <Button variant="contained" color="error" onClick={() => handleDeleteUser(u._id)}>
-                        Delete
-                      </Button>
-                    )}
-                  </TableCell>
+      {/* Render the Users table if "users" tab is selected */}
+      {tab === "users" && (
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            Users List
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Role</TableCell>
+                  <TableCell>Actions</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+              </TableHead>
+              <TableBody>
+                {users.map((u) => (
+                  <TableRow key={u._id}>
+                    <TableCell>{u.name}</TableCell>
+                    <TableCell>{u.email}</TableCell>
+                    <TableCell>{u.role === 1 ? "Admin" : "User"}</TableCell>
+                    <TableCell>
+                      {u.role !== 1 && (
+                        <Button variant="contained" color="error" onClick={() => handleDeleteUser(u._id)}>
+                          Delete
+                        </Button>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      )}
 
-      {/* Updated Winners (Tickets) Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Winners List
-        </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Ticket Code</TableCell>
-                <TableCell>Prize</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {winners.map((winner) => (
-                <TableRow key={winner._id}>
-                  <TableCell>{winner.name}</TableCell>
-                  <TableCell>{winner.email}</TableCell>
-                  <TableCell>{winner.ticketCode}</TableCell>
-                  <TableCell>{winner.prize}</TableCell>
+      {/* Render the Winners table if "winners" tab is selected */}
+      {tab === "winners" && (
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            Winners List
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Ticket Code</TableCell>
+                  <TableCell>Prize</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+              </TableHead>
+              <TableBody>
+                {winners.map((winner) => (
+                  <TableRow key={winner._id}>
+                    <TableCell>{winner.name}</TableCell>
+                    <TableCell>{winner.email}</TableCell>
+                    <TableCell>{winner.ticketCode}</TableCell>
+                    <TableCell>{winner.prize}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      )}
     </Container>
   );
 };
