@@ -15,6 +15,12 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [tab, setTab] = useState("users");
+
+  const handleTabChange = (event, newValue) => {
+    setTab(newValue);
+  };
+
   useEffect(() => {
     if (error) {
       console.log(error);
