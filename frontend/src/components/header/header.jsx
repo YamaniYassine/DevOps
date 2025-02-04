@@ -1,21 +1,23 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { ReactComponent as Icon } from './nav-bar.svg'
-import './header.css'
+import { ReactComponent as Icon } from './nav-bar.svg';
+import './header.css';
 
-//Redux
+// Redux
 import { useSelector } from "react-redux";
 
 const HeaderNav = () => {
-  const [showNavbar, setShowNavbar] = useState(false)
+  const [showNavbar, setShowNavbar] = useState(false);
   const location = useLocation();
   const { user } = useSelector((state) => state.auth);
-  const userrole = user ? (user.name ? user.name : user.data.user.role) : null;
-  const username = user ? (user.name ? user.name : user.data.user.name) : null;
+  
+  // Assume the user object structure: user.data.user.role and user.data.user.name (or fallback to user.name)
+  const userRole = user && (user.data ? user.data.user.role : null);
+  const username = user ? (user.data ? user.data.user.name : user.name) : null;
 
   const handleShowNavbar = () => {
-    setShowNavbar(!showNavbar)
-  }
+    setShowNavbar(!showNavbar);
+  };
 
   return (
     <nav className="navbar" data-testid="test1">
@@ -26,7 +28,7 @@ const HeaderNav = () => {
         <div className="menu-icon" onClick={handleShowNavbar}>
           <Icon />
         </div>
-        <div className={`nav-elements  ${showNavbar && 'active'}`}>
+        <div className={`nav-elements ${showNavbar && 'active'}`}>
           <ul>
             <li>
               <NavLink to="/">Accueil</NavLink>
@@ -38,30 +40,36 @@ const HeaderNav = () => {
               <NavLink to="/apropos">About</NavLink>
             </li>
             {user ? (
-              userrole === 1 ? (
-
-                <button className="user-button"><NavLink to="/dashboard">{username}</NavLink></button>
-
+              // Check user role: 1 for admin, 2 for employee, else default to welcome
+              userRole === 1 ? (
+                <button className="user-button">
+                  <NavLink to="/dashboard">{username}</NavLink>
+                </button>
+              ) : userRole === 2 ? (
+                <button className="user-button">
+                  <NavLink to="/employee-dashboard">{username}</NavLink>
+                </button>
               ) : (
-                <button className="user-button"><NavLink to="/welcome">{username}</NavLink></button>
-
+                <button className="user-button">
+                  <NavLink to="/welcome">{username}</NavLink>
+                </button>
               )
-
             ) : (
               location.pathname === "/login" ? (
-
-                <button className="user-button"><Link className="link" to="/sign-up">Sign Up</Link></button>
-
+                <button className="user-button">
+                  <Link className="link" to="/sign-up">Sign Up</Link>
+                </button>
               ) : (
-                <button className="user-button"><Link className="link" to="/login">Sign In</Link></button>
+                <button className="user-button">
+                  <Link className="link" to="/login">Sign In</Link>
+                </button>
               )
-            )
-            }
+            )}
           </ul>
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 export default HeaderNav;

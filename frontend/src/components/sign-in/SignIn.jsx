@@ -24,9 +24,23 @@ const SignIn = () => {
     }
 
     if (success || user) {
-      navigate("/welcome");
-    }
+      let role = null;
+      if (user) {
+        if (user.data && user.data.user) {
+          role = user.data.user.role;
+        } else if (user.role) {
+          role = user.role;
+        }
+      }
 
+      if (role === 1) {
+        navigate("/dashboard");
+      } else if (role === 2) {
+        navigate("/employee-dashboard");
+      } else {
+        navigate("/welcome");
+      }
+    }
     return () => {
       dispatch(reset());
     };
