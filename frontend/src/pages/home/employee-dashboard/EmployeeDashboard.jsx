@@ -24,6 +24,37 @@ import {
   Tab
 } from "@mui/material";
 
+// Helper component for each winner row
+const WinnerRow = ({ winner }) => {
+  const [received, setReceived] = useState(false);
+
+  const handleStatusClick = () => {
+    setReceived(true);
+    // Optionally, you can dispatch an action here to update the status in the backend.
+  };
+
+  return (
+    <TableRow key={winner._id}>
+      <TableCell>{winner.name}</TableCell>
+      <TableCell>{winner.email}</TableCell>
+      <TableCell>{winner.ticketCode}</TableCell>
+      <TableCell>{winner.prize}</TableCell>
+      <TableCell>
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: received ? "green" : "orange",
+            color: "white"
+          }}
+          onClick={handleStatusClick}
+        >
+          {received ? "gain reçu" : "en cours de traitement"}
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+};
+
 const EmployeeDashboard = () => {
   const { user, error } = useSelector((state) => state.auth);
   const winners = useSelector(selectWinners);
@@ -77,7 +108,7 @@ const EmployeeDashboard = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Welcome to the Employee Dashboard
+            Welcome {user.name} to the Employee Dashboard
           </Typography>
           {/* Tabs for switching between "Users" and "Winners" views */}
           <Tabs
@@ -157,21 +188,17 @@ const EmployeeDashboard = () => {
                   <TableCell>Email</TableCell>
                   <TableCell>Ticket Code</TableCell>
                   <TableCell>Prize</TableCell>
+                  <TableCell>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {winners.length > 0 ? (
                   winners.map((winner) => (
-                    <TableRow key={winner._id}>
-                      <TableCell>{winner.name}</TableCell>
-                      <TableCell>{winner.email}</TableCell>
-                      <TableCell>{winner.ticketCode}</TableCell>
-                      <TableCell>{winner.prize}</TableCell>
-                    </TableRow>
+                    <WinnerRow key={winner._id} winner={winner} />
                   ))
                 ) : (
                   <TableRow>
-                    <TableCell colSpan={4} align="center">
+                    <TableCell colSpan={5} align="center">
                       No wins yet.
                     </TableCell>
                   </TableRow>
