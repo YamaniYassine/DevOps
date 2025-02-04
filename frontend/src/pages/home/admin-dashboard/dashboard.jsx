@@ -5,6 +5,11 @@ import { logout, reset } from "../../../features/auth/authSlice";
 import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 
+// Chart.js imports
+import { Bar } from "react-chartjs-2";
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
+
 // Material-UI components
 import {
   AppBar,
@@ -69,11 +74,25 @@ const Dashboard = () => {
       .catch((error) => console.error("Error deleting user:", error));
   };
 
-  // Calculate the percentage of tickets claimed.
-  // Assume each winner represents one ticket won.
+  // Ticket Statistics
   const totalTickets = 150;
-  const winnersCount = winners.length;
-  const percentage = Math.round((winnersCount / totalTickets) * 100);
+  const ticketsWon = winners.length; // Total tickets won
+  const uniqueWinners = new Set(winners.map((winner) => winner.email)).size; // Unique winners count
+
+  const percentageTicketsWon = Math.round((ticketsWon / totalTickets) * 100);
+  const percentageUniqueWinners = Math.round((uniqueWinners / totalTickets) * 100);
+
+  // Chart Data
+  const chartData = {
+    labels: ["Total Tickets (100%)", "Tickets Gagnés", "Winners"],
+    datasets: [
+      {
+        label: "Ticket Statistics",
+        data: [100, percentageTicketsWon, percentageUniqueWinners],
+        backgroundColor: ["#007bff", "#28a745", "#ff9800"], // Blue, Green, Orange
+      },
+    ],
+  };
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -186,19 +205,13 @@ const Dashboard = () => {
       {/* Render the Statistiques (Statiques) section if "statiques" tab is selected */}
       {tab === "statiques" && (
         <Box sx={{ mt: 4 }}>
-          <Typography variant="h5" gutterBottom>
-            Statistics
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            {winnersCount} out of {totalTickets} tickets have been won.
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            That's {percentage}% of total tickets.
-          </Typography>
-          <Box sx={{ width: "100%", mt: 2 }}>
-            <LinearProgress variant="determinate" value={percentage} />
-          </Box>
-        </Box>
+        <Typography variant="h5" gutterBottom>
+          Ticket Statistics
+        </Typography>
+        <Paper sx={{ p: 3 }}>
+          <Bar data={chartData} options={{ responsive: true, maintainAspectRatio: false }} />
+        </Paper>
+      </Box>
       )}
     </Container>
   );
