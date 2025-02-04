@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../../../features/auth/authSlice";
@@ -19,7 +19,9 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow
+  TableRow,
+  Tabs,
+  Tab
 } from "@mui/material";
 
 const EmployeeDashboard = () => {
@@ -29,11 +31,18 @@ const EmployeeDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Local state to control which tab is active ("users" or "winners")
+  const [tab, setTab] = useState("users");
+
+  const handleTabChange = (event, newValue) => {
+    setTab(newValue);
+  };
+
   useEffect(() => {
     if (error) {
       console.log(error);
     }
-    // Only allow access if logged in and user role is 2 (employee)
+    // Allow access only if the user is logged in and has role 2 (employee)
     if (!user || (user.data && user.data.user.role !== 2)) {
       navigate("/");
     }
@@ -50,27 +59,37 @@ const EmployeeDashboard = () => {
   };
 
   const handleDeleteUser = (id) => {
-    // Call the DELETE API to remove a user
     fetch(`/users/${id}`, { method: "DELETE" })
       .then((response) => response.json())
       .then((data) => {
         console.log("User deleted:", data);
-        dispatch(fetchUsers()); // Refresh user list after deletion
+        dispatch(fetchUsers());
       })
       .catch((error) => console.error("Error deleting user:", error));
   };
 
-  // Filter the users to show only those with role 0
+  // Filter users to show only those with role 0 (regular users)
   const filteredUsers = users.filter((u) => u.role === 0);
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      {/* AppBar with welcome message and logout button */}
+      {/* AppBar with Tabs */}
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Welcome {user.name} to the Employee Dashboard
+            Welcome to the Employee Dashboard
           </Typography>
+          {/* Tabs for switching between "Users" and "Winners" views */}
+          <Tabs
+            value={tab}
+            onChange={handleTabChange}
+            textColor="inherit"
+            indicatorColor="secondary"
+            sx={{ marginRight: 2 }}
+          >
+            <Tab label="Users" value="users" />
+            <Tab label="Winners" value="winners" />
+          </Tabs>
           <Button color="inherit" onClick={handleLogout}>
             Log Out
           </Button>
@@ -78,83 +97,90 @@ const EmployeeDashboard = () => {
       </AppBar>
 
       {/* Users Table Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Users List (Role: User)
-        </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Role</TableCell>
-                <TableCell>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredUsers.length > 0 ? (
-                filteredUsers.map((u) => (
-                  <TableRow key={u._id}>
-                    <TableCell>{u.name}</TableCell>
-                    <TableCell>{u.email}</TableCell>
-                    <TableCell>{u.role === 0 ? "User" : u.role}</TableCell>
-                    <TableCell>
-                      {/* Allow deletion only for users with role 0 */}
-                      <Button variant="contained" color="error" onClick={() => handleDeleteUser(u._id)}>
-                        Delete
-                      </Button>
+      {tab === "users" && (
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            Users List
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Role</TableCell>
+                  <TableCell>Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredUsers.length > 0 ? (
+                  filteredUsers.map((u) => (
+                    <TableRow key={u._id}>
+                      <TableCell>{u.name}</TableCell>
+                      <TableCell>{u.email}</TableCell>
+                      <TableCell>{u.role === 0 ? "User" : u.role}</TableCell>
+                      <TableCell>
+                        <Button
+                          variant="contained"
+                          color="error"
+                          onClick={() => handleDeleteUser(u._id)}
+                        >
+                          Delete
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={4} align="center">
+                      No users found.
                     </TableCell>
                   </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={4} align="center">
-                    No users found.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      )}
 
       {/* Winners Table Section */}
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h5" gutterBottom>
-          Winners List
-        </Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Ticket Code</TableCell>
-                <TableCell>Prize</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {winners.length > 0 ? (
-                winners.map((winner) => (
-                  <TableRow key={winner._id}>
-                    <TableCell>{winner.name}</TableCell>
-                    <TableCell>{winner.email}</TableCell>
-                    <TableCell>{winner.ticketCode}</TableCell>
-                    <TableCell>{winner.prize}</TableCell>
-                  </TableRow>
-                ))
-              ) : (
+      {tab === "winners" && (
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            Winners List
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
                 <TableRow>
-                  <TableCell colSpan={4} align="center">
-                    No wins yet.
-                  </TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Ticket Code</TableCell>
+                  <TableCell>Prize</TableCell>
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
+              </TableHead>
+              <TableBody>
+                {winners.length > 0 ? (
+                  winners.map((winner) => (
+                    <TableRow key={winner._id}>
+                      <TableCell>{winner.name}</TableCell>
+                      <TableCell>{winner.email}</TableCell>
+                      <TableCell>{winner.ticketCode}</TableCell>
+                      <TableCell>{winner.prize}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={4} align="center">
+                      No wins yet.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      )}
     </Container>
   );
 };

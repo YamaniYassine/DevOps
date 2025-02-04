@@ -56,7 +56,7 @@ const Dashboard = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Welcome {user.name} to the Dashboard
+            Welcome to the Admin Dashboard
           </Typography>
           {/* Tabs for switching between Users and Winners */}
           <Tabs
