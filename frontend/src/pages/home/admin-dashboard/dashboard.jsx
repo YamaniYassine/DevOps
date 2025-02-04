@@ -74,25 +74,26 @@ const Dashboard = () => {
       .catch((error) => console.error("Error deleting user:", error));
   };
 
-  // Ticket Statistics
-  const totalTickets = 150;
-  const ticketsWon = winners.length; // Total tickets won
-  const uniqueWinners = new Set(winners.map((winner) => winner.email)).size; // Unique winners count
+// Ticket Statistics
+const totalTickets = 150;
+const ticketsAttributed = 25; // Given that 25 tickets were assigned
+const ticketsWon = winners.length; // Total tickets won
 
-  const percentageTicketsWon = Math.round((ticketsWon / totalTickets) * 100);
-  const percentageUniqueWinners = Math.round((uniqueWinners / totalTickets) * 100);
+const percentageTicketsAttributed = Math.round((ticketsAttributed / totalTickets) * 100);
+const percentageTicketsWon = Math.round((ticketsWon / totalTickets) * 100);
 
-  // Chart Data
-  const chartData = {
-    labels: ["Total Tickets (100%)", "Tickets Gagnés", "Winners"],
-    datasets: [
-      {
-        label: "Ticket Statistics",
-        data: [100, percentageTicketsWon, percentageUniqueWinners],
-        backgroundColor: ["#007bff", "#28a745", "#ff9800"], // Blue, Green, Orange
-      },
-    ],
-  };
+// Chart Data
+const chartData = {
+  labels: ["Total Tickets (100%)", "Tickets Attribués", "Tickets Gagnés"],
+  datasets: [
+    {
+      label: "Ticket Statistics",
+      data: [100, percentageTicketsAttributed, percentageTicketsWon],
+      backgroundColor: ["#007bff", "#ffcc00", "#28a745"], // Blue, Yellow, Green
+    },
+  ],
+};
+
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
