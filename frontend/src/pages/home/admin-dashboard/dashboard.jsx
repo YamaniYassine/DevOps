@@ -5,11 +5,6 @@ import { logout, reset } from "../../../features/auth/authSlice";
 import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 
-// Chart.js imports
-import { Bar } from "react-chartjs-2";
-import { Chart, registerables } from "chart.js";
-Chart.register(...registerables);
-
 // Material-UI components
 import {
   AppBar,
@@ -29,6 +24,11 @@ import {
   Tab,
   LinearProgress
 } from "@mui/material";
+
+// Chart.js imports
+import { Bar } from "react-chartjs-2";
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
 
 const Dashboard = () => {
   const { user, error } = useSelector((state) => state.auth);
