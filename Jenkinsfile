@@ -33,7 +33,7 @@ pipeline {
                     sh 'npm install'
                 }
                 echo 'Testing code...'
-                sh 'npx jest --verbose'
+                sh 'npx jest --verbose --runInBand'
             }
         }
         

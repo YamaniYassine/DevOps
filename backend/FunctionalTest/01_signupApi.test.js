@@ -24,7 +24,7 @@ describe('Signup API', () => {
     expect(responseBody.data).toHaveProperty('token');
   });
 
-  it('should return an error response with invalid credentials', async () => {
+  it('should return an error response with password too short', async () => {
     const invalidUser    = {
       name: 'test2',
       email: 'test2@test.com',
