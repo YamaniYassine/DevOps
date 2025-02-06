@@ -7,7 +7,7 @@ describe('Login Page Interaction and Screenshot', () => {
     const page = await browser.newPage();
     
     // Navigate to the login page
-    await page.goto('http://152.42.139.102:5001/login', { waitUntil: 'networkidle2' });
+    await page.goto('http://152.42.139.102/login', { waitUntil: 'networkidle2' });
     
     // Take a screenshot of the login page before interaction
     await page.screenshot({ path: 'login-page-before.png' });
