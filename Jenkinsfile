@@ -23,17 +23,6 @@ pipeline {
 
         stage('Test code') {
             steps {
-                echo 'Installing system dependencies for Puppeteer...'
-                sh '''
-                apt-get update && apt-get install -y \
-                    libxkbcommon-x11-0 \
-                    libnss3 \
-                    libatk-bridge2.0-0 \
-                    libx11-xcb1 \
-                    libxcb-dri3-0 \
-                    libgbm1 \
-                    libasound2
-                '''
                 echo 'Installing dependencies...'
                 sh 'echo "Disk space usage before installing dependencies:"'
                 sh 'df -h'
