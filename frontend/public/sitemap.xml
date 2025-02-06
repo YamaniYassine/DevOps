@@ -29,8 +29,6 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Dashboard page (not included due to disallow rule in robots.txt) -->
-
   <!-- About page -->
   <url>
     <loc>www.dsp-archiwebf22-yy-om.site/apropos</loc>
@@ -43,6 +41,34 @@
     <loc>www.dsp-archiwebf22-yy-om.site/jeu-concours</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- RGPD page -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.site/rgpd</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Mentions Légales -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.site/mentions-legales</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- CGU -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.site/cgu</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- CGV -->
+  <url>
+    <loc>www.dsp-archiwebf22-yy-om.site/cgv</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 
 </urlset>
