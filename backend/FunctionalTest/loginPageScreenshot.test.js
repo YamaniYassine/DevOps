@@ -22,6 +22,7 @@ describe('Login Page Interaction and Screenshot', () => {
       page.waitForNavigation({ waitUntil: 'networkidle2' })
     ]);
     
+    
     // Take a screenshot after login to capture the result
     await page.screenshot({ path: 'login-page-after.png' });
     
