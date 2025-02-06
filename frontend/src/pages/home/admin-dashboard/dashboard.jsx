@@ -84,12 +84,26 @@ const percentageTicketsWon = Math.round((ticketsWon / totalTickets) * 100);
 
 // Chart Data
 const chartData = {
-  labels: ["Total Tickets (100%)", "Tickets Attribués", "Tickets Gagnés"],
+  labels: [
+    `Total Tickets (100%)`, 
+    `Tickets Attribués (${percentageTicketsAttributed}%)`, 
+    `Tickets Gagnés (${percentageTicketsWon}%)`
+  ],
   datasets: [
     {
-      label: "Ticket Statistics",
-      data: [100, percentageTicketsAttributed, percentageTicketsWon],
-      backgroundColor: ["#007bff", "#ffcc00", "#28a745"], // Blue, Yellow, Green
+      label: "Total Tickets",
+      data: [100, 0, 0], // Only the first bar has a value
+      backgroundColor: "#007bff", // Blue
+    },
+    {
+      label: "Tickets Attribués",
+      data: [0, percentageTicketsAttributed, 0], // Only the second bar has a value
+      backgroundColor: "#ffcc00", // Yellow
+    },
+    {
+      label: "Tickets Gagnés",
+      data: [0, 0, percentageTicketsWon], // Only the third bar has a value
+      backgroundColor: "#28a745", // Green
     },
   ],
 };
