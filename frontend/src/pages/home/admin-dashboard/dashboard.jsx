@@ -128,6 +128,7 @@ const chartData = {
             <Tab label="Users" value="users" />
             <Tab label="Winners" value="winners" />
             <Tab label="Statiques" value="statiques" />
+            <Tab label="Test Check" value="test-check" />
           </Tabs>
           <Button color="inherit" onClick={handleLogout}>
             Log Out
@@ -227,6 +228,47 @@ const chartData = {
           <Bar data={chartData} options={{ responsive: true, maintainAspectRatio: false }} />
         </Paper>
       </Box>
+      )}
+
+      {/* Render the Test Check section if "test-check" tab is selected */}
+      {tab === "test-check" && (
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h5" gutterBottom>
+            Test Check: Screenshots
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Description</TableCell>
+                  <TableCell>Screenshot Preview</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Login Page Before</TableCell>
+                  <TableCell>
+                    <img
+                      src="../../../../../login-page-before.png"
+                      alt="Login Page Before"
+                      style={{ maxWidth: "300px" }}
+                    />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Login Page After</TableCell>
+                  <TableCell>
+                    <img
+                      src="../../../../../login-page-after.png"
+                      alt="Login Page After"
+                      style={{ maxWidth: "300px" }}
+                    />
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
       )}
     </Container>
   );
