@@ -36,7 +36,7 @@ pipeline {
                 //sh 'npx jest --verbose --runInBand >test_output.txt'
                 // Read the test output and send it by email
                 script {
-                    def testResults = sh(script: 'npx jest --verbose --runInBand', returnStdout: true).trim()
+                    def testResults = sh(script: 'npx jest --verbose --runInBand 2>&1', returnStdout: true).trim()
                     mail to: 'YY.OM.thetiptop@gmail.com',
                         subject: "Jenkins Test Report - Build ${env.BUILD_NUMBER}",
                         body: """
