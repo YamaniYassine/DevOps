@@ -33,7 +33,27 @@ pipeline {
                     sh 'npm install'
                 }
                 echo 'Testing code...'
-                sh 'npx jest --verbose --runInBand'
+                sh 'npx jest --verbose --runInBand > test_output.txt'
+                // Read the test output and send it by email
+                script {
+                    def testResults = readFile('test_output.txt')
+                    mail to: 'YY.OM.thetiptop@gmail.com',
+                        subject: "Jenkins Test Report - Build ${env.BUILD_NUMBER}",
+                        body: """
+                        Hello,
+                        
+                        The tests for build ${env.BUILD_NUMBER} have completed.
+                        
+                        Here are the test results:
+                        
+                        ${testResults}
+                        
+                        Check the full build details at: ${env.BUILD_URL}
+                        
+                        Regards,
+                        YAMANI dev Department
+                        """
+                }
             }
         }
         

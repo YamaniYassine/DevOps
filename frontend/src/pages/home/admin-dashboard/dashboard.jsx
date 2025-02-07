@@ -128,7 +128,7 @@ const chartData = {
             <Tab label="Users" value="users" />
             <Tab label="Winners" value="winners" />
             <Tab label="Statiques" value="statiques" />
-            <Tab label="Test Check" value="test-check" />
+            {/* <Tab label="Test Check" value="test-check" /> */}
           </Tabs>
           <Button color="inherit" onClick={handleLogout}>
             Log Out
@@ -231,7 +231,7 @@ const chartData = {
       )}
 
       {/* Render the Test Check section if "test-check" tab is selected */}
-      {tab === "test-check" && (
+      {/* {tab === "test-check" && (
         <Box sx={{ mt: 4 }}>
           <Typography variant="h5" gutterBottom>
             Test Check: Screenshots
@@ -269,7 +269,7 @@ const chartData = {
             </Table>
           </TableContainer>
         </Box>
-      )}
+      )} */}
     </Container>
   );
 };
