@@ -53,6 +53,7 @@ pipeline {
                         Regards,
                         YAMANI dev Department
                         """
+                    echo "${testResults}"
                 }
             }
         }
