@@ -3,70 +3,70 @@
 
   <!-- Home page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/</loc>
+    <loc>http://dsp-archiwebf22-yy-om.site/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Sign-up page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/sign-up</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/sign-up</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Sign-in page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/login</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/login</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Welcome page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/welcome</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/welcome</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- About page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/apropos</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/apropos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Contest page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/jeu-concours</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/jeu-concours</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- RGPD page -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/rgpd</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/rgpd</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- Mentions Légales -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/mentions-legales</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/mentions-legales</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- CGU -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/cgu</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/cgu</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- CGV -->
   <url>
-    <loc>www.dsp-archiwebf22-yy-om.site/cgv</loc>
+    <loc>http://www.dsp-archiwebf22-yy-om.site/cgv</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
