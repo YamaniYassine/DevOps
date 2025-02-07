@@ -51,6 +51,7 @@ pipeline {
                         Check the full build details at: ${env.BUILD_URL}
                         
                         Regards,
+                        
                         YAMANI dev Department
                         """
                 }
