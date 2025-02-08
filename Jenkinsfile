@@ -53,7 +53,7 @@ pipeline {
 
                         Regards,
                         YAMANI dev Department
-                        """,
+                        """
                         // to: 'YY.OM.thetiptop@gmail.com',
                         // attachmentsPattern: "**/login-page-before.png, **/login-page-after.png"
                 }
