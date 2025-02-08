@@ -10,7 +10,7 @@ describe('Login Page Interaction and Screenshot', () => {
     await page.goto('http://152.42.139.102/login', { waitUntil: 'networkidle2' });
     
     // Take a screenshot of the login page before interaction
-    await page.screenshot({ path: '../frontend/public/login-page-before.png' });
+    await page.screenshot({ path: './frontend/public/login-page-before.png' });
     
     // Fill in the email and password fields
     await page.type('input[name="email"]', 'admin@test.com');
@@ -24,7 +24,7 @@ describe('Login Page Interaction and Screenshot', () => {
     
 
     // Take a screenshot after login to capture the result
-    await page.screenshot({ path: '../frontend/public/login-page-after.png' });
+    await page.screenshot({ path: './frontend/public/login-page-after.png' });
     
     await browser.close();
   }, 30000); 
