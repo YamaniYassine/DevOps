@@ -15,17 +15,21 @@ describe('User Deletion API', () => {
     
     // Find the user by email
     const foundUser = getData.users.find(u => u.email === testUserEmail);
-    expect(foundUser).toBeDefined();
-    userId = foundUser._id;
-    
-    
-    // Delete the user using the user ID
-    const deleteResponse = await fetch(`${baseUrl}/${userId}`, {
-      method: 'DELETE',
-    });
-    expect(deleteResponse.status).toBe(200);
-    const deleteData = await deleteResponse.json();
-    expect(deleteData.success).toBe(true);
-    expect(deleteData.message).toBe("User deleted successfully");
+
+    if (!foundUser) {
+      console.log(`No user found with email: ${testUserEmail}`);
+      expect(foundUser).toBeDefined();
+    } else {
+      userId = foundUser._id;
+
+      // Delete the user using the user ID
+      const deleteResponse = await fetch(`${baseUrl}/${userId}`, {
+        method: 'DELETE',
+      });
+      expect(deleteResponse.status).toBe(200);
+      const deleteData = await deleteResponse.json();
+      expect(deleteData.success).toBe(true);
+      expect(deleteData.message).toBe("User deleted successfully");
+    }
   });
 });
