@@ -249,7 +249,7 @@ const chartData = {
                   <TableCell>Login Page Before</TableCell>
                   <TableCell>
                     <img
-                      src="**/login-page-before.png"
+                      src="/login-page-before.png"
                       alt="Login Page Before"
                       style={{ maxWidth: "300px" }}
                     />
@@ -259,7 +259,7 @@ const chartData = {
                   <TableCell>Login Page After</TableCell>
                   <TableCell>
                     <img
-                      src="**/login-page-after.png"
+                      src="/login-page-after.png"
                       alt="Login Page After"
                       style={{ maxWidth: "300px" }}
                     />
