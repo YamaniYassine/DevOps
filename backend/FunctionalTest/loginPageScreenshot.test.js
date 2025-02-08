@@ -3,7 +3,10 @@ const puppeteer = require('puppeteer');
 describe('Login Page Interaction and Screenshot', () => {
   it('should login and take a screenshot of the result', async () => {
     // Launch browser in headless mode
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+        ignoreHTTPSErrors: true,
+        headless: true 
+      });
     const page = await browser.newPage();
     
     // Navigate to the login page
