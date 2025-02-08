@@ -18,6 +18,7 @@ describe('User Deletion API', () => {
     expect(foundUser).toBeDefined();
     userId = foundUser._id;
     
+    
     // Delete the user using the user ID
     const deleteResponse = await fetch(`${baseUrl}/${userId}`, {
       method: 'DELETE',
