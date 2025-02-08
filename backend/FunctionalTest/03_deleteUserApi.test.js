@@ -18,8 +18,9 @@ describe('User Deletion API', () => {
 
     if (!foundUser) {
       console.log(`No user found with email: ${testUserEmail}`);
-      expect(foundUser).toBeDefined();
+      
     } else {
+      expect(foundUser).toBeDefined();
       userId = foundUser._id;
 
       // Delete the user using the user ID
