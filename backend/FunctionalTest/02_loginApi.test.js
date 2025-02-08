@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { expect } from '@jest/globals';
 
-const loginApi = 'https://152.42.139.102:5001/users/login';
+const loginApi = 'http://152.42.139.102:5001/users/login';
 const testUser   = {
   email: 'test@test.com',
   password: 'testtest'
