@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import { expect } from '@jest/globals';
 
-const baseUrl = 'http://152.42.139.102:5001/users';
+const baseUrl = 'https://152.42.139.102:5001/users';
 const testUserEmail = 'test2@test.com';
 
 describe('User Deletion API', () => {
