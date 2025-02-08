@@ -16,8 +16,8 @@ describe('Login Page Interaction and Screenshot', () => {
     await page.screenshot({ path: './frontend/public/login-page-before.png' });
     
     // Fill in the email and password fields
-    await page.type('input[name="email"]', 'admin@test.com');
-    await page.type('input[name="password"]', 'adminadmin');
+    await page.type('input[name="email"]', 'test@test.com');
+    await page.type('input[name="password"]', 'wrongpassword');
     
     // Click the login button and wait for navigation (adjust the selector if needed)
     await Promise.all([
