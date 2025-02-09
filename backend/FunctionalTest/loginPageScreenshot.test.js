@@ -16,13 +16,13 @@ describe('Login Page Interaction and Screenshot', () => {
     await page.screenshot({ path: './frontend/public/login-page-before.png' });
     
     // Fill in the email and password fields
-    await page.type('input[name="email"]', 'test@test.com');
-    await page.type('input[name="password"]', 'wrongpassword');
+    await page.type('input[name="email"]', 'employe@test.com');
+    await page.type('input[name="password"]', 'employee');
     
     // Click the login button and wait for navigation (adjust the selector if needed)
     await Promise.all([
       page.click('button[type="submit"]'),
-      //page.waitForNavigation({ waitUntil: 'networkidle2' })
+      page.waitForNavigation({ waitUntil: 'networkidle2' })
     ]);
     
 
