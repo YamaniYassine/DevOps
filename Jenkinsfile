@@ -33,8 +33,8 @@ pipeline {
                     sh 'npm install'
                 }
                 echo 'Testing code...'
-                sh 'npx jest --verbose --runInBand >test_output.txt'
-                Read the test output and send it by email
+                //sh 'npx jest --verbose --runInBand >test_output.txt'
+                // Read the test output and send it by email
                 script {
                     // Exécuter les tests et récupérer le résultat
                     def testResults = sh(script: 'npx jest --verbose --runInBand 2>&1', returnStdout: true).trim()
@@ -50,7 +50,6 @@ pipeline {
                         Here are the test results:
 
                         ${testResults}
-
 
                         Regards,
                         YAMANI dev Department
