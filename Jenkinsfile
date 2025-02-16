@@ -107,6 +107,7 @@ pipeline {
                         You can restore it using:
                         mongorestore --archive=mongodb_backup.gz --gzip
 
+
                         Regards,
                         YAMANI Dev Department
                         """,
