@@ -104,6 +104,7 @@ pipeline {
 
                         A backup of the MongoDB database has been created for build ${env.BUILD_NUMBER}.
 
+
                         Regards,
                         YAMANI Dev Department
                         """,
