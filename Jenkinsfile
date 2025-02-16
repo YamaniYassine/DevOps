@@ -104,10 +104,6 @@ pipeline {
 
                         A backup of the MongoDB database has been created for build ${env.BUILD_NUMBER}.
 
-                        You can restore it using:
-                        mongorestore --archive=mongodb_backup.gz --gzip
-
-
                         Regards,
                         YAMANI Dev Department
                         """,
