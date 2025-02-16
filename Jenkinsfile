@@ -97,6 +97,32 @@ pipeline {
                 sh 'docker inspect --type=image ' + registryBackend + ':latest'
                 echo 'testing frontend image...'
                 sh 'docker inspect --type=image ' + registryFrontend + ':latest'
+
+                script {
+                    echo 'Backing up MongoDB...'
+                    sh '''
+                    TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+                    BACKUP_FILE="/tmp/mongodb_backup_$TIMESTAMP.gz"
+                    docker exec db-docker mongodump --archive=$BACKUP_FILE --gzip
+                    docker cp db-docker:$BACKUP_FILE .
+                    '''
+                    
+                    // Send backup via email (optional)
+                    emailext subject: "MongoDB Backup - ${env.BUILD_NUMBER}",
+                        body: """
+                        Hello,
+
+                        A backup of the MongoDB database has been created for build ${env.BUILD_NUMBER}.
+
+                        You can restore it using:
+                        mongorestore --archive=mongodb_backup.gz --gzip
+
+                        Regards,
+                        YAMANI Dev Department
+                        """,
+                        to: 'YY.OM.thetiptop@gmail.com',
+                        attachmentsPattern: "mongodb_backup_*.gz"
+                }
             }
         }
 
