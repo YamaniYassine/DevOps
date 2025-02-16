@@ -24,7 +24,9 @@ body {
   margin-bottom: 5%;
 }
 
-.logo {
+.logo-img {
+  width: 50px;  /* Adjust size */
+  height: auto;
 }
 
 .menu-icon {
