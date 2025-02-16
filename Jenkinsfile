@@ -88,16 +88,6 @@ pipeline {
                         frontendImage.push('latest')
                     }
                 }
-            }
-        }
-        
-        stage('Test images') {
-            steps {
-                echo 'testing backend image...'
-                sh 'docker inspect --type=image ' + registryBackend + ':latest'
-                echo 'testing frontend image...'
-                sh 'docker inspect --type=image ' + registryFrontend + ':latest'
-
                 script {
                     echo 'Backing up MongoDB...'
                     sh '''
@@ -123,6 +113,15 @@ pipeline {
                         to: 'YY.OM.thetiptop@gmail.com',
                         attachmentsPattern: "mongodb_backup_*.gz"
                 }
+            }
+        }
+        
+        stage('Test images') {
+            steps {
+                echo 'testing backend image...'
+                sh 'docker inspect --type=image ' + registryBackend + ':latest'
+                echo 'testing frontend image...'
+                sh 'docker inspect --type=image ' + registryFrontend + ':latest'
             }
         }
 
