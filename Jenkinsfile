@@ -109,6 +109,9 @@ pipeline {
                         """,
                         to: 'YY.OM.thetiptop@gmail.com',
                         attachmentsPattern: "mongodb_backup_*.gz"
+
+                    // Delete the backup file after sending it
+                    sh 'rm -f mongodb_backup_*.gz'
                 }
             }
         }
