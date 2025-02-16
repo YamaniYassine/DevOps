@@ -93,7 +93,7 @@ pipeline {
                     sh '''
                     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
                     BACKUP_FILE="/tmp/mongodb_backup_$TIMESTAMP.gz"
-                    docker exec db-docker mongodump --archive=$BACKUP_FILE --gzip
+                    docker exec db-docker mongodump --archive=/tmp/mongodb_backup_$(date +%Y%m%d_%H%M%S).gz --gzip --username admin --password 'YthetiptopO123.' --authenticationDatabase admin
                     docker cp db-docker:$BACKUP_FILE .
                     '''
                     
