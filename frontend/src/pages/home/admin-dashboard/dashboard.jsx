@@ -21,8 +21,7 @@ import {
   TableHead,
   TableRow,
   Tabs,
-  Tab,
-  LinearProgress
+  Tab
 } from "@mui/material";
 
 // Chart.js imports
