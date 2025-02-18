@@ -146,8 +146,9 @@ pipeline {
         stage('Run reverse proxy'){
             steps {
                 script {
-                    sh 'docker stop reverse-proxy || true && docker rm reverse-proxy || true'
-                    docker.image(reverseProxy + ':latest').run('--name reverse-proxy --network my_network -p 80:80 -v /root/nginx.conf:/etc/nginx/nginx.conf')
+                    // sh 'docker stop reverse-proxy || true && docker rm reverse-proxy || true'
+                    // docker.image(reverseProxy + ':latest').run('--name reverse-proxy --network my_network -p 80:80 -v /root/nginx.conf:/etc/nginx/nginx.conf')
+                    sh 'docker restart reverse-proxy' 
                 }
             echo 'reverse proxy is working'
             }
