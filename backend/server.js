@@ -3,7 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const client = require("prom-client"); // Import prom-client for metrics
+const client = require("prom-client");
 
 dotenv.config({ path: "./config.env" });
 
