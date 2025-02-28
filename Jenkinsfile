@@ -35,28 +35,28 @@ pipeline {
                 echo 'Testing code...'
                 //sh 'npx jest --verbose --runInBand >test_output.txt'
                 // Read the test output and send it by email
-                script {
-                    // Exécuter les tests et récupérer le résultat
-                    def testResults = sh(script: 'npx jest --verbose --runInBand 2>&1', returnStdout: true).trim()
-                    // Afficher les résultats dans la console Jenkins
-                    echo "${testResults}"
-                    // Envoyer l'email avec les captures d'écran en pièce jointe
-                    emailext subject: "Jenkins Test Report - Build ${env.BUILD_NUMBER}",
-                        body: """
-                        Hello,
+                // script {
+                //     // Exécuter les tests et récupérer le résultat
+                //     def testResults = sh(script: 'npx jest --verbose --runInBand 2>&1', returnStdout: true).trim()
+                //     // Afficher les résultats dans la console Jenkins
+                //     echo "${testResults}"
+                //     // Envoyer l'email avec les captures d'écran en pièce jointe
+                //     emailext subject: "Jenkins Test Report - Build ${env.BUILD_NUMBER}",
+                //         body: """
+                //         Hello,
 
-                        The tests for build ${env.BUILD_NUMBER} have completed.
+                //         The tests for build ${env.BUILD_NUMBER} have completed.
 
-                        Here are the test results: 
+                //         Here are the test results: 
 
-                        ${testResults}
+                //         ${testResults}
 
-                        Regards,
-                        YAMANI dev Department
-                        """,
-                        to: 'YY.OM.thetiptop@gmail.com',
-                        attachmentsPattern: "**/login-page-before.png, **/login-page-after.png"
-                }
+                //         Regards,
+                //         YAMANI dev Department
+                //         """,
+                //         to: 'YY.OM.thetiptop@gmail.com',
+                //         attachmentsPattern: "**/login-page-before.png, **/login-page-after.png"
+                // }
             }
         }
         
@@ -88,32 +88,32 @@ pipeline {
                         frontendImage.push('latest')
                     }
                 }
-                script {
-                    echo 'Backing up MongoDB...'
-                    sh '''
-                    TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-                    BACKUP_FILE="/tmp/mongodb_backup_$TIMESTAMP.gz"
-                    docker exec db-docker mongodump --archive=/tmp/mongodb_backup_$(date +%Y%m%d_%H%M%S).gz --gzip --username admin --password 'YthetiptopO123.' --authenticationDatabase admin
-                    docker cp db-docker:$BACKUP_FILE .
-                    '''
+                // script {
+                //     echo 'Backing up MongoDB...'
+                //     sh '''
+                //     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+                //     BACKUP_FILE="/tmp/mongodb_backup_$TIMESTAMP.gz"
+                //     docker exec db-docker mongodump --archive=/tmp/mongodb_backup_$(date +%Y%m%d_%H%M%S).gz --gzip --username admin --password 'YthetiptopO123.' --authenticationDatabase admin
+                //     docker cp db-docker:$BACKUP_FILE .
+                //     '''
                     
-                    // Send backup via email (optional)
-                    emailext subject: "MongoDB Backup - ${env.BUILD_NUMBER}",
-                        body: """
-                        Hello,
+                //     // Send backup via email (optional)
+                //     emailext subject: "MongoDB Backup - ${env.BUILD_NUMBER}",
+                //         body: """
+                //         Hello,
 
-                        A backup of the MongoDB database has been created for build ${env.BUILD_NUMBER}.
+                //         A backup of the MongoDB database has been created for build ${env.BUILD_NUMBER}.
 
 
-                        Regards,
-                        YAMANI Dev Department
-                        """,
-                        to: 'YY.OM.thetiptop@gmail.com',
-                        attachmentsPattern: "mongodb_backup_*.gz"
+                //         Regards,
+                //         YAMANI Dev Department
+                //         """,
+                //         to: 'YY.OM.thetiptop@gmail.com',
+                //         attachmentsPattern: "mongodb_backup_*.gz"
 
-                    // Delete the backup file after sending it
-                    sh 'rm -f mongodb_backup_*.gz'
-                }
+                //     // Delete the backup file after sending it
+                //     sh 'rm -f mongodb_backup_*.gz'
+                // }
             }
         }
         
