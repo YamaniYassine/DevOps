@@ -36,6 +36,8 @@ const Dashboard = () => {
   const users = useSelector(selectUsers);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [emailFilter, setEmailFilter] = useState("");
+
 
   // Local state to control which tab is active ("users", "winners", or "statiques")
   const [tab, setTab] = useState("users");
@@ -43,6 +45,11 @@ const Dashboard = () => {
   const handleTabChange = (event, newValue) => {
     setTab(newValue);
   };
+
+  const filteredWinners = winners.filter((winner) =>
+  winner.email.toLowerCase().includes(emailFilter.toLowerCase())
+  );
+
 
   useEffect(() => {
     if (error) {
@@ -185,6 +192,21 @@ const chartData = {
           <Typography variant="h5" gutterBottom>
             Winners List
           </Typography>
+          <Box sx={{ mb: 2 }}>
+            <input
+              type="text"
+              placeholder="Filter by email..."
+              value={emailFilter}
+              onChange={(e) => setEmailFilter(e.target.value)}
+              style={{
+                padding: "8px",
+                width: "100%",
+                maxWidth: "300px",
+                border: "1px solid #ccc",
+                borderRadius: "5px"
+              }}
+            />
+          </Box>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
