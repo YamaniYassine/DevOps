@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, reset, registerUser } from "../../../features/auth/authSlice";
+import { logout, reset } from "../../../features/auth/authSlice";
 import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
+import { registerUser } from "../../../features/auth/authActions";
 
 // Material-UI components
 import {
@@ -22,7 +23,7 @@ import {
   TableRow,
   Tabs,
   Tab,
-  LinearProgress
+  TextField,
 } from "@mui/material";
 
 // Chart.js imports
@@ -37,6 +38,8 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [emailFilter, setEmailFilter] = useState("");
+  const [showEmployeeForm, setShowEmployeeForm] = useState(false);
+  const [employeeData, setEmployeeData] = useState({ name: "", email: "", password: "employee", confirmPassword: "employee" });
 
 
   // Local state to control which tab is active ("users", "winners", or "statiques")
@@ -44,6 +47,13 @@ const Dashboard = () => {
 
   const handleTabChange = (event, newValue) => {
     setTab(newValue);
+  };
+
+  const handleAddEmployee = () => {
+    dispatch(registerUser({ ...employeeData, role: 2 }));
+    setShowEmployeeForm(false);
+    setEmployeeData({ name: "", email: "", password: "employee", confirmPassword: "employee" });
+    dispatch(fetchUsers());
   };
 
   const filteredWinners = winners.filter((winner) =>
@@ -115,43 +125,6 @@ const chartData = {
   ],
 };
 
-const [newEmployee, setNewEmployee] = useState({
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-});
-
-const handleAddEmployee = async () => {
-  if (!newEmployee.name || !newEmployee.email || !newEmployee.password || !newEmployee.confirmPassword) {
-    alert("Please fill in all fields.");
-    return;
-  }
-
-  if (newEmployee.password !== newEmployee.confirmPassword) {
-    alert("Passwords do not match!");
-    return;
-  }
-
-  const employeeData = {
-    name: newEmployee.name,
-    email: newEmployee.email,
-    password: newEmployee.password,
-    confirmPassword: newEmployee.confirmPassword,
-    role: 2, // Set role to Employee
-  };
-
-  try {
-    await dispatch(registerUser(employeeData)).unwrap();
-    alert("Employee added successfully!");
-    setNewEmployee({ name: "", email: "", password: "", confirmPassword: "" });
-    dispatch(fetchUsers()); // Refresh the users list
-  } catch (err) {
-    alert(`Error: ${err}`);
-  }
-};
-
-
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -186,40 +159,16 @@ const handleAddEmployee = async () => {
           <Typography variant="h5" gutterBottom>
             Users List
           </Typography>
-          {/* Inline Add Employee Field */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
-            <input
-              type="text"
-              placeholder="Employee Name"
-              value={newEmployee.name}
-              onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })}
-              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
-            />
-            <input
-              type="email"
-              placeholder="Employee Email"
-              value={newEmployee.email}
-              onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
-              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={newEmployee.password}
-              onChange={(e) => setNewEmployee({ ...newEmployee, password: e.target.value })}
-              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={newEmployee.confirmPassword}
-              onChange={(e) => setNewEmployee({ ...newEmployee, confirmPassword: e.target.value })}
-              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
-            />
-            <Button variant="contained" color="primary" onClick={handleAddEmployee}>
-              Add Employee
-            </Button>
-          </Box>
+          <Button variant="contained" color="primary" onClick={() => setShowEmployeeForm(!showEmployeeForm)}>
+            {showEmployeeForm ? "Cancel" : "Add Employee"}
+          </Button>
+          {showEmployeeForm && (
+            <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
+              <TextField label="Name" value={employeeData.name} onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} />
+              <TextField label="Email" value={employeeData.email} onChange={(e) => setEmployeeData({ ...employeeData, email: e.target.value })} />
+              <Button variant="contained" color="success" onClick={handleAddEmployee}>Add</Button>
+            </Box>
+          )}
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
