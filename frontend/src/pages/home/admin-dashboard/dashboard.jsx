@@ -118,35 +118,36 @@ const chartData = {
 const [newEmployee, setNewEmployee] = useState({
   name: "",
   email: "",
-  password: ""
+  password: "",
+  confirmPassword: "",
 });
-const [isAdding, setIsAdding] = useState(false); // Toggle form visibility
-const [loading, setLoading] = useState(false);
-
-const handleInputChange = (e) => {
-  setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
-};
 
 const handleAddEmployee = async () => {
-  setLoading(true);
+  if (!newEmployee.name || !newEmployee.email || !newEmployee.password || !newEmployee.confirmPassword) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  if (newEmployee.password !== newEmployee.confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  const employeeData = {
+    name: newEmployee.name,
+    email: newEmployee.email,
+    password: newEmployee.password,
+    confirmPassword: newEmployee.confirmPassword,
+    role: 2, // Set role to Employee
+  };
+
   try {
-    const response = await fetch("/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...newEmployee, role: 2 }) // Set role to 2 (Employee)
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to add employee");
-    }
-
-    setNewEmployee({ name: "", email: "", password: "" }); // Reset form
-    setIsAdding(false); // Hide form
-    dispatch(fetchUsers()); // Refresh users list
-  } catch (error) {
-    console.error("Error adding employee:", error);
-  } finally {
-    setLoading(false);
+    await dispatch(registerUser(employeeData)).unwrap();
+    alert("Employee added successfully!");
+    setNewEmployee({ name: "", email: "", password: "", confirmPassword: "" });
+    dispatch(fetchUsers()); // Refresh the users list
+  } catch (err) {
+    alert(`Error: ${err}`);
   }
 };
 
@@ -185,56 +186,40 @@ const handleAddEmployee = async () => {
           <Typography variant="h5" gutterBottom>
             Users List
           </Typography>
-          {/* Add Employee Button */}
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mb: 2 }}
-            onClick={() => setIsAdding(!isAdding)}
-          >
-            {isAdding ? "Cancel" : "Add Employee"}
-          </Button>
-
-          {/* Employee Form */}
-          {isAdding && (
-            <Paper sx={{ p: 2, mb: 2 }}>
-              <Typography variant="h6">Add New Employee</Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  value={newEmployee.name}
-                  onChange={handleInputChange}
-                  style={{ padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  value={newEmployee.email}
-                  onChange={handleInputChange}
-                  style={{ padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={newEmployee.password}
-                  onChange={handleInputChange}
-                  style={{ padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                />
-                <Button
-                  variant="contained"
-                  color="success"
-                  onClick={handleAddEmployee}
-                  disabled={loading}
-                >
-                  {loading ? "Adding..." : "Create Employee"}
-                </Button>
-              </Box>
-            </Paper>
-          )}
+          {/* Inline Add Employee Field */}
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
+            <input
+              type="text"
+              placeholder="Employee Name"
+              value={newEmployee.name}
+              onChange={(e) => setNewEmployee({ ...newEmployee, name: e.target.value })}
+              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+            />
+            <input
+              type="email"
+              placeholder="Employee Email"
+              value={newEmployee.email}
+              onChange={(e) => setNewEmployee({ ...newEmployee, email: e.target.value })}
+              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={newEmployee.password}
+              onChange={(e) => setNewEmployee({ ...newEmployee, password: e.target.value })}
+              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={newEmployee.confirmPassword}
+              onChange={(e) => setNewEmployee({ ...newEmployee, confirmPassword: e.target.value })}
+              style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+            />
+            <Button variant="contained" color="primary" onClick={handleAddEmployee}>
+              Add Employee
+            </Button>
+          </Box>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
