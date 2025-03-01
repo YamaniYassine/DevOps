@@ -23,9 +23,9 @@ const HeaderNav = () => {
     <nav className="navbar" data-testid="test1">
       <div className="container">
       <div className="logo">
-        <a href="/">
+        <NavLink to="/">
           <img src="/favicon3.ico" alt="ThéTipTop Logo" className="logo-img" />
-        </a>
+        </NavLink>
       </div>
 
         <div className="menu-icon" onClick={handleShowNavbar}>

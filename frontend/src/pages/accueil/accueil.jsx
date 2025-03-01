@@ -13,6 +13,7 @@ const Accueil = () => {
                 <div class="row-container2 ">
                     <div class="content-container2">
                         <h3 class="title2">Jeu concours ThéTipTop: Achetez <span className='green'>49€</span>  de thé, obtenez un code de 10 chiffres sur votre ticket. Tous les tickets sont gagnants! Inscrivez le code en ligne pour retirer votre lot en magasin ou en ligne. <br /> <span className='green'>30 jours</span> pour jouer.</h3>
+                        <p class="description3">Récupérez vos gains dans notre boutique</p>
                     </div>
                 </div>
                 <div class="row-container2 ">
@@ -26,7 +27,7 @@ const Accueil = () => {
                 <div class="content-container2">
                     <h2 class="title2">Les bienfaits du thé vert pour la santé</h2>
                     <p class="description2">Le thé est une boisson chaude appréciée dans le monde entier depuis des siècles. Cette boisson raffinée et délicate est non seulement délicieuse, mais elle offre également une multitude de bienfaits pour la santé. De l'arôme subtil du thé vert aux notes épicées du chai, il existe une variété de thés pour tous les goûts. Découvrez la richesse de cette tradition millénaire et offrez-vous une expérience gustative inoubliable avec notre sélection de thés de qualité supérieure.</p>
-                    <p class="description3">Récupérez vos gains dans notre boutique</p>
+                    
                 </div>
                 <div class="image-container2">
                     <img src="https://images.unsplash.com/photo-1504382103100-db7e92322d39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />

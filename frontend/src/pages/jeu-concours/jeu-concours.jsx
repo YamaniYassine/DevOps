@@ -88,7 +88,7 @@ const Concours = () => {
           </div>
         </div>
       </div>
-      <div className="fullview">
+      <div className="">
         <h2>Participez au Jeu Concours ici</h2>
       </div>
       <form id="myForm" onSubmit={handleFormSubmit}>
