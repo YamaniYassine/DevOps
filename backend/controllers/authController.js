@@ -90,9 +90,9 @@ exports.addEmployee = asyncErrorHandler(async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
 
   // Check if the request comes from an admin
-  if (!req.user || req.user.role !== 1) {
-    return next(new AppError("Unauthorized! Only admins can add employees.", 403));
-  }
+  // if (!req.user || req.user.role !== 1) {
+  //   return next(new AppError("Unauthorized! Only admins can add employees.", 403));
+  // }
 
   // Validate fields
   if (!name || !email || !password || !confirmPassword) {
