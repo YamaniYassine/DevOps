@@ -88,10 +88,13 @@ const Concours = () => {
           </div>
         </div>
       </div>
+      <div className="fullview">
+        <h2>Participez au Jeu Concours ici</h2>
+      </div>
       <form id="myForm" onSubmit={handleFormSubmit}>
         <label htmlFor="name">Nom:</label>
         <input type="text" id="name" name="name" required /><br />
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">E-mail:</label>
         <input type="email" id="email" name="email" required /><br />
         <label htmlFor="ticket-code">Code de 10 chiffres:</label>
         <input type="text" id="ticket-code" name="ticket-code" minLength="10" maxLength="10" required /><br />

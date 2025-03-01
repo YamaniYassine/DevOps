@@ -58,7 +58,7 @@ const WelcomePage = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Welcome {username} to the Dashboard
+            Bienvenue {username} dans l'espace utilisateur
           </Typography>
           <Button color="inherit" onClick={handleLogout}>Log Out</Button>
         </Toolbar>
@@ -67,15 +67,15 @@ const WelcomePage = () => {
       {/* Wins Table Section */}
       <Box sx={{ mt: 4 }}>
         <Typography variant="h5" gutterBottom>
-          Your Wins
+          Vos gains
         </Typography>
         {userWins.length > 0 ? (
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Ticket Code</TableCell>
-                  <TableCell>Prize</TableCell>
+                  <TableCell>Code du ticket</TableCell>
+                  <TableCell>gain</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -89,7 +89,7 @@ const WelcomePage = () => {
             </Table>
           </TableContainer>
         ) : (
-          <Typography variant="body1">You have not won any prizes yet.</Typography>
+          <Typography variant="body1">Vous n'avez pas encore gagné.</Typography>
         )}
       </Box>
     </Container>

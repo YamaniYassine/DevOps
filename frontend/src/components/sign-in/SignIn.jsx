@@ -83,13 +83,13 @@ const SignIn = () => {
 
   return (
     <section className="form-container">
-      <h1 className="form-heading">Sign in</h1>
+      <h1 className="form-heading">Se connecter</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-item" id="incorrectinfo">
           <span className="error-text">{formErrors.incorrectinfo}</span>
         </div>
         <div className="form-item" id="email">
-          <label>Email</label>
+          <label>E-mail</label>
           <input
             placeholder="Enter your email"
             name="email"
@@ -100,7 +100,7 @@ const SignIn = () => {
           <span className="error-text">{formErrors.email}</span>
         </div>
         <div className="form-item" id="password">
-          <label>Password</label>
+          <label>Mot de passe</label>
           <input
             placeholder="Enter your password"
             name="password"
@@ -112,7 +112,7 @@ const SignIn = () => {
         </div>
         <div className="button-container">
           <button className="form-button" type="submit">
-            Sign In
+            Se connecter
           </button>
         </div>
       </form>

@@ -132,7 +132,7 @@ const chartData = {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Welcome {user.name} to the Dashboard
+            Bienvenue {user.name} sur le tableau de bord
           </Typography>
           {/* Tabs for switching between views */}
           <Tabs
@@ -148,7 +148,7 @@ const chartData = {
             <Tab label="Test Check" value="test-check" />
           </Tabs>
           <Button color="inherit" onClick={handleLogout}>
-            Log Out
+            Se déconnecter
           </Button>
         </Toolbar>
       </AppBar>
@@ -157,7 +157,7 @@ const chartData = {
       {tab === "users" && (
         <Box sx={{ mt: 4 }}>
           <Typography variant="h5" gutterBottom>
-            Users List
+            Liste des utilisateurs
           </Typography>
           <Button variant="contained" color="primary" onClick={() => setShowEmployeeForm(!showEmployeeForm)}>
             {showEmployeeForm ? "Cancel" : "Add Employee"}
@@ -166,16 +166,16 @@ const chartData = {
             <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
               <TextField label="Name" value={employeeData.name} onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} />
               <TextField label="Email" value={employeeData.email} onChange={(e) => setEmployeeData({ ...employeeData, email: e.target.value })} />
-              <Button variant="contained" color="success" onClick={handleAddEmployee}>Add</Button>
+              <Button variant="contained" color="success" onClick={handleAddEmployee}>Ajouter</Button>
             </Box>
           )}
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Role</TableCell>
+                  <TableCell>Nom</TableCell>
+                  <TableCell>E-mail</TableCell>
+                  <TableCell>Rôle</TableCell>
                   <TableCell>Actions</TableCell>
                 </TableRow>
               </TableHead>
@@ -194,7 +194,7 @@ const chartData = {
                     <TableCell>
                       {u.role !== 1 && (
                         <Button variant="contained" color="error" onClick={() => handleDeleteUser(u._id)}>
-                          Delete
+                          Supprimer
                         </Button>
                       )}
                     </TableCell>
@@ -210,7 +210,7 @@ const chartData = {
       {tab === "winners" && (
         <Box sx={{ mt: 4 }}>
           <Typography variant="h5" gutterBottom>
-            Winners List
+            Liste des gagnants
           </Typography>
 
           {/* Email Filter Input */}
@@ -250,10 +250,10 @@ const chartData = {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Ticket Code</TableCell>
-                  <TableCell>Prize</TableCell>
+                  <TableCell>Nom</TableCell>
+                  <TableCell>E-mail</TableCell>
+                  <TableCell>Code du ticket</TableCell>
+                  <TableCell>Gain</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -276,7 +276,7 @@ const chartData = {
       {tab === "statiques" && (
         <Box sx={{ mt: 4 }}>
         <Typography variant="h5" gutterBottom>
-          Ticket Statistics
+          Statistiques des gains
         </Typography>
         <Paper sx={{ p: 3 }}>
           <Bar data={chartData} options={{ responsive: true, maintainAspectRatio: false }} />

@@ -23,7 +23,9 @@ const HeaderNav = () => {
     <nav className="navbar" data-testid="test1">
       <div className="container">
       <div className="logo">
-        <img src="/favicon3.ico" alt="ThéTipTop Logo" className="logo-img" />
+        <a href="/">
+          <img src="/favicon3.ico" alt="ThéTipTop Logo" className="logo-img" />
+        </a>
       </div>
 
         <div className="menu-icon" onClick={handleShowNavbar}>
@@ -38,7 +40,7 @@ const HeaderNav = () => {
               <NavLink to="/jeu-concours">jeu-concours</NavLink>
             </li>
             <li>
-              <NavLink to="/apropos">About</NavLink>
+              <NavLink to="/apropos">Apropos</NavLink>
             </li>
             {user ? (
               // Check user role: 1 for admin, 2 for employee, else default to welcome
@@ -58,11 +60,11 @@ const HeaderNav = () => {
             ) : (
               location.pathname === "/login" ? (
                 <button className="user-button">
-                  <Link className="link" to="/sign-up">Sign Up</Link>
+                  <Link className="link" to="/sign-up">S'inscrire</Link>
                 </button>
               ) : (
                 <button className="user-button">
-                  <Link className="link" to="/login">Sign In</Link>
+                  <Link className="link" to="/login">Se connecter</Link>
                 </button>
               )
             )}

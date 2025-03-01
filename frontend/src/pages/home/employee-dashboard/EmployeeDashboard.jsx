@@ -108,7 +108,7 @@ const EmployeeDashboard = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Welcome {user.name} to the Employee Dashboard
+            Bienvenue {user.name} sur le tableau de bord des employés
           </Typography>
           {/* Tabs for switching between "Users" and "Winners" views */}
           <Tabs
@@ -122,7 +122,7 @@ const EmployeeDashboard = () => {
             <Tab label="Winners" value="winners" />
           </Tabs>
           <Button color="inherit" onClick={handleLogout}>
-            Log Out
+            Se déconnecter
           </Button>
         </Toolbar>
       </AppBar>
@@ -131,15 +131,15 @@ const EmployeeDashboard = () => {
       {tab === "users" && (
         <Box sx={{ mt: 4 }}>
           <Typography variant="h5" gutterBottom>
-            Users List
+            Liste des utilisateurs
           </Typography>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Role</TableCell>
+                  <TableCell>Nom</TableCell>
+                  <TableCell>E-mail</TableCell>
+                  <TableCell>Rôle</TableCell>
                   <TableCell>Actions</TableCell>
                 </TableRow>
               </TableHead>
@@ -156,7 +156,7 @@ const EmployeeDashboard = () => {
                           color="error"
                           onClick={() => handleDeleteUser(u._id)}
                         >
-                          Delete
+                          Supprimer
                         </Button>
                       </TableCell>
                     </TableRow>
@@ -164,7 +164,7 @@ const EmployeeDashboard = () => {
                 ) : (
                   <TableRow>
                     <TableCell colSpan={4} align="center">
-                      No users found.
+                      Aucun utilisateur trouvé.
                     </TableCell>
                   </TableRow>
                 )}
@@ -178,16 +178,16 @@ const EmployeeDashboard = () => {
       {tab === "winners" && (
         <Box sx={{ mt: 4 }}>
           <Typography variant="h5" gutterBottom>
-            Winners List
+            Liste des gagnants
           </Typography>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Ticket Code</TableCell>
-                  <TableCell>Prize</TableCell>
+                  <TableCell>Nom</TableCell>
+                  <TableCell>E-mail</TableCell>
+                  <TableCell>Code du ticket</TableCell>
+                  <TableCell>Gain</TableCell>
                   <TableCell>Status</TableCell>
                 </TableRow>
               </TableHead>
@@ -199,7 +199,7 @@ const EmployeeDashboard = () => {
                 ) : (
                   <TableRow>
                     <TableCell colSpan={5} align="center">
-                      No wins yet.
+                      Aucune gain pour l'instant.
                     </TableCell>
                   </TableRow>
                 )}

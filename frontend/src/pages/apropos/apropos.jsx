@@ -2,6 +2,7 @@
 const Apropos = () => {
     return (
         <section>
+			<h2>Apropos de nous</h2>
 			<h2>Notre entreprise</h2>
 			<p>ThéTipTop est une entreprise spécialisée dans la promotion de gammes de thés de très grande qualité avec des mélanges signatures de l’entreprise, des thés détox, des thés blancs, des thés légumes, infusions, etc. L’ensemble de nos thés sont bios et Handmades.</p>
 			<p>Nous sommes une société créative et passionnée, avec une forte expertise dans l'art du thé.</p>
