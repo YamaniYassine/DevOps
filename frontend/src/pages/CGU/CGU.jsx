@@ -1,6 +1,6 @@
 const CGU = () => {
     return (
-        <section>
+        <section style={{ backgroundColor: "white", padding: '15px', borderRadius: '15px'}}>
             <h1 style={{ fontSize: '2rem' }}>CGU</h1>
 			<h2>Objet</h2>
             <p>Les présentes conditions générales d'utilisation (ci-après dénommées "CGU") ont pour objet de définir les règles d'utilisation du site ThéTipTop (ci-après dénommé "le Site") par les utilisateurs (ci-après dénommés "les Utilisateurs").</p>

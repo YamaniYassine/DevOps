@@ -1,6 +1,6 @@
 const MentionsLegales = () => {
     return (
-        <section>
+        <section style={{ backgroundColor: "white", padding: '15px', borderRadius: '15px'}}>
             {/* balise h1 with a font size of 2 rem */}
             <h1 style={{ fontSize: '2rem' }}>Informations légales</h1>
             
