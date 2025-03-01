@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../../../features/auth/authSlice";
 import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
-import { registerUser } from "../../../features/auth/authActions";
+import { AddEmployee } from "../../../features/auth/authActions";
 
 // Material-UI components
 import {
@@ -50,7 +50,7 @@ const Dashboard = () => {
   };
 
   const handleAddEmployee = () => {
-    dispatch(registerUser({ ...employeeData, role: 2 }));
+    dispatch(AddEmployee({ ...employeeData }));
     setShowEmployeeForm(false);
     setEmployeeData({ name: "", email: "", password: "employee", confirmPassword: "employee" });
     dispatch(fetchUsers());
