@@ -6,7 +6,7 @@ const RGPD = () => {
 
             <h2>1. Quelles informations recueillons-nous ?</h2>
             <p>Nous collectons plusieurs types d’informations personnelles lorsque vous utilisez notre site ou nos services. Voici les informations que nous pouvons collecter :</p>
-            <ul style={{ textAlign: "center" }}>
+            <ul style={{ textAlign: "left" }}>
                 <li><strong>Identité :</strong> civilité, nom, prénom, adresse, numéro de téléphone, adresse électronique, date de naissance, code interne de traitement permettant l'identification du client, données relatives à l’enregistrement sur des listes d’opposition.</li>
                 <li><strong>Données relatives aux achats :</strong> numéros de commande, historique des achats, préférences et intérêts concernant nos produits.</li>
                 <li><strong>Données liées à l’utilisation du site :</strong> adresse IP, type de navigateur, pages visitées, date et heure d’accès, etc.</li>
@@ -16,7 +16,7 @@ const RGPD = () => {
 
             <h2>2. Pourquoi recueillons-nous vos données ?</h2>
             <p>Nous collectons et traitons vos données personnelles pour les raisons suivantes :</p>
-            <ul style={{ textAlign: "center" }}>
+            <ul style={{ textAlign: "left" }}>
                 <li><strong>Gestion des commandes :</strong> traitement des informations nécessaires pour la gestion et la livraison des produits.</li>
                 <li><strong>Amélioration de nos services :</strong> analyser votre utilisation de nos produits pour améliorer nos offres.</li>
                 <li><strong>Personnalisation de l'expérience :</strong> adapter le contenu et les recommandations de produits en fonction de vos préférences et historique.</li>
@@ -26,7 +26,7 @@ const RGPD = () => {
 
             <h2>3. Comment nous protégeons vos données ?</h2>
             <p>Nous mettons en œuvre des mesures de sécurité physiques, électroniques et administratives pour protéger vos données personnelles contre tout accès, divulgation, altération ou destruction non autorisée.</p>
-            <ul style={{ textAlign: "center" }}>
+            <ul style={{ textAlign: "left" }}>
                 <li>Chiffrement des données sensibles lors des transactions.</li>
                 <li>Accès restreint aux informations personnelles aux seuls employés autorisés.</li>
                 <li>Surveillance des systèmes pour détecter toute activité suspecte.</li>
@@ -34,7 +34,7 @@ const RGPD = () => {
 
             <h2>4. Combien de temps conservons-nous vos données ?</h2>
             <p>Nous conservons vos données personnelles pendant le temps nécessaire à l’accomplissement des finalités pour lesquelles elles ont été collectées, et ce, conformément à la législation applicable. Par exemple :</p>
-            <ul style={{ textAlign: "center" }}>
+            <ul style={{ textAlign: "left" }}>
                 <li>Les données de commande sont conservées pendant une période de 5 ans pour respecter nos obligations fiscales et commerciales.</li>
                 <li>Les données liées à la gestion des comptes utilisateurs sont conservées aussi longtemps que vous maintenez un compte actif.</li>
                 <li>Les données relatives aux campagnes marketing sont conservées pour une durée de 3 ans après notre dernier contact.</li>
@@ -42,7 +42,7 @@ const RGPD = () => {
 
             <h2>5. Quels sont vos droits ?</h2>
             <p>En vertu du RGPD, vous disposez de plusieurs droits concernant vos données personnelles :</p>
-            <ul style={{ textAlign: "center" }}>
+            <ul style={{ textAlign: "left" }}>
                 <li><strong>Droit d'accès :</strong> vous avez le droit de demander l'accès à vos données personnelles que nous détenons.</li>
                 <li><strong>Droit de rectification :</strong> vous pouvez demander la correction de toute information incorrecte ou incomplète.</li>
                 <li><strong>Droit à l'effacement :</strong> vous pouvez demander l’effacement de vos données personnelles sous certaines conditions.</li>
