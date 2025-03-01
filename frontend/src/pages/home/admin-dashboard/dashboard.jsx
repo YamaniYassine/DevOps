@@ -115,6 +115,42 @@ const chartData = {
   ],
 };
 
+const [newEmployee, setNewEmployee] = useState({
+  name: "",
+  email: "",
+  password: ""
+});
+const [isAdding, setIsAdding] = useState(false); // Toggle form visibility
+const [loading, setLoading] = useState(false);
+
+const handleInputChange = (e) => {
+  setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
+};
+
+const handleAddEmployee = async () => {
+  setLoading(true);
+  try {
+    const response = await fetch("/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...newEmployee, role: 2 }) // Set role to 2 (Employee)
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to add employee");
+    }
+
+    setNewEmployee({ name: "", email: "", password: "" }); // Reset form
+    setIsAdding(false); // Hide form
+    dispatch(fetchUsers()); // Refresh users list
+  } catch (error) {
+    console.error("Error adding employee:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -149,6 +185,56 @@ const chartData = {
           <Typography variant="h5" gutterBottom>
             Users List
           </Typography>
+          {/* Add Employee Button */}
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ mb: 2 }}
+            onClick={() => setIsAdding(!isAdding)}
+          >
+            {isAdding ? "Cancel" : "Add Employee"}
+          </Button>
+
+          {/* Employee Form */}
+          {isAdding && (
+            <Paper sx={{ p: 2, mb: 2 }}>
+              <Typography variant="h6">Add New Employee</Typography>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={newEmployee.name}
+                  onChange={handleInputChange}
+                  style={{ padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={newEmployee.email}
+                  onChange={handleInputChange}
+                  style={{ padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={newEmployee.password}
+                  onChange={handleInputChange}
+                  style={{ padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
+                />
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={handleAddEmployee}
+                  disabled={loading}
+                >
+                  {loading ? "Adding..." : "Create Employee"}
+                </Button>
+              </Box>
+            </Paper>
+          )}
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
