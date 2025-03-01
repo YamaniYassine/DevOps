@@ -192,6 +192,8 @@ const chartData = {
           <Typography variant="h5" gutterBottom>
             Winners List
           </Typography>
+
+          {/* Email Filter Input */}
           <Box sx={{ mb: 2 }}>
             <input
               type="text"
@@ -206,7 +208,24 @@ const chartData = {
                 borderRadius: "5px"
               }}
             />
+            {emailFilter && (
+              <button
+                onClick={() => setEmailFilter("")}
+                style={{
+                  marginLeft: "10px",
+                  padding: "6px 12px",
+                  border: "none",
+                  backgroundColor: "#d9534f",
+                  color: "white",
+                  cursor: "pointer",
+                  borderRadius: "5px"
+                }}
+              >
+                Clear
+              </button>
+            )}
           </Box>
+
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -218,27 +237,20 @@ const chartData = {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {winners.length > 0 ? (
-                  winners.map((winner) => (
-                    <TableRow key={winner._id}>
-                      <TableCell>{winner.name}</TableCell>
-                      <TableCell>{winner.email}</TableCell>
-                      <TableCell>{winner.ticketCode}</TableCell>
-                      <TableCell>{winner.prize}</TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={4} align="center">
-                      No wins yet.
-                    </TableCell>
+                {(emailFilter ? filteredWinners : winners).map((winner) => (
+                  <TableRow key={winner._id}>
+                    <TableCell>{winner.name}</TableCell>
+                    <TableCell>{winner.email}</TableCell>
+                    <TableCell>{winner.ticketCode}</TableCell>
+                    <TableCell>{winner.prize}</TableCell>
                   </TableRow>
-                )}
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
         </Box>
       )}
+
 
       {/* Render the Statistiques (Statiques) section if "statiques" tab is selected */}
       {tab === "statiques" && (
