@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, reset } from "../../../features/auth/authSlice";
+import { logout, reset, registerUser } from "../../../features/auth/authSlice";
 import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 
