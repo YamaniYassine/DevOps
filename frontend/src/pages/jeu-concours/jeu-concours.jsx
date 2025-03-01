@@ -89,7 +89,7 @@ const Concours = () => {
         </div>
       </div>
       <div className="">
-        <h2>Participez au Jeu Concours ici</h2>
+        <h2 style={{ marginBottom: '15px' }}>Participez au Jeu Concours ici</h2>
       </div>
       <form id="myForm" onSubmit={handleFormSubmit}>
         <label htmlFor="name">Nom:</label>

@@ -1,7 +1,8 @@
 const MentionsLegales = () => {
     return (
         <section>
-            <h1>Informations légales</h1>
+            {/* balise h1 with a font size of 2 rem */}
+            <h1 style={{ fontSize: '2rem' }}>Informations légales</h1>
             
             <h2>Présentation</h2>
             <p>Le site internet <strong>ThéTipTop</strong> est édité par la société <strong>ThéTipTop</strong>, une société à responsabilité limitée (SARL) au capital social de [Montant du capital] euros. Le siège social est situé à [Adresse complète du siège social], immatriculée au registre du commerce et des sociétés (RCS) de [Ville] sous le numéro [Numéro d'immatriculation]. Le numéro de TVA intracommunautaire de la société est [Numéro TVA].</p>

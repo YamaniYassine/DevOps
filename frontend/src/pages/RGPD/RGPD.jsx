@@ -1,7 +1,8 @@
 const RGPD = () => {
     return (
         <section>
-            <h1>Règlement Général sur la Protection des Données (RGPD)</h1>
+            
+            <h1 style={{ fontSize: '2rem' }}>Règlement Général sur la Protection des Données (RGPD)</h1>
 
             <h2>1. Quelles informations recueillons-nous ?</h2>
             <p>Nous collectons plusieurs types d’informations personnelles lorsque vous utilisez notre site ou nos services. Voici les informations que nous pouvons collecter :</p>
