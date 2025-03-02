@@ -155,7 +155,7 @@ const chartData = {
             <Tab label="Users" value="users" />
             <Tab label="Winners" value="winners" />
             <Tab label="Statiques" value="statiques" />
-            <Tab label="Test Check" value="test-check" />
+            {/* <Tab label="Test Check" value="test-check" /> */}
             <Tab label="Grand Gagnant" value="grand-gagnant" />
           </Tabs>
           <Button color="inherit" onClick={handleLogout}>
@@ -297,7 +297,7 @@ const chartData = {
 
 
       {/* Render the Test Check section if "test-check" tab is selected */}
-      {tab === "test-check" && (
+      {/* {tab === "test-check" && (
         <Box sx={{ mt: 4 }}>
         <TableContainer component={Paper}>
           <Table>
@@ -330,7 +330,7 @@ const chartData = {
           </Table>
         </TableContainer>
       </Box>
-      )}
+      )} */}
 
       {tab === "grand-gagnant" && (
         <Box sx={{ mt: 4, textAlign: "center" }}>
