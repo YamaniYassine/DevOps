@@ -142,7 +142,7 @@ const chartData = {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Bienvenue {user.name} sur le tableau de bord
+            Bienvenue sur le tableau de bord
           </Typography>
           {/* Tabs for switching between views */}
           <Tabs
