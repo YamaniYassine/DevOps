@@ -14,6 +14,7 @@ const RGPD = () => {
                 <li><strong>Données relatives aux jeux :</strong> numéro de ticket, type de gain ticket, type de gain campagne.</li>
             </ul>
 
+
             <h2>2. Pourquoi recueillons-nous vos données ?</h2>
             <p>Nous collectons et traitons vos données personnelles pour les raisons suivantes :</p>
             <ul style={{ textAlign: "left" }}>
