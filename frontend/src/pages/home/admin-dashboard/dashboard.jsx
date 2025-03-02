@@ -40,6 +40,7 @@ const Dashboard = () => {
   const [emailFilter, setEmailFilter] = useState("");
   const [showEmployeeForm, setShowEmployeeForm] = useState(false);
   const [employeeData, setEmployeeData] = useState({ name: "", email: "", password: "employee", confirmPassword: "employee" });
+  const [grandGagnant, setGrandGagnant] = useState(null);
 
 
   // Local state to control which tab is active ("users", "winners", or "statiques")
@@ -89,6 +90,15 @@ const Dashboard = () => {
         dispatch(fetchUsers());
       })
       .catch((error) => console.error("Error deleting user:", error));
+  };
+
+  const handleTirageAuSort = () => {
+    if (winners.length === 0) {
+      setGrandGagnant("Aucun gagnant disponible !");
+      return;
+    }
+    const randomIndex = Math.floor(Math.random() * winners.length);
+    setGrandGagnant(winners[randomIndex]);
   };
 
 // Ticket Statistics
@@ -146,6 +156,7 @@ const chartData = {
             <Tab label="Winners" value="winners" />
             <Tab label="Statiques" value="statiques" />
             <Tab label="Test Check" value="test-check" />
+            <Tab label="Grand Gagnant" value="grand-gagnant" />
           </Tabs>
           <Button color="inherit" onClick={handleLogout}>
             Se déconnecter
@@ -319,6 +330,31 @@ const chartData = {
           </Table>
         </TableContainer>
       </Box>
+      )}
+
+      {tab === "grand-gagnant" && (
+        <Box sx={{ mt: 4, textAlign: "center" }}>
+          <Typography variant="h5" gutterBottom>
+            Tirage au sort - Grand Gagnant
+          </Typography>
+          <Button variant="contained" color="primary" onClick={handleTirageAuSort}>
+            Tirage au sort
+          </Button>
+          {grandGagnant && (
+            <Box sx={{ mt: 3, p: 2, bgcolor: "#f5f5f5", borderRadius: 2 }}>
+              <Typography variant="h6" color="primary">
+                Le grand gagnant est :
+              </Typography>
+              {typeof grandGagnant === "string" ? (
+                <Typography variant="body1">{grandGagnant}</Typography>
+              ) : (
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                  {grandGagnant.name} ({grandGagnant.email})
+                </Typography>
+              )}
+            </Box>
+          )}
+        </Box>
       )}
     </Container>
   );
