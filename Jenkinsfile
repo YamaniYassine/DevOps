@@ -76,9 +76,11 @@ pipeline {
                 script {
                     databaseImage = docker.build(registryDatabase + ":$BUILD_NUMBER")
                 }
-                sh "docker tag ${registryDatabase}:$BUILD_NUMBER ${registryDatabaseTagged}:$BUILD_NUMBER"
-                sh "docker tag ${registryDatabase}:$BUILD_NUMBER ${registryDatabaseTagged}:latest"
-                databaseImage = docker.image("${registryDatabaseTagged}:$BUILD_NUMBER")
+                script {
+                    sh "docker tag ${registryDatabase}:$BUILD_NUMBER ${registryDatabaseTagged}:$BUILD_NUMBER"
+                    sh "docker tag ${registryDatabase}:$BUILD_NUMBER ${registryDatabaseTagged}:latest"
+                    databaseImage = docker.image("${registryDatabaseTagged}:$BUILD_NUMBER")
+                }
             }
         }
         
