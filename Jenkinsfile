@@ -6,10 +6,12 @@ pipeline {
     environment {
         registryBackend = "ief2iyyom/pfe_backend"
         registryFrontend = "ief2iyyom/pfe_frontend"
+        registryDatabase = "mongo"
         reverseProxy = "nginx"
         registryCredential = 'dockerhub_pat'
         backendImage = ''
         frontendImage = ''
+        databaseImage = ''
         DB_URL = "mongodb://admin:YthetiptopO123.@db-docker:27017/PFE?authSource=admin"
 
     }
@@ -70,6 +72,9 @@ pipeline {
                         frontendImage = docker.build(registryFrontend + ":$BUILD_NUMBER")
                     }
                 }
+                script {
+                    databaseImage = docker.build(registryDatabase + ":$BUILD_NUMBER")
+                }
             }
         }
         
@@ -86,6 +91,12 @@ pipeline {
                     docker.withRegistry( '', registryCredential ) {
                         frontendImage.push()
                         frontendImage.push('latest')
+                    }
+                }
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        databaseImage.push()
+                        databaseImage.push('latest')
                     }
                 }
                 // script {
