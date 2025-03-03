@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 5001
 
 # Start the application
-CMD ["npm", "run","server:prod"]
+CMD ["npm", "run","server:dev"]
