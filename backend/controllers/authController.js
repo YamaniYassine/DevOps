@@ -86,6 +86,61 @@ exports.signup = asyncErrorHandler(async (req, res, next) => {
   });
 });
 
+exports.addEmployee = asyncErrorHandler(async (req, res, next) => {
+  const { name, email, password, confirmPassword } = req.body;
+
+  // Check if the request comes from an admin
+  // if (!req.user || req.user.role !== 1) {
+  //   return next(new AppError("Unauthorized! Only admins can add employees.", 403));
+  // }
+
+  // Validate fields
+  if (!name || !email || !password || !confirmPassword) {
+    let errors = {};
+    if (!name) errors.name = "Name is required";
+    if (!email) errors.email = "Email is required";
+    if (!password) errors.password = "Password is required";
+    if (!confirmPassword) errors.confirmPassword = "Confirm Password is required";
+
+    return next(new AppError(JSON.stringify(errors), 400));
+  }
+
+  if (password !== confirmPassword) {
+    return next(new AppError(JSON.stringify({ incorrectconfirmation: "Passwords don't match" }), 400));
+  }
+
+  // Check if email is already used
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    return next(new AppError(JSON.stringify({ alreadyused: "Email already used" }), 400));
+  }
+
+  // Create employee with role 2
+  const newEmployee = await User.create({
+    name,
+    email,
+    password,
+    confirmPassword,
+    role: 2, // Explicitly setting role to 2 for employees
+  });
+
+  // Generate token for the new employee
+  const token = generateToken(newEmployee._id);
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: {
+        name: newEmployee.name,
+        email: newEmployee.email,
+        _id: newEmployee._id,
+        role: newEmployee.role,
+      },
+      token: token,
+    },
+  });
+});
+
 
 exports.login = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req.body;

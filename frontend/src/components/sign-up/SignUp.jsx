@@ -70,12 +70,12 @@ const SignUp = ({ localStorage }) => {
 
   return (
     <section className="form-container">
-      <h1 className="form-heading">Create an account</h1>
+      <h1 className="form-heading">Créer un compte</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-item" id="name">
-          <label>Name</label>
+          <label>Nom</label>
           <input
-            placeholder="Enter your name"
+            placeholder="Entrez votre nom"
             name="name"
             type="text"
             value={formFields.name}
@@ -87,9 +87,9 @@ const SignUp = ({ localStorage }) => {
           <span className="error-text">{formErrors.alreadyused}</span>
         </div>
         <div className="form-item" id="email">
-          <label>Email</label>
+          <label>E-mail</label>
           <input
-            placeholder="Enter your email"
+            placeholder="Entrez votre email"
             name="email"
             type="text"
             value={formFields.email}
@@ -101,9 +101,9 @@ const SignUp = ({ localStorage }) => {
           <span className="error-text">{formErrors.incorrectconfirmation}</span>
         </div>
         <div className="form-item" id="password">
-          <label>Password</label>
+          <label>Mot de passe</label>
           <input
-            placeholder="Enter your password"
+            placeholder="Entrez votre mot de passe"
             name="password"
             type="password"
             value={formFields.password}
@@ -113,9 +113,9 @@ const SignUp = ({ localStorage }) => {
         </div>
 
         <div className="form-item" id="confirmPassword">
-          <label>Confirm Password</label>
+          <label>Confirmez le mot de passe</label>
           <input
-            placeholder="Confirm your password"
+            placeholder="Confirmez votre mot de passe"
             name="confirmPassword"
             type="password"
             value={formFields.confirmPassword}
@@ -125,7 +125,7 @@ const SignUp = ({ localStorage }) => {
         </div>
 
         <button className="form-button" type="submit">
-          Sign Up
+          S'inscrire
         </button>
       </form>
     </section>

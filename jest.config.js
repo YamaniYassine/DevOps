@@ -1,7 +1,5 @@
 module.exports = {
-  testEnvironment: 'jsdom',
-  transform: {
-    '^.+\\.jsx?$': 'babel-jest',
-    '\\.svg$': 'jest-transform-stub'
-  }
+  testEnvironment: "node",
+  maxWorkers: 1,
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(node-fetch|fetch-blob|formdata-polyfill)/)'],
 };

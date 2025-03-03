@@ -78,4 +78,38 @@ ul hr {
     color: #fff;
   }
   
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  .cookie-banner a {
+    color: #ffcc00;
+    text-decoration: underline;
+  }
+  
+  .cookie-banner button {
+    margin: 0 10px;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .cookie-banner button:first-of-type {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cookie-banner button:last-of-type {
+    background-color: #dc3545;
+    color: white;
+  }
   

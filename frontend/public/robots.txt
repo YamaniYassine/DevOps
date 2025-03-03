@@ -1,5 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow: /dashboard
-Sitemap: /sitemap.xml
+Disallow: /employee-dashboard
+Sitemap: https://dsp-archiwebf22-yy-om.site/sitemap.xml
 

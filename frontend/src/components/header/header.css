@@ -24,7 +24,10 @@ body {
   margin-bottom: 5%;
 }
 
-.logo {
+.logo-img {
+  width: 80px;  /* Adjust size */
+  height: auto;
+  margin-top: 20px;
 }
 
 .menu-icon {
