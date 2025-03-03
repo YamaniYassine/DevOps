@@ -93,9 +93,10 @@ pipeline {
                         frontendImage.push('latest')
                     }
                 }
+                
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                        databaseImage.push()
+                        // databaseImage.push()
                         databaseImage.push('latest')
                     }
                 }
