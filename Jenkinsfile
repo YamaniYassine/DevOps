@@ -7,6 +7,7 @@ pipeline {
         registryBackend = "ief2iyyom/pfe_backend"
         registryFrontend = "ief2iyyom/pfe_frontend"
         registryDatabase = "mongo"
+        registryDatabaseTagged = "ief2iyyom/db-docker" // Re-tagged MongoDB image name
         reverseProxy = "nginx"
         registryCredential = 'dockerhub_pat'
         backendImage = ''
@@ -75,6 +76,9 @@ pipeline {
                 script {
                     databaseImage = docker.build(registryDatabase + ":$BUILD_NUMBER")
                 }
+                sh "docker tag ${registryDatabase}:$BUILD_NUMBER ${registryDatabaseTagged}:$BUILD_NUMBER"
+                sh "docker tag ${registryDatabase}:$BUILD_NUMBER ${registryDatabaseTagged}:latest"
+                databaseImage = docker.image("${registryDatabaseTagged}:$BUILD_NUMBER")
             }
         }
         
@@ -93,10 +97,10 @@ pipeline {
                         frontendImage.push('latest')
                     }
                 }
-                
+
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                        // databaseImage.push()
+                        databaseImage.push()
                         databaseImage.push('latest')
                     }
                 }
