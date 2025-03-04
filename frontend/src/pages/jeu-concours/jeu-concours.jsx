@@ -8,7 +8,7 @@ const Concours = () => {
   const { user } = useSelector((state) => state.auth);
 
 
-  const username = user ? (user.name || (user.data && user.data.user.name)) : null;
+  const userName = user ? (user.name || (user.data && user.data.user.name)) : null;
   const userEmail = user ? (user.email || (user.data && user.data.user.email)) : null;
   
     function scrollToForm() {

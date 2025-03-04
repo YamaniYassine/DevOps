@@ -60,7 +60,7 @@ const WelcomePage = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Bienvenue {username} dans l'espace utilisateur
           </Typography>
-          <Button color="inherit" onClick={handleLogout}>Log Out</Button>
+          <Button color="inherit" onClick={handleLogout}>Se déconnecter</Button>
         </Toolbar>
       </AppBar>
 

@@ -171,7 +171,7 @@ const chartData = {
             Liste des utilisateurs
           </Typography>
           <Button variant="contained" color="primary" onClick={() => setShowEmployeeForm(!showEmployeeForm)}>
-            {showEmployeeForm ? "Cancel" : "Add Employee"}
+            {showEmployeeForm ? "Annuler" : "Ajouter un employé"}
           </Button>
           {showEmployeeForm && (
             <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
