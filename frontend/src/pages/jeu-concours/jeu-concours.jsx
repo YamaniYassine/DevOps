@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './jeu-concours.css';
 
 const Concours = () => {
+
+  const [ticketInfo, setTicketInfo] = useState(null);
+  const { user } = useSelector((state) => state.auth);
+
+
+  const username = user ? (user.name || (user.data && user.data.user.name)) : null;
+  const userEmail = user ? (user.email || (user.data && user.data.user.email)) : null;
+  
     function scrollToForm() {
         var formAnchor = document.getElementById("myForm");
         formAnchor.scrollIntoView({ behavior: "smooth" });
       }
-  const [ticketInfo, setTicketInfo] = useState(null);
+  
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -92,14 +101,38 @@ const Concours = () => {
         <h2 style={{ marginBottom: '15px' }}>Participez au Jeu Concours ici</h2>
       </div>
       <form id="myForm" onSubmit={handleFormSubmit}>
-        <label htmlFor="name">Nom:</label>
-        <input type="text" id="name" name="name" required /><br />
-        <label htmlFor="email">E-mail:</label>
-        <input type="email" id="email" name="email" required /><br />
-        <label htmlFor="ticket-code">Code de 10 chiffres:</label>
-        <input type="text" id="ticket-code" name="ticket-code" minLength="10" maxLength="10" required /><br />
-        <input type="submit" value="Jouer" />
-      </form>
+                <label htmlFor="name">Nom:</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    defaultValue={userName || ""}
+                    readOnly={!!user}
+                    required 
+                /><br />
+                
+                <label htmlFor="email">E-mail:</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    defaultValue={userEmail || ""}
+                    readOnly={!!user}
+                    required 
+                /><br />
+                
+                <label htmlFor="ticket-code">Code de 10 chiffres:</label>
+                <input 
+                    type="text" 
+                    id="ticket-code" 
+                    name="ticket-code" 
+                    minLength="10" 
+                    maxLength="10" 
+                    required 
+                /><br />
+                
+                <input type="submit" value="Jouer" />
+            </form>
       {renderPopup()}
     </section>
   );

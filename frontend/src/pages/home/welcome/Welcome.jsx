@@ -76,6 +76,7 @@ const WelcomePage = () => {
                 <TableRow>
                   <TableCell>Code du ticket</TableCell>
                   <TableCell>gain</TableCell>
+                  <TableCell>Status</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
