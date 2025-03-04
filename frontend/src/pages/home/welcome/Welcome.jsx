@@ -83,6 +83,14 @@ const WelcomePage = () => {
                   <TableRow key={win._id}>
                     <TableCell>{win.ticketCode}</TableCell>
                     <TableCell>{win.prize}</TableCell>
+                    <TableCell>
+                      <span style={{ 
+                        color: win.status === "gain reçu" ? "green" : "orange",
+                        fontWeight: "bold"
+                      }}>
+                        {win.status}
+                      </span>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

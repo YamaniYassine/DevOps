@@ -70,4 +70,19 @@ router.get('/check-ticket/:ticketCode', async (req, res) => {
     }
   });
 
+  router.put("/update-winner-status/:id", async (req, res) => {
+    const { status } = req.body;
+    try {
+      const winner = await Winner.findByIdAndUpdate(
+        req.params.id,
+        { status },
+        { new: true }
+      );
+      res.json({ success: true, winner });
+    } catch (error) {
+      console.error("Error updating status:", error);
+      res.status(500).json({ success: false, message: "Server error" });
+    }
+  });
+
 module.exports = router;

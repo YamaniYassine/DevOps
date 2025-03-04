@@ -26,11 +26,13 @@ import {
 
 // Helper component for each winner row
 const WinnerRow = ({ winner }) => {
-  const [received, setReceived] = useState(false);
+  const dispatch = useDispatch();
 
   const handleStatusClick = () => {
-    setReceived(true);
-    // Optionally, you can dispatch an action here to update the status in the backend.
+    const newStatus = winner.status === "en cours de traitement" 
+      ? "gain reçu" 
+      : "en cours de traitement";
+    dispatch(updateWinnerStatus({ id: winner._id, status: newStatus }));
   };
 
   return (
@@ -43,12 +45,12 @@ const WinnerRow = ({ winner }) => {
         <Button
           variant="contained"
           style={{
-            backgroundColor: received ? "green" : "orange",
+            backgroundColor: winner.status === "gain reçu" ? "green" : "orange",
             color: "white"
           }}
           onClick={handleStatusClick}
         >
-          {received ? "gain reçu" : "en cours de traitement"}
+          {winner.status}
         </Button>
       </TableCell>
     </TableRow>

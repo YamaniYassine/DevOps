@@ -17,5 +17,22 @@ const winnerSlice = createSlice({
   },
 });
 
+export const updateWinnerStatus = createAsyncThunk(
+  'winners/updateStatus',
+  async ({ id, status }) => {
+    const response = await fetch(`/ticketApi/update-winner-status/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ status }),
+    });
+    const data = await response.json();
+    return data.winner;
+  }
+);
+
+
+
 export default winnerSlice.reducer;
 export const selectWinners = (state) => state.winners;

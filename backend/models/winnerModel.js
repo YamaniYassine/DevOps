@@ -18,6 +18,11 @@ const winnerSchema = new mongoose.Schema({
   prize: {
     type: String, // Adjust the data type based on your prize structure
   },
+  status: {
+    type: String,
+    enum: ["en cours de traitement", "gain reçu"],
+    default: "en cours de traitement"
+  },
 });
 
 const Winner = mongoose.model("Winner", winnerSchema);
