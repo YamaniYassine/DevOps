@@ -27,6 +27,7 @@
   font-weight: bold;
   margin-bottom: 1rem;
   line-height: 1.2;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
 }
   
   .align-center {
@@ -50,6 +51,7 @@
   .title2 {
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
   }
   
   .description2, .description3 {
@@ -226,13 +228,4 @@
   .green{
     color: var(--color-red);
     font-size: x-large;
-  }
-
-  .title, .title2, .description2, .description3 {
-    color: #fff !important;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  }
-  
-  .green {
-    color: #c6f6d5 !important; /* Vert clair contrasté */
   }
