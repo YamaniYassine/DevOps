@@ -4,7 +4,7 @@
   align-items: center;
   margin: 2rem 0;
   gap: 2rem;
-  width: 100%;
+  width: 140%;
 }
   
 .content-container2 {
@@ -168,7 +168,7 @@
       max-width: 90%;
     }
   }
-  
+
   @media (max-width: 1024px) {
     .row-container2 {
       flex-wrap: wrap;
