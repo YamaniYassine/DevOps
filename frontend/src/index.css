@@ -26,8 +26,10 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Form styles */
@@ -148,5 +150,38 @@ body {
     width: 100%;
     margin-top: 1rem;
     padding: 2rem 4rem;
+  }
+}
+
+/* Tablettes */
+@media (min-width: 768px) and (max-width: 1023px) {
+  html {
+    font-size: 58%;
+  }
+}
+
+/* Mobile paysage */
+@media (max-width: 767px) and (orientation: landscape) {
+  .form-container {
+    padding: 5%;
+    width: 90%;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  html {
+    font-size: 55%;
+  }
+  
+  .form-container {
+    width: 90%;
+    padding: 5%;
+    border-radius: 2rem;
+  }
+  
+  .reset-password-container {
+    width: 90%;
+    margin: 10rem auto;
   }
 }
