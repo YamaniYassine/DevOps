@@ -1,117 +1,59 @@
-import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { ReactComponent as MenuIcon } from './nav-bar.svg';
+import { useState } from 'react';
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { ReactComponent as Icon } from './nav-bar.svg';
 import './header.css';
-
-// Redux
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const HeaderNav = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
   const location = useLocation();
   const { user } = useSelector((state) => state.auth);
 
-  // Fermer le menu lors du changement de route
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
-
-  // Gestion de l'état utilisateur
   const userRole = user && (user.data ? user.data.user.role : null);
   const username = user ? (user.data ? user.data.user.name : user.name) : null;
 
-  // Déterminer le lien utilisateur en fonction du rôle
-  const getUserLink = () => {
-    if (!user) {
-      return location.pathname === '/login' ? '/sign-up' : '/login';
-    }
-
-    switch (userRole) {
-      case 1:
-        return '/dashboard';
-      case 2:
-        return '/employee-dashboard';
-      default:
-        return '/welcome';
-    }
-  };
-
-  // Texte du bouton utilisateur
-  const getUserButtonText = () => {
-    if (user) {
-      return username || 'Mon compte';
-    }
-    return location.pathname === '/login' ? "S'inscrire" : 'Connexion';
-  };
-
   return (
-    <nav className="navbar" aria-label="Navigation principale">
+    <nav className="navbar">
       <div className="container">
-        {/* Logo */}
-        <NavLink to="/" aria-label="Retour à l'accueil">
-          <img 
-            src="/favicon3.ico" 
-            alt="ThéTipTop Logo" 
-            className="logo-img"
-          />
+        <NavLink to="/">
+          <img src="/favicon3.ico" alt="Logo" className="logo-img" />
         </NavLink>
 
-        {/* Menu Hamburger */}
-        <button 
-          className="menu-icon"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={isMenuOpen}
-        >
-          <MenuIcon aria-hidden="true" />
-        </button>
+        <div className="menu-icon" onClick={() => setShowNavbar(!showNavbar)}>
+          <Icon />
+        </div>
 
-        {/* Navigation */}
-        <div 
-          className={`nav-elements ${isMenuOpen ? 'active' : ''}`}
-          role="navigation"
-        >
-          <ul role="menubar">
-            <li role="none">
-              <NavLink 
-                to="/" 
-                role="menuitem"
-                end
-              >
-                Accueil
-              </NavLink>
-            </li>
-
-            <li role="none">
-              <NavLink 
-                to="/jeu-concours" 
-                role="menuitem"
-              >
-                Jeu-concours
-              </NavLink>
-            </li>
-
-            <li role="none">
-              <NavLink 
-                to="/apropos" 
-                role="menuitem"
-              >
-                À propos
-              </NavLink>
-            </li>
-
-            {/* Bouton Utilisateur */}
-            <li role="none">
-              <NavLink
-                to={getUserLink()}
-                role="menuitem"
-                className={({ isActive }) => 
-                  `user-button ${isActive ? 'active' : ''}`
-                }
-              >
-                {getUserButtonText()}
-              </NavLink>
-            </li>
+        <div className={`nav-elements ${showNavbar && 'active'}`}>
+          <ul>
+            <li><NavLink to="/">Accueil</NavLink></li>
+            <li><NavLink to="/jeu-concours">jeu-concours</NavLink></li>
+            <li><NavLink to="/apropos">About</NavLink></li>
+            
+            {user ? (
+              userRole === 1 ? (
+                <button className="user-button">
+                  <NavLink to="/dashboard">{username}</NavLink>
+                </button>
+              ) : userRole === 2 ? (
+                <button className="user-button">
+                  <NavLink to="/employee-dashboard">{username}</NavLink>
+                </button>
+              ) : (
+                <button className="user-button">
+                  <NavLink to="/welcome">{username}</NavLink>
+                </button>
+              )
+            ) : (
+              location.pathname === "/login" ? (
+                <button className="user-button">
+                  <Link to="/sign-up">SIGN UP</Link>
+                </button>
+              ) : (
+                <button className="user-button">
+                  <Link to="/login">SIGN IN</Link>
+                </button>
+              )
+            )}
           </ul>
         </div>
       </div>
