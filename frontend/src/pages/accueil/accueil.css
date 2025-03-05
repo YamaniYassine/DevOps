@@ -6,6 +6,15 @@
   gap: 2rem;
   width: 140%;
 }
+
+.row-container3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 2rem;
+  width: 140%;
+}
   
 .content-container2 {
   display: flex;
