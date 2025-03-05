@@ -71,6 +71,9 @@
     .row-container2 {
       flex-direction: column;
     }
+    .row-container3 {
+      flex-direction: column;
+    }
     
     .content-container2, .image-container2 {
       width: 100%;
@@ -166,6 +169,11 @@
       margin: 1rem 0;
       width: 100%;
     }
+    .row-container3 {
+      gap: 1rem;
+      margin: 1rem 0;
+      width: 100%;
+    }
     
     .image-container2 {
       order: -1;
@@ -182,7 +190,10 @@
       flex-wrap: wrap;
       justify-content: center;
     }
-    
+    .row-container3 {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     .content-container2, .image-container2 {
       flex-basis: 100%;
       align-items: center;
