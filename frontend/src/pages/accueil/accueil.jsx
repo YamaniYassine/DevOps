@@ -33,7 +33,7 @@ const Accueil = () => {
                     <img src="https://images.unsplash.com/photo-1504382103100-db7e92322d39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
                 </div>
             </div>
-            <div class="row-container2">
+            <div class="row-container3">
                 <div class="image-container2">
                     <img src="https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
                 </div>
@@ -42,7 +42,7 @@ const Accueil = () => {
                     <p class="description2">Le thé est une boisson universelle qui se décline en une grande variété de saveurs et de parfums en fonction de son lieu d'origine. Du thé noir corsé d'Assam au thé vert léger de Chine en passant par les infusions de plantes aromatiques d'Afrique du Sud, il y en a pour tous les goûts. Découvrez les arômes uniques de différentes cultures à travers notre sélection de thés du monde entier. Plongez-vous dans une aventure gustative et laissez-vous transporter à travers les saveurs et les traditions de chaque région.</p>
                 </div>
             </div>
-            <div class="row-container2">
+            <div class="row-container3">
                 <div class="content-container2">
                     <h2 class="title2">Nos Produits</h2>
                 </div>
