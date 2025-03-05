@@ -47,7 +47,7 @@ const Accueil = () => {
                     <h2 class="title2">Nos Produits</h2>
                 </div>
             </div>
-            <div className="row-container3">
+            <div className="row-container4">
                 <div className="products-section">
                     <div className="product-card">
                         <img src="https://www.palaisdesthes.com/media/catalog/product/cache/50708da259540eeb20337bcdb367a3c9/3/0/3030.jpg" alt="Thé vert" />
