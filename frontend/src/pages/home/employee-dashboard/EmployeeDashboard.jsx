@@ -110,7 +110,7 @@ const EmployeeDashboard = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Bienvenue {user.name} sur le tableau de bord des employés
+            Bienvenue sur le tableau de bord des employés
           </Typography>
           {/* Tabs for switching between "Users" and "Winners" views */}
           <Tabs

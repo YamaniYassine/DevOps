@@ -27,7 +27,7 @@
   font-weight: bold;
   margin-bottom: 1rem;
   line-height: 1.2;
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
 }
   
   .align-center {
@@ -51,7 +51,7 @@
   .title2 {
     font-size: clamp(1.5rem, 3vw, 2rem);
     margin-bottom: 1rem;
-    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.4);
   }
   
   .description2, .description3 {
