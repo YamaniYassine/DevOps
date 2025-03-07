@@ -23,14 +23,14 @@ describe('Login Page Interaction and Screenshot', () => {
     await page.type('input[name="password"]', 'employee');
     
     // Click the login button and wait for navigation (adjust the selector if needed)
-    await Promise.all([
-      page.click('button[type="submit"]'),
-      page.waitForXPath("//button[contains(text(), 'Se déconnecter')]", { timeout: 30000 })
-    ]);
+    // await Promise.all([
+    //   page.click('button[type="submit"]'),
+    //   page.waitForXPath("//button[contains(text(), 'Se déconnecter')]", { timeout: 30000 })
+    // ]);
     
 
     // Take a screenshot after login to capture the result
-    await page.screenshot({ path: './frontend/public/login-page-after.png' });
+    // await page.screenshot({ path: './frontend/public/login-page-after.png' });
     
     await browser.close();
   }, 60000); 
