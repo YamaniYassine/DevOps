@@ -199,7 +199,11 @@ const chartData = {
           <Typography variant="h5" gutterBottom>
             Liste des utilisateurs
           </Typography>
-          <Button variant="contained" color="primary" onClick={() => setShowEmployeeForm(!showEmployeeForm)}>
+          <Button variant="contained" color="primary" onClick={() => setShowEmployeeForm(!showEmployeeForm)}
+            sx={{ 
+              mb: 2 // Ajoute une marge basse même quand le formulaire est fermé
+            }}          
+          >
             {showEmployeeForm ? (
               <>
                 <CancelIcon sx={{ fontSize: '1.2rem', mr: 1 }} />
