@@ -5,6 +5,9 @@ import { logout, reset } from "../../../features/auth/authSlice";
 import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 import { AddEmployee } from "../../../features/auth/authActions";
+import { css, keyframes } from "@emotion/react";
+import Confetti from 'react-confetti';
+import { useWindowSize } from 'react-use';
 
 // Material-UI components
 import {
@@ -30,6 +33,23 @@ import {
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(3600deg); }
+`;
+
+const popIn = keyframes`
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+`;
+
+const flash = keyframes`
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+`;
 
 const Dashboard = () => {
   const { user, error } = useSelector((state) => state.auth);
@@ -97,9 +117,25 @@ const Dashboard = () => {
       setGrandGagnant("Aucun gagnant disponible !");
       return;
     }
-    const randomIndex = Math.floor(Math.random() * winners.length);
-    setGrandGagnant(winners[randomIndex]);
+    
+    setIsSpinning(true);
+    setShowConfetti(false);
+    
+    // Animation de roulette
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * winners.length);
+      setIsSpinning(false);
+      setGrandGagnant(winners[randomIndex]);
+      setShowConfetti(true);
+      
+      // Reset confettis après 3 secondes
+      setTimeout(() => setShowConfetti(false), 3000);
+    }, 5000); // Durée de l'animation de roulette
   };
+
+const [isSpinning, setIsSpinning] = useState(false);
+const [showConfetti, setShowConfetti] = useState(false);
+const { width, height } = useWindowSize();
 
 // Ticket Statistics
 const totalTickets = 150;
@@ -337,20 +373,75 @@ const chartData = {
           <Typography variant="h5" gutterBottom>
             Tirage au sort - Grand Gagnant
           </Typography>
-          <Button variant="contained" color="primary" onClick={handleTirageAuSort}>
-            Tirage au sort
+          
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleTirageAuSort}
+            disabled={isSpinning}
+            sx={{
+              mb: 4,
+              animation: isSpinning ? `${flash} 1s infinite` : 'none'
+            }}
+          >
+            {isSpinning ? 'Tirage en cours...' : 'Tirage au sort'}
           </Button>
-          {grandGagnant && (
-            <Box sx={{ mt: 3, p: 2, bgcolor: "#f5f5f5", borderRadius: 2 }}>
-              <Typography variant="h6" color="primary">
-                Le grand gagnant est :
+
+          {/* Roulette animation */}
+          {isSpinning && (
+            <Box sx={{
+              width: 200,
+              height: 200,
+              margin: '0 auto 2rem',
+              borderRadius: '50%',
+              backgroundColor: '#ff5722',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              animation: `${spin} 3s cubic-bezier(0.4, 0, 0.2, 1)`,
+              boxShadow: '0 0 20px rgba(255,87,34,0.5)'
+            }}>
+              <Typography variant="h6" sx={{ color: 'white' }}>
+                🎰
               </Typography>
+            </Box>
+          )}
+
+          {/* Résultat avec animation */}
+          {grandGagnant && !isSpinning && (
+            <Box sx={{
+              mt: 3,
+              p: 4,
+              bgcolor: "#f5f5f5",
+              borderRadius: 2,
+              position: 'relative',
+              animation: `${popIn} 0.5s cubic-bezier(0.4, 0, 0.2, 1)`
+            }}>
+              {showConfetti && <Confetti width={width} height={height} recycle={false} />}
+              
+              <Typography variant="h6" color="primary" sx={{ mb: 2 }}>
+                🎉 Félicitations au grand gagnant ! 🎉
+              </Typography>
+              
               {typeof grandGagnant === "string" ? (
                 <Typography variant="body1">{grandGagnant}</Typography>
               ) : (
-                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  {grandGagnant.name} ({grandGagnant.email})
-                </Typography>
+                <Box sx={{
+                  padding: 3,
+                  backgroundColor: 'gold',
+                  borderRadius: 2,
+                  boxShadow: '0 0 20px gold'
+                }}>
+                  <Typography variant="h4" sx={{ fontWeight: "bold", color: '#d32f2f' }}>
+                    {grandGagnant.name}
+                  </Typography>
+                  <Typography variant="h6" sx={{ mt: 1 }}>
+                    {grandGagnant.email}
+                  </Typography>
+                  <Typography variant="h5" sx={{ mt: 2, color: '#388e3c' }}>
+                    {grandGagnant.prize}
+                  </Typography>
+                </Box>
               )}
             </Box>
           )}
