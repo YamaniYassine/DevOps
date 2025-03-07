@@ -6,7 +6,6 @@ import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice"
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 import { AddEmployee } from "../../../features/auth/authActions";
 import { css, keyframes } from "@emotion/react";
-import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
 
 // Material-UI components
@@ -417,7 +416,7 @@ const chartData = {
               position: 'relative',
               animation: `${popIn} 0.5s cubic-bezier(0.4, 0, 0.2, 1)`
             }}>
-              {showConfetti && <Confetti width={width} height={height} recycle={false} />}
+              
               
               <Typography variant="h6" color="primary" sx={{ mb: 2 }}>
                 🎉 Félicitations au grand gagnant ! 🎉
