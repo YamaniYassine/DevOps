@@ -106,32 +106,32 @@ pipeline {
                         databaseImage.push('latest')
                     }
                 }
-                script {
-                    echo 'Backing up MongoDB...'
-                    sh '''
-                    TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-                    BACKUP_FILE="/tmp/mongodb_backup_$TIMESTAMP.gz"
-                    docker exec db-docker mongodump --archive=/tmp/mongodb_backup_$(date +%Y%m%d_%H%M%S).gz --gzip --username admin --password 'YthetiptopO123.' --authenticationDatabase admin
-                    docker cp db-docker:$BACKUP_FILE .
-                    '''
+                // script {
+                //     echo 'Backing up MongoDB...'
+                //     sh '''
+                //     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+                //     BACKUP_FILE="/tmp/mongodb_backup_$TIMESTAMP.gz"
+                //     docker exec db-docker mongodump --archive=/tmp/mongodb_backup_$(date +%Y%m%d_%H%M%S).gz --gzip --username admin --password 'YthetiptopO123.' --authenticationDatabase admin
+                //     docker cp db-docker:$BACKUP_FILE .
+                //     '''
                     
-                    // Send backup via email (optional)
-                    emailext subject: "MongoDB Backup - ${env.BUILD_NUMBER}",
-                        body: """
-                        Hello,
+                //     // Send backup via email (optional)
+                //     emailext subject: "MongoDB Backup - ${env.BUILD_NUMBER}",
+                //         body: """
+                //         Hello,
 
-                        A backup of the MongoDB database has been created for build ${env.BUILD_NUMBER}.
+                //         A backup of the MongoDB database has been created for build ${env.BUILD_NUMBER}.
 
 
-                        Regards,
-                        YAMANI Dev Department
-                        """,
-                        to: 'YY.OM.thetiptop@gmail.com',
-                        attachmentsPattern: "mongodb_backup_*.gz"
+                //         Regards,
+                //         YAMANI Dev Department
+                //         """,
+                //         to: 'YY.OM.thetiptop@gmail.com',
+                //         attachmentsPattern: "mongodb_backup_*.gz"
 
-                    // Delete the backup file after sending it
-                    sh 'rm -f mongodb_backup_*.gz'
-                }
+                //     // Delete the backup file after sending it
+                //     sh 'rm -f mongodb_backup_*.gz'
+                // }
             }
         }
         
