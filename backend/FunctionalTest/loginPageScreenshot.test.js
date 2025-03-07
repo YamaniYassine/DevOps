@@ -25,7 +25,7 @@ describe('Login Page Interaction and Screenshot', () => {
     // Click the login button and wait for navigation (adjust the selector if needed)
     await Promise.all([
       page.click('button[type="submit"]'),
-      page.waitForXPath("//h6[contains(text(), 'tableau de bord des employés')]", { timeout: 30000 }) 
+      page.waitForXPath("//button[contains(text(), 'Se déconnecter')]", { timeout: 30000 })
     ]);
     
 
