@@ -118,17 +118,13 @@ const Dashboard = () => {
     }
     
     setIsSpinning(true);
-    setShowConfetti(false);
     
     // Animation de roulette
     setTimeout(() => {
       const randomIndex = Math.floor(Math.random() * winners.length);
       setIsSpinning(false);
       setGrandGagnant(winners[randomIndex]);
-      setShowConfetti(true);
       
-      // Reset confettis après 3 secondes
-      setTimeout(() => setShowConfetti(false), 3000);
     }, 5000); // Durée de l'animation de roulette
   };
 
