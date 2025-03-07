@@ -27,7 +27,7 @@ describe('Login Page Interaction and Screenshot', () => {
       });
 
       // Screenshot avant interaction
-      await page.screenshot({ path: './screenshots/login-before.png' });
+      await page.screenshot({ path: './frontend/public/login-page-before.png' });
 
       // Étape 2: Remplissage du formulaire
       await page.waitForSelector('input[name="email"]', { visible: true });
@@ -37,7 +37,7 @@ describe('Login Page Interaction and Screenshot', () => {
       await page.type('input[name="password"]', 'employee');
 
       // Screenshot après remplissage
-      await page.screenshot({ path: './screenshots/login-filled.png' });
+      await page.screenshot({ path: './frontend/public/login-filled.png' });
 
       // Étape 3: Soumission du formulaire
       await Promise.all([
@@ -49,11 +49,11 @@ describe('Login Page Interaction and Screenshot', () => {
       await page.waitForSelector('.dashboard', { timeout: 15000 }); // Sélecteur de la page de destination
 
       // Screenshot après connexion
-      await page.screenshot({ path: './screenshots/login-after.png' });
+      await page.screenshot({ path: './frontend/public/login-page-after.png' });
 
     } catch (error) {
       // Capture d'erreur avec screenshot
-      await page.screenshot({ path: './screenshots/login-error.png' });
+      await page.screenshot({ path: './frontend/public/login-error.png' });
       throw error;
     }
   }, 90000); // Timeout global à 90s
