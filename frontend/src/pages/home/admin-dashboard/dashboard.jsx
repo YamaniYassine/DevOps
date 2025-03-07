@@ -6,7 +6,7 @@ import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice"
 import { fetchUsers, selectUsers } from "../../../features/auth/userSlice";
 import { AddEmployee } from "../../../features/auth/authActions";
 import { css, keyframes } from "@emotion/react";
-import { useWindowSize } from 'react-use';
+import { Add as AddIcon, Cancel as CancelIcon } from '@mui/icons-material';
 
 // Material-UI components
 import {
@@ -133,8 +133,6 @@ const Dashboard = () => {
   };
 
 const [isSpinning, setIsSpinning] = useState(false);
-const [showConfetti, setShowConfetti] = useState(false);
-const { width, height } = useWindowSize();
 
 // Ticket Statistics
 const totalTickets = 150;
@@ -206,7 +204,17 @@ const chartData = {
             Liste des utilisateurs
           </Typography>
           <Button variant="contained" color="primary" onClick={() => setShowEmployeeForm(!showEmployeeForm)}>
-            {showEmployeeForm ? "Annuler" : "Ajouter un employé"}
+            {showEmployeeForm ? (
+              <>
+                <CancelIcon sx={{ fontSize: '1.2rem', mr: 1 }} />
+                Annuler
+              </>
+            ) : (
+              <>
+                <AddIcon sx={{ fontSize: '1.2rem', mr: 1 }} />
+                Ajouter un employé
+              </>
+            )}
           </Button>
           {showEmployeeForm && (
             <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
@@ -436,9 +444,6 @@ const chartData = {
                   </Typography>
                   <Typography variant="h6" sx={{ mt: 1 }}>
                     {grandGagnant.email}
-                  </Typography>
-                  <Typography variant="h5" sx={{ mt: 2, color: '#388e3c' }}>
-                    {grandGagnant.prize}
                   </Typography>
                 </Box>
               )}
