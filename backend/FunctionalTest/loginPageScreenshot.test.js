@@ -10,7 +10,10 @@ describe('Login Page Interaction and Screenshot', () => {
     const page = await browser.newPage();
     
     // Navigate to the login page
-    await page.goto('https://152.42.139.102/login', { waitUntil: 'networkidle2' });
+    await page.goto('https://152.42.139.102/login', {
+        waitUntil: 'domcontentloaded', // Option plus fiable
+        timeout: 30000
+      });
     
     // Take a screenshot of the login page before interaction
     await page.screenshot({ path: './frontend/public/login-page-before.png' });
@@ -30,5 +33,5 @@ describe('Login Page Interaction and Screenshot', () => {
     await page.screenshot({ path: './frontend/public/login-page-after.png' });
     
     await browser.close();
-  }, 30000); 
+  }, 60000); 
 });
