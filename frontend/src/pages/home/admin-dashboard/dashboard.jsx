@@ -217,10 +217,37 @@ const chartData = {
             )}
           </Button>
           {showEmployeeForm && (
-            <Box sx={{ display: "flex", gap: 2, mt: 2, mb: 2 }}>
-              <TextField label="Name" value={employeeData.name} onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} />
-              <TextField label="Email" value={employeeData.email} onChange={(e) => setEmployeeData({ ...employeeData, email: e.target.value })} />
-              <Button variant="contained" color="success" onClick={handleAddEmployee}>Ajouter</Button>
+            <Box sx={{ 
+              display: "flex", 
+              gap: 2, 
+              mt: 2,
+              flexWrap: 'nowrap', // Empêche le retour à la ligne
+              alignItems: 'center', // Alignement vertical
+              width: '100%' // Prend toute la largeur
+            }}>
+              <TextField 
+                label="Nom" 
+                sx={{ flex: 1 }} // Prend l'espace disponible
+                value={employeeData.name} 
+                onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} 
+              />
+              <TextField 
+                label="E-mail"
+                sx={{ flex: 1 }} // Prend l'espace disponible 
+                value={employeeData.email} 
+                onChange={(e) => setEmployeeData({ ...employeeData, email: e.target.value })} 
+              />
+              <Button 
+                variant="contained" 
+                color="success" 
+                onClick={handleAddEmployee}
+                sx={{ 
+                  whiteSpace: 'nowrap', // Garde le texte sur une ligne
+                  px: 4 // Padding horizontal
+                }}
+              >
+                Ajouter
+              </Button>
             </Box>
           )}
           <TableContainer component={Paper}>
