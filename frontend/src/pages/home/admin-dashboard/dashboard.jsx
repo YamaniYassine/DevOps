@@ -217,14 +217,10 @@ const chartData = {
             )}
           </Button>
           {showEmployeeForm && (
-            <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
+            <Box sx={{ display: "flex", gap: 2, mt: 2, mb: 2 }}>
               <TextField label="Name" value={employeeData.name} onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} />
               <TextField label="Email" value={employeeData.email} onChange={(e) => setEmployeeData({ ...employeeData, email: e.target.value })} />
-              <Button variant="contained" color="success" onClick={handleAddEmployee}
-              sx={{ 
-                mb: 2 
-              }} 
-              >Ajouter</Button>
+              <Button variant="contained" color="success" onClick={handleAddEmployee}>Ajouter</Button>
             </Box>
           )}
           <TableContainer component={Paper}>
