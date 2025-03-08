@@ -227,7 +227,7 @@ const chartData = {
             }}>
               <TextField 
                 label="Nom" 
-                sx={{ flex: 1, mb: 2 }} // Prend l'espace disponible
+                sx={{ flex: 1 }} // Prend l'espace disponible
                 value={employeeData.name} 
                 onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} 
               />
