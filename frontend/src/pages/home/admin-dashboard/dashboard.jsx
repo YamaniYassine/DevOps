@@ -231,7 +231,7 @@ const chartData = {
               />
               <TextField 
                 label="E-mail"
-                sx={{ flex: 1 }} // Prend l'espace disponible 
+                sx={{ px: 4 }} // Prend l'espace disponible 
                 value={employeeData.email} 
                 onChange={(e) => setEmployeeData({ ...employeeData, email: e.target.value })} 
               />
