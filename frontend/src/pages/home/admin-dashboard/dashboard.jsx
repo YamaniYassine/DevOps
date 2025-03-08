@@ -223,11 +223,11 @@ const chartData = {
               mt: 2,
               flexWrap: 'nowrap', // Empêche le retour à la ligne
               alignItems: 'center', // Alignement vertical
-              width: '100%' // Prend toute la largeur
+              width: '60%' // Prend toute la largeur
             }}>
               <TextField 
                 label="Nom" 
-                sx={{ flex: 1 }} // Prend l'espace disponible
+                sx={{ flex: 1, width: '30%' }} // Prend l'espace disponible
                 value={employeeData.name} 
                 onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} 
               />
