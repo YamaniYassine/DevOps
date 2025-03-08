@@ -61,6 +61,7 @@ const Dashboard = () => {
   const [employeeData, setEmployeeData] = useState({ name: "", email: "", password: "employee", confirmPassword: "employee" });
   const [grandGagnant, setGrandGagnant] = useState(null);
 
+
   // Local state to control which tab is active ("users", "winners", or "statiques")
   const [tab, setTab] = useState("users");
 
@@ -163,6 +164,7 @@ const chartData = {
   ],
 };
 
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       {/* Header with AppBar and Tabs */}
@@ -225,13 +227,13 @@ const chartData = {
             }}>
               <TextField 
                 label="Nom" 
-                sx={{ flex: 0 }} // Prend l'espace disponible
+                sx={{ flex: 1, mb: 2 }} // Prend l'espace disponible
                 value={employeeData.name} 
                 onChange={(e) => setEmployeeData({ ...employeeData, name: e.target.value })} 
               />
               <TextField 
                 label="E-mail"
-                sx={{ flex: 0, mb: 2 }} // Prend l'espace disponible 
+                sx={{ flex: 1 }} // Prend l'espace disponible 
                 value={employeeData.email} 
                 onChange={(e) => setEmployeeData({ ...employeeData, email: e.target.value })} 
               />
