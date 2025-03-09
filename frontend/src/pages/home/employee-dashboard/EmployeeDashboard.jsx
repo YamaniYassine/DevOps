@@ -28,62 +28,70 @@ import {
 // Helper component for each winner row
 const WinnerRow = ({ winner }) => {
   const dispatch = useDispatch();
+  const [isUpdating, setIsUpdating] = useState(false);
 
-  const checkmark = keyframes`
-  0% { transform: scale(0); opacity: 0; }
-  80% { transform: scale(1.2); }
-  100% { transform: scale(1); opacity: 1; }
-`;
+  
 
-  const handleStatusClick = () => {
-    dispatch(updateWinnerStatus({ id: winner._id, status: "gain reçu" }));
-  };
+//   const checkmark = keyframes`
+//   0% { transform: scale(0); opacity: 0; }
+//   80% { transform: scale(1.2); }
+//   100% { transform: scale(1); opacity: 1; }
+// `;
 
-  return (
-    <TableRow key={winner._id}>
-      <TableCell>{winner.name}</TableCell>
-      <TableCell>{winner.email}</TableCell>
-      <TableCell>{winner.ticketCode}</TableCell>
-      <TableCell>{winner.prize}</TableCell>
-      <TableCell>
-        <Button
-          variant="contained"
-          sx={{
-            position: 'relative',
-            backgroundColor: winner.status === "gain reçu" ? '#4CAF50' : '#FF9800',
-            color: 'white',
-            transition: 'all 0.3s ease',
-            '&:hover': {
-              backgroundColor: winner.status === "gain reçu" ? '#45a049' : '#e68a00',
-            },
-            '&:disabled': {
-              backgroundColor: '#4CAF50',
-              opacity: 0.9
-            }
-          }}
-          onClick={handleStatusClick}
-          disabled={winner.status === "gain reçu"}
-        >
-          {winner.status === "gain reçu" ? (
-            <>
-              <span style={{ marginRight: '8px' }}>Gain reçu</span>
-              <span
-                style={{
-                  display: 'inline-block',
-                  animation: `${checkmark} 0.5s ease`,
-                  fontSize: '1.2rem'
-                }}
-              >
-                ✓
-              </span>
-            </>
-          ) : (
-            "En cours de traitement"
-          )}
-        </Button>
-      </TableCell>
-    </TableRow>
-  );
+const handleStatusClick = async () => {
+  try {
+    setIsUpdating(true);
+    await dispatch(updateWinnerStatus({ 
+      id: winner._id, 
+      status: "gain reçu" 
+    })).unwrap();
+    console.error("mise à jour du status done");
+  } catch (err) {
+    console.error("Erreur de mise à jour :", err);
+  } finally {
+    setIsUpdating(false);
+  }
+};
+
+return (
+  <TableRow key={winner._id}>
+    <TableCell>{winner.name}</TableCell>
+    <TableCell>{winner.email}</TableCell>
+    <TableCell>{winner.ticketCode}</TableCell>
+    <TableCell>{winner.prize}</TableCell>
+    <TableCell>
+      <Button
+        variant="contained"
+        sx={{
+          position: 'relative',
+          backgroundColor: winner.status === "gain reçu" ? '#4CAF50' : '#FF9800',
+          color: 'white',
+          transition: 'all 0.3s ease',
+          '&:hover:not(:disabled)': {
+            backgroundColor: winner.status === "gain reçu" ? '#45a049' : '#e68a00',
+          },
+          '&:disabled': {
+            backgroundColor: '#40b745',
+            opacity: 0.9
+          }
+        }}
+        onClick={handleStatusClick}
+        disabled={winner.status === "gain reçu" || isUpdating}
+      >
+        {isUpdating ? (
+          <CircularProgress size={24} sx={{ color: 'white' }} />
+        ) : winner.status === "gain reçu" ? (
+          <>
+            <span style={{ marginRight: '8px' }}>Gain reçu</span>
+            <span style={{ fontSize: '1.2rem' }}>✓</span>
+          </>
+        ) : (
+          "En cours de traitement"
+        )}
+      </Button>
+    </TableCell>
+  </TableRow>
+);
 };
 
 const EmployeeDashboard = () => {
