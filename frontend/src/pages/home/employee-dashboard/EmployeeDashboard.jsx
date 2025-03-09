@@ -73,7 +73,7 @@ const EmployeeDashboard = () => {
   };
 
   const filteredWinners = winners.filter((winner) =>
-  winner.email.toLowerCase().includes(emailFilter.toLowerCase())
+    winner.email.toLowerCase().includes(emailFilter.toLowerCase())
   );
 
   useEffect(() => {
@@ -187,11 +187,12 @@ const EmployeeDashboard = () => {
           <Typography variant="h5" gutterBottom>
             Liste des gagnants
           </Typography>
-          {/* Email Filter Input */}
+          
+          {/* Email Filter Input - Ajout du filtre */}
           <Box sx={{ mb: 2 }}>
             <input
               type="text"
-              placeholder="Filter by email..."
+              placeholder="Filtrer par email..."
               value={emailFilter}
               onChange={(e) => setEmailFilter(e.target.value)}
               style={{
@@ -219,6 +220,7 @@ const EmployeeDashboard = () => {
               </button>
             )}
           </Box>
+
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -231,15 +233,17 @@ const EmployeeDashboard = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {(emailFilter ? filteredWinners : winners).map((winner) => (
-                  <TableRow key={winner._id}>
-                    <TableCell>{winner.name}</TableCell>
-                    <TableCell>{winner.email}</TableCell>
-                    <TableCell>{winner.ticketCode}</TableCell>
-                    <TableCell>{winner.prize}</TableCell>
-                    <TableCell>{winner.status}</TableCell>
+                {filteredWinners.length > 0 ? (
+                  filteredWinners.map((winner) => (
+                    <WinnerRow key={winner._id} winner={winner} />
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={5} align="center">
+                      Aucune gain pour l'instant.
+                    </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </TableContainer>
