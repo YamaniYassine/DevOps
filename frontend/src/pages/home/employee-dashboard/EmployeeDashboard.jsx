@@ -47,7 +47,6 @@ const handleStatusClick = async () => {
       id: winner._id, 
       status: "gain reçu" 
     })).unwrap();
-    console.error("mise à jour du status done");
   } catch (err) {
     console.error("Erreur de mise à jour :", err);
   } finally {
