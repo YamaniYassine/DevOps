@@ -91,7 +91,7 @@ const SignIn = () => {
         <div className="form-item" id="email">
           <label>E-mail</label>
           <input
-            placeholder="Enter your email"
+            placeholder="Entrez votre email"
             name="email"
             type="text"
             value={formFields.email}
@@ -102,7 +102,7 @@ const SignIn = () => {
         <div className="form-item" id="password">
           <label>Mot de passe</label>
           <input
-            placeholder="Enter your password"
+            placeholder="Entrez votre mot de passe"
             name="password"
             type="password"
             value={formFields.password}

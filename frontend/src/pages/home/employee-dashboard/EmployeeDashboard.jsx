@@ -63,6 +63,7 @@ const EmployeeDashboard = () => {
   const users = useSelector(selectUsers);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [emailFilter, setEmailFilter] = useState("");
 
   // Local state to control which tab is active ("users" or "winners")
   const [tab, setTab] = useState("users");
@@ -70,6 +71,10 @@ const EmployeeDashboard = () => {
   const handleTabChange = (event, newValue) => {
     setTab(newValue);
   };
+
+  const filteredWinners = winners.filter((winner) =>
+  winner.email.toLowerCase().includes(emailFilter.toLowerCase())
+  );
 
   useEffect(() => {
     if (error) {
@@ -182,6 +187,38 @@ const EmployeeDashboard = () => {
           <Typography variant="h5" gutterBottom>
             Liste des gagnants
           </Typography>
+          {/* Email Filter Input */}
+          <Box sx={{ mb: 2 }}>
+            <input
+              type="text"
+              placeholder="Filter by email..."
+              value={emailFilter}
+              onChange={(e) => setEmailFilter(e.target.value)}
+              style={{
+                padding: "8px",
+                width: "100%",
+                maxWidth: "300px",
+                border: "1px solid #ccc",
+                borderRadius: "5px"
+              }}
+            />
+            {emailFilter && (
+              <button
+                onClick={() => setEmailFilter("")}
+                style={{
+                  marginLeft: "10px",
+                  padding: "6px 12px",
+                  border: "none",
+                  backgroundColor: "#d9534f",
+                  color: "white",
+                  cursor: "pointer",
+                  borderRadius: "5px"
+                }}
+              >
+                Clear
+              </button>
+            )}
+          </Box>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -194,17 +231,15 @@ const EmployeeDashboard = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {winners.length > 0 ? (
-                  winners.map((winner) => (
-                    <WinnerRow key={winner._id} winner={winner} />
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={5} align="center">
-                      Aucune gain pour l'instant.
-                    </TableCell>
+                {(emailFilter ? filteredWinners : winners).map((winner) => (
+                  <TableRow key={winner._id}>
+                    <TableCell>{winner.name}</TableCell>
+                    <TableCell>{winner.email}</TableCell>
+                    <TableCell>{winner.ticketCode}</TableCell>
+                    <TableCell>{winner.prize}</TableCell>
+                    <TableCell>{winner.status}</TableCell>
                   </TableRow>
-                )}
+                ))}
               </TableBody>
             </Table>
           </TableContainer>
