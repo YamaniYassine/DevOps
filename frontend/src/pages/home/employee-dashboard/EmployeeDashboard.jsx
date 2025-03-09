@@ -28,11 +28,14 @@ import {
 const WinnerRow = ({ winner }) => {
   const dispatch = useDispatch();
 
+  const checkmark = keyframes`
+  0% { transform: scale(0); opacity: 0; }
+  80% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+`;
+
   const handleStatusClick = () => {
-    const newStatus = winner.status === "en cours de traitement" 
-      ? "gain reçu" 
-      : "en cours de traitement";
-    dispatch(updateWinnerStatus({ id: winner._id, status: newStatus }));
+    dispatch(updateWinnerStatus({ id: winner._id, status: "gain reçu" }));
   };
 
   return (
@@ -44,13 +47,38 @@ const WinnerRow = ({ winner }) => {
       <TableCell>
         <Button
           variant="contained"
-          style={{
-            backgroundColor: winner.status === "gain reçu" ? "green" : "orange",
-            color: "white"
+          sx={{
+            position: 'relative',
+            backgroundColor: winner.status === "gain reçu" ? '#4CAF50' : '#FF9800',
+            color: 'white',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              backgroundColor: winner.status === "gain reçu" ? '#45a049' : '#e68a00',
+            },
+            '&:disabled': {
+              backgroundColor: '#4CAF50',
+              opacity: 0.9
+            }
           }}
           onClick={handleStatusClick}
+          disabled={winner.status === "gain reçu"}
         >
-          {winner.status}
+          {winner.status === "gain reçu" ? (
+            <>
+              <span style={{ marginRight: '8px' }}>Gain reçu</span>
+              <span
+                style={{
+                  display: 'inline-block',
+                  animation: `${checkmark} 0.5s ease`,
+                  fontSize: '1.2rem'
+                }}
+              >
+                ✓
+              </span>
+            </>
+          ) : (
+            "En cours de traitement"
+          )}
         </Button>
       </TableCell>
     </TableRow>
@@ -147,7 +175,7 @@ const EmployeeDashboard = () => {
                   <TableCell>Nom</TableCell>
                   <TableCell>E-mail</TableCell>
                   <TableCell>Rôle</TableCell>
-                  <TableCell>Actions</TableCell>
+                  {/* <TableCell>Actions</TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -157,7 +185,7 @@ const EmployeeDashboard = () => {
                       <TableCell>{u.name}</TableCell>
                       <TableCell>{u.email}</TableCell>
                       <TableCell>{u.role === 0 ? "User" : u.role}</TableCell>
-                      <TableCell>
+                      {/* <TableCell>
                         <Button
                           variant="contained"
                           color="error"
@@ -165,7 +193,7 @@ const EmployeeDashboard = () => {
                         >
                           Supprimer
                         </Button>
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   ))
                 ) : (
