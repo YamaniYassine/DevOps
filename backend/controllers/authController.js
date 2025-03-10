@@ -149,8 +149,8 @@ exports.updateProfile = asyncErrorHandler(async (req, res, next) => {
     return next(new AppError("Current password is required", 400));
   }
 
-  // Find the user by ID (assumed set by your protect middleware)
-  const user = await User.findById(req.user.id);
+  // Find the user by email
+  const user = await User.findOne({ email });
   if (!user) {
     return next(new AppError("User not found", 404));
   }
