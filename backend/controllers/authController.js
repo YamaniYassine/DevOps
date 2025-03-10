@@ -141,6 +141,57 @@ exports.addEmployee = asyncErrorHandler(async (req, res, next) => {
   });
 });
 
+exports.updateProfile = asyncErrorHandler(async (req, res, next) => {
+  const { name, email, currentPassword, newPassword, confirmNewPassword } = req.body;
+
+  // Ensure the current password is provided
+  if (!currentPassword) {
+    return next(new AppError("Current password is required", 400));
+  }
+
+  // Find the user by ID (assumed set by your protect middleware)
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    return next(new AppError("User not found", 404));
+  }
+
+  // Check if current password is correct
+  const isMatch = await user.comparePassword(currentPassword);
+  if (!isMatch) {
+    return next(new AppError("Current password is incorrect", 401));
+  }
+
+  // Update name and email if provided
+  if (name) user.name = name;
+  if (email) user.email = email;
+
+  // If a new password is provided, validate it
+  if (newPassword) {
+    if (newPassword !== confirmNewPassword) {
+      return next(new AppError("New passwords do not match", 400));
+    }
+    user.password = newPassword;
+  }
+
+  await user.save();
+
+  // Optionally generate a new token if needed
+  const token = generateToken(user._id);
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: {
+        name: user.name,
+        email: user.email,
+        _id: user._id,
+        role: user.role,
+      },
+      token,
+    },
+  });
+});
+
 
 exports.login = asyncErrorHandler(async (req, res, next) => {
   const { email, password } = req.body;

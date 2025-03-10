@@ -76,6 +76,7 @@ return (
           },
           '&:disabled': {
             backgroundColor: '#40b745',
+            color: 'white',
             opacity: 0.9
           }
         }}
