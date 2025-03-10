@@ -84,6 +84,7 @@ body {
 }
 
 .form-button {
+  width: 100%;
   background-color: var(--color-red);
   margin-top: 3rem;
   border: none;

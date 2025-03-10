@@ -87,7 +87,7 @@ const Concours = () => {
         <div className="row-container2">
           <div className="content-container2">
             <h3 className="title2">
-              Si vous avez acheté pour au moins 49€ de thé dans l'une de nos boutiques, vous avez reçu un ticket avec un code à <span className="green">10 chiffres</span>. Entrez ce code ci-dessous pour accéder au jeu et tenter de remporter l'un de nos nombreux lots. Le jeu est <span className="green">100% gagnant</span>, alors n'hésitez plus et jouez dès maintenant ! Si vous avez des questions, n'hésitez pas à nous contacter.
+              Si vous avez acheté pour au moins 49€ de thé dans l'une de nos boutiques, vous avez reçu un ticket avec un code à <span className="green">10 chiffres</span>. Entrez ce code ci-dessous pour accéder au jeu et tenter de remporter l'un de nos nombreux lots. Le jeu est <span className="green">100% gagnant</span>, alors n'hésitez plus et jouez dès maintenant !
             </h3>
           </div>
         </div>
