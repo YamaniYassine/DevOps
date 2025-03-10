@@ -189,6 +189,7 @@ const WelcomePage = () => {
               type="password"
               value={accountData.newPassword} 
               onChange={handleAccountChange} 
+              required
             />
             <TextField 
               label="Confirmer nouveau mot de passe" 
@@ -196,6 +197,7 @@ const WelcomePage = () => {
               type="password"
               value={accountData.confirmNewPassword} 
               onChange={handleAccountChange} 
+              required
             />
             <Button type="submit" variant="contained" color="primary" disabled={isUpdatingAccount}>
               {isUpdatingAccount ? <CircularProgress size={24} sx={{ color: 'white' }} /> : "Mettre à jour"}

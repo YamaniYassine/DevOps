@@ -1,0 +1,12 @@
+.signup-text {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .signup-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  

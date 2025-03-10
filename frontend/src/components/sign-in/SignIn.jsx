@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./signin.css";
 
 //REdux
 import { useSelector, useDispatch } from "react-redux";
@@ -114,6 +115,12 @@ const SignIn = () => {
           <button className="form-button" type="submit">
             Se connecter
           </button>
+        </div>
+        <div className="form-item">
+          <p className="signup-text">
+            Vous n'avez pas encore de compte ?{" "}
+            <Link to="/sign-up" className="signup-link">Créez-en un maintenant ici</Link>
+          </p>
         </div>
       </form>
     </section>
