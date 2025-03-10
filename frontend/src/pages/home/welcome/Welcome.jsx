@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, reset } from "../../../features/auth/authSlice";
 import { fetchWinners, selectWinners } from "../../../features/auth/winnerSlice";
 import { updateUserProfile } from "../../../features/auth/authActions";
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Material-UI imports
 import {
