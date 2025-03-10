@@ -173,6 +173,8 @@ exports.updateProfile = asyncErrorHandler(async (req, res, next) => {
     user.password = newPassword;
   }
 
+  delete req.body.confirmPassword;
+
   await user.save();
 
   // Optionally generate a new token if needed
