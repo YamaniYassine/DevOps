@@ -171,9 +171,9 @@ exports.updateProfile = asyncErrorHandler(async (req, res, next) => {
       return next(new AppError("New passwords do not match", 400));
     }
     user.password = newPassword;
+    user.confirmPassword = confirmNewPassword;
   }
 
-  delete req.body.confirmPassword;
 
   await user.save();
 
