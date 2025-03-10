@@ -208,7 +208,6 @@ const WelcomePage = () => {
         </Box>
       )}
 
-
     </Container>
   );
 };
