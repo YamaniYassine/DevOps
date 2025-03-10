@@ -44,7 +44,7 @@ export const updateUserProfile = createAsyncThunk(
   async (profileData, thunkAPI) => {
     try {
       // Send PATCH request to the backend update route
-      const response = await axios.patch("/users/updateProfile", profileData, {
+      const response = await axios.patch("/users/update-profile", profileData, {
         headers: { "Content-Type": "application/json" },
       });
       if (response.data) {
