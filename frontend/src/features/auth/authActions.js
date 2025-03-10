@@ -40,11 +40,11 @@ export const AddEmployee = createAsyncThunk("auth/add-employee",async (userData,
 );
 
 export const updateUserProfile = createAsyncThunk(
-  "auth/updateProfile",
+  "auth/update-profile",
   async (profileData, thunkAPI) => {
     try {
-      // Send PATCH request to the backend update route
-      const response = await axios.patch("/users/update-profile", profileData, {
+      // Send PUT request to the backend update route
+      const response = await axios.put("/users/update-profile", profileData, {
         headers: { "Content-Type": "application/json" },
       });
       if (response.data) {
