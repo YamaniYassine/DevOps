@@ -30,12 +30,12 @@ const Accueil = () => {
                     
                 </div>
                 <div class="image-container2">
-                    <img src="https://images.unsplash.com/photo-1504382103100-db7e92322d39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHRlYXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
+                    <img src="https://files.oaiusercontent.com/file-LiigySntKus6jnCbJ8nWQp?se=2025-03-10T23%3A06%3A53Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dfae6cc09-7123-4659-86bb-0cb4df2f5278.webp&sig=n1HfmTJu2dQIvviJkcPMgJ%2Bg%2BIh5vggbae/LDaJMoMc%3D" alt="" />
                 </div>
             </div>
             <div class="row-container3">
                 <div class="image-container2">
-                    <img src="https://images.unsplash.com/photo-1563822249366-3efb23b8e0c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
+                    <img src="https://files.oaiusercontent.com/file-7EWaiG7QZ4h4WzMsos2nSR?se=2025-03-10T23%3A07%3A02Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D538ce383-fcd7-4d06-bf4a-b599e59ad734.webp&sig=N%2Bpo/5eaHXED7Cxg5JxS/uu8y0vYIUGj5AUwiKjeXMQ%3D" alt="" />
                 </div>
                 <div class="content-container2">
                     <h2 class="title2">Le thé noir, une boisson savoureuse pour toutes les occasions</h2>
