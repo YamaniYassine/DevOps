@@ -27,7 +27,6 @@ const Accueil = () => {
                 <div class="content-container2">
                     <h2 class="title2">Les bienfaits du thé vert pour la santé</h2>
                     <p class="description2">Le thé est une boisson chaude appréciée dans le monde entier depuis des siècles. Cette boisson raffinée et délicate est non seulement délicieuse, mais elle offre également une multitude de bienfaits pour la santé. De l'arôme subtil du thé vert aux notes épicées du chai, il existe une variété de thés pour tous les goûts. Découvrez la richesse de cette tradition millénaire et offrez-vous une expérience gustative inoubliable avec notre sélection de thés de qualité supérieure.</p>
-                    
                 </div>
                 <div class="image-container2">
                     <img src="/gain1.webp" alt="" />
