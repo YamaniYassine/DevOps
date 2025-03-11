@@ -77,3 +77,11 @@ input[type="submit"]:hover {
   cursor: pointer;
   font-size: 18px;
 }
+
+.flyer-image {
+  width: 150%;
+  max-width: 800px; 
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

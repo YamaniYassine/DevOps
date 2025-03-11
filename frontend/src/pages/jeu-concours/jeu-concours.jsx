@@ -97,6 +97,9 @@ const Concours = () => {
           </div>
         </div>
       </div>
+      <div className="flyer-image">
+      <img src="/flyer1.webp" alt="Flyer Jeu Concours"/>
+      </div>
       <div className="">
         <h2 style={{ marginBottom: '15px' }}>Participez au Jeu Concours ici</h2>
       </div>
