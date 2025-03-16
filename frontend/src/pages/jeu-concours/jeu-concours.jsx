@@ -101,7 +101,15 @@ const Concours = () => {
       <img src="/backgroudphoto.webp" alt="Flyer Jeu Concours" className="flyer-image"/>
       </div>
       <div className="">
-        <h2 style={{ marginBottom: '15px' }}>Participez au Jeu Concours ici</h2>
+      <h2 style={{ 
+              marginTop: '15px', 
+              marginBottom: '15px', 
+              display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center' 
+          }}>
+          Participez au Jeu Concours ici
+      </h2>
       </div>
       <form id="myForm" onSubmit={handleFormSubmit}>
                 <label htmlFor="name">Nom:</label>
