@@ -6,10 +6,10 @@
 
 .home-container::before {
   content: "";
-  background-image: url('./accueil-bg2.jpg');
+  background-image: url('./backgroudphoto.webp');
   background-size: cover;
   background-position-y: 85%;
-  transform: scaleX(-1);
+  /* transform: scaleX(-1); */
   position: absolute;
   top: 0;
   bottom: 0;

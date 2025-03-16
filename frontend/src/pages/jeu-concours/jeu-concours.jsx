@@ -97,7 +97,7 @@ const Concours = () => {
           </div>
         </div>
       </div>
-      <div className="row-container2">
+      <div className="">
       <img src="/flyer1.webp" alt="Flyer Jeu Concours" className="flyer-image"/>
       </div>
       <div className="">
