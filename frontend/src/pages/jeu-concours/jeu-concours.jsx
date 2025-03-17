@@ -15,11 +15,11 @@ const Concours = () => {
   const userEmail = user ? (user.email || (user.data && user.data.user.email)) : null;
 
   const prizes = [
-    { name: "Infuser", image: "./gain1.webp" },
-    { name: "Detox", image: "./gain4.webp" },
-    { name: "Signature", image: "./gain2.webp" },
-    { name: "Coffret 39", image: "./gain5.webp" },
-    { name: "Coffret 69", image: "./gain3.webp" }
+    { name: "Infuser", image: "/gain1.webp" },
+    { name: "Detox", image: "/gain4.webp" },
+    { name: "Signature", image: "/gain2.webp" },
+    { name: "Coffret 39", image: "/gain5.webp" },
+    { name: "Coffret 69", image: "/gain3.webp" }
   ];
   
     function scrollToForm() {
