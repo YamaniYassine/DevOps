@@ -107,7 +107,11 @@ const Concours = () => {
       <h2>🎉 Félicitations ! 🎉</h2>
       <p>{isSpinning ? "Votre prix est en train d'être déterminé..." : "Vous avez gagné :"}</p>
       <p className={isSpinning ? "spinning-prize" : "final-prize"}>{spinningPrize}</p>
-      <img src={spinningImage} alt={spinningPrize} className="prize-image spinning-effect" />
+      <img 
+        src={spinningImage} 
+        alt={spinningPrize} 
+        className={`prize-image ${isSpinning ? "spinning-effect" : ""}`} 
+      />
     </div>
     );
   };
