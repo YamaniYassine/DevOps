@@ -42,25 +42,47 @@ input[type="submit"]:hover {
 }
 
 /* Popup styles */
+@keyframes spinEffect {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.2; transform: scale(0.8); }
+}
+
 .popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 5px;
-  padding: 1rem;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
+  width: 300px;
 }
 
 .popup h2 {
   margin-bottom: 10px;
 }
 
-.popup p {
-  font-size: 18px;
-  margin-bottom: 10px;
+.spinning-prize {
+  font-size: 20px;
+  font-weight: bold;
+  color: #007bff;
+  animation: spinEffect 0.5s linear infinite;
+}
+
+.final-prize {
+  font-size: 22px;
+  font-weight: bold;
+  color: #28a745;
+  animation: none;
+}
+
+.prize-image {
+  width: 100px;
+  height: 100px;
+  margin: 10px auto;
 }
 
 /* Additional styles */

@@ -5,11 +5,22 @@ import './jeu-concours.css';
 const Concours = () => {
 
   const [ticketInfo, setTicketInfo] = useState(null);
+  const [spinningPrize, setSpinningPrize] = useState(null);
+  const [isSpinning, setIsSpinning] = useState(true);
+
   const { user } = useSelector((state) => state.auth);
 
 
   const userName = user ? (user.name || (user.data && user.data.user.name)) : null;
   const userEmail = user ? (user.email || (user.data && user.data.user.email)) : null;
+
+  const prizes = [
+    { name: "Infuser", image: "./gain1.webp" },
+    { name: "Detox", image: "./gain4.webp" },
+    { name: "Signature", image: "./gain2.webp" },
+    { name: "Coffret 39", image: "./gain5.webp" },
+    { name: "Coffret 69", image: "./gain3.webp" }
+  ];
   
     function scrollToForm() {
         var formAnchor = document.getElementById("myForm");
@@ -29,6 +40,7 @@ const Concours = () => {
   
       if (data.success) {
         setTicketInfo(data.ticket);
+        startSpinningEffect(data.ticket.gain);
         await fetch(`/ticketApi/mark-ticket-used/${ticketCode}`, { method: 'POST' });
   
         // Add the winner's information to the "Winners" table
@@ -62,18 +74,39 @@ const Concours = () => {
   };
   
 
+
+  const startSpinningEffect = (actualPrize) => {
+    setIsSpinning(true);
+    let index = 0;
+
+    const spinningInterval = setInterval(() => {
+      setSpinningPrize(prizes[index].name);
+      index = (index + 1) % prizes.length;
+    }, 150); // Rotate prizes quickly
+
+    setTimeout(() => {
+      clearInterval(spinningInterval);
+      setIsSpinning(false);
+      setSpinningPrize(actualPrize);
+    }, 3000); // Stop after 3 seconds
+  };
+
   const renderPopup = () => {
-    if (ticketInfo) {
-        return (
-            <div className="popup">
-                <button className="close-button" onClick={() => setTicketInfo(null)}>X</button>
-                <h2>Félicitations !</h2>
-                <p>Vous avez gagné :</p>
-                <p>{ticketInfo.gain}</p>
-            </div>
-        );
-    }
-    return null;
+    if (!ticketInfo) return null;
+
+    const finalPrize = prizes.find(prize => prize.name === spinningPrize);
+
+    return (
+      <div className="popup">
+        <button className="close-button" onClick={() => setTicketInfo(null)}>X</button>
+        <h2>🎉 Félicitations ! 🎉</h2>
+        <p>{isSpinning ? "Votre prix est en train d'être déterminé..." : "Vous avez gagné :"}</p>
+        <p className={isSpinning ? "spinning-prize" : "final-prize"}>{spinningPrize}</p>
+        {!isSpinning && finalPrize && (
+          <img src={finalPrize.image} alt={finalPrize.name} className="prize-image" />
+        )}
+      </div>
+    );
   };
 
   return (
