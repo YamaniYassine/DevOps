@@ -79,20 +79,27 @@ const Concours = () => {
   const startSpinningEffect = (actualPrize) => {
     setIsSpinning(true);
     let index = 0;
-
+  
     const spinningInterval = setInterval(() => {
       setSpinningPrize(prizes[index].name);
       setSpinningImage(prizes[index].image);
       index = (index + 1) % prizes.length;
-    }, 150); // Rotate prizes quickly
-
+    }, 150); // Rotate every 150ms
+  
     setTimeout(() => {
       clearInterval(spinningInterval);
       setIsSpinning(false);
+      
+      // Set the final prize correctly
       setSpinningPrize(actualPrize);
-
-      const finalPrizeData = prizes.find(prize => prize.name === actualPrize);
-      setSpinningImage(finalPrizeData.image);
+      
+      // Wait for state update before setting the image
+      setTimeout(() => {
+        const finalPrizeData = prizes.find(prize => prize.name === actualPrize);
+        if (finalPrizeData) {
+          setSpinningImage(finalPrizeData.image);
+        }
+      }, 50); // Small delay to ensure state updates
     }, 3000); // Stop after 3 seconds
   };
 
