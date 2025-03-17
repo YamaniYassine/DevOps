@@ -472,7 +472,11 @@ const chartData = {
                   <Typography variant="h6" sx={{ mt: 1 }}>
                     {grandGagnant.email}
                   </Typography>
-                  <img src="/bigwinner.webp" alt="" class="" style="width: 60%;" />
+                  <img 
+                    src="/bigwinner.webp" 
+                    alt="" 
+                    style={{ width: "200px", height: "200px", objectFit: "cover" }} 
+                  />
                 </Box>
               )}
             </Box>
