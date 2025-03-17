@@ -103,7 +103,9 @@ const Concours = () => {
         <p>{isSpinning ? "Votre prix est en train d'être déterminé..." : "Vous avez gagné :"}</p>
         <p className={isSpinning ? "spinning-prize" : "final-prize"}>{spinningPrize}</p>
         {!isSpinning && finalPrize && (
-          <img src={finalPrize.image} alt={finalPrize.name} className="prize-image" />
+          
+          <img src="/gain1.webp" alt={finalPrize.name} className="prize-image" />
+          
         )}
       </div>
     );
