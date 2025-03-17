@@ -132,7 +132,7 @@ const [isSpinning, setIsSpinning] = useState(false);
 
 // Ticket Statistics
 const totalTickets = 150;
-const ticketsAttributed = 25; // Given that 25 tickets were assigned
+const ticketsAttributed = 50; 
 const ticketsWon = winners.length; // Total tickets won
 
 const percentageTicketsAttributed = Math.round((ticketsAttributed / totalTickets) * 100);
@@ -473,6 +473,11 @@ const chartData = {
                   <Typography variant="h6" sx={{ mt: 1 }}>
                     {grandGagnant.email}
                   </Typography>
+                  <img 
+                    src="/bigwinner.webp" 
+                    alt="" 
+                    className=""
+                  />
                 </Box>
               )}
             </Box>
