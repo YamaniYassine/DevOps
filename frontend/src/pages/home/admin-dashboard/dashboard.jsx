@@ -453,7 +453,6 @@ const chartData = {
               animation: `${popIn} 0.5s cubic-bezier(0.4, 0, 0.2, 1)`
             }}>
               
-              
               <Typography variant="h6" color="primary" sx={{ mb: 2 }}>
                 🎉 Félicitations au grand gagnant ! 🎉
               </Typography>
