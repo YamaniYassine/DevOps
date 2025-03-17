@@ -475,8 +475,8 @@ const chartData = {
                   </Typography>
                   <img 
                     src="/bigwinner.webp" 
-                    alt="" 
-                    className=""
+                    alt=""
+                    style={{ width: "60%" }} 
                   />
                 </Box>
               )}
