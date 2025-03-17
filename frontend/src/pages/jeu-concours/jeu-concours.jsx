@@ -6,6 +6,7 @@ const Concours = () => {
 
   const [ticketInfo, setTicketInfo] = useState(null);
   const [spinningPrize, setSpinningPrize] = useState(null);
+  const [spinningImage, setSpinningImage] = useState(null);
   const [isSpinning, setIsSpinning] = useState(true);
 
   const { user } = useSelector((state) => state.auth);
@@ -81,6 +82,7 @@ const Concours = () => {
 
     const spinningInterval = setInterval(() => {
       setSpinningPrize(prizes[index].name);
+      setSpinningImage(prizes[index].image);
       index = (index + 1) % prizes.length;
     }, 150); // Rotate prizes quickly
 
@@ -88,6 +90,9 @@ const Concours = () => {
       clearInterval(spinningInterval);
       setIsSpinning(false);
       setSpinningPrize(actualPrize);
+
+      const finalPrizeData = prizes.find(prize => prize.name === actualPrize);
+      setSpinningImage(finalPrizeData.image);
     }, 3000); // Stop after 3 seconds
   };
 
@@ -98,16 +103,12 @@ const Concours = () => {
 
     return (
       <div className="popup">
-        <button className="close-button" onClick={() => setTicketInfo(null)}>X</button>
-        <h2>🎉 Félicitations ! 🎉</h2>
-        <p>{isSpinning ? "Votre prix est en train d'être déterminé..." : "Vous avez gagné :"}</p>
-        <p className={isSpinning ? "spinning-prize" : "final-prize"}>{spinningPrize}</p>
-        {!isSpinning && finalPrize && (
-          
-          <img src="/gain1.webp" alt={finalPrize.name} className="prize-image" />
-          
-        )}
-      </div>
+      <button className="close-button" onClick={() => setTicketInfo(null)}>X</button>
+      <h2>🎉 Félicitations ! 🎉</h2>
+      <p>{isSpinning ? "Votre prix est en train d'être déterminé..." : "Vous avez gagné :"}</p>
+      <p className={isSpinning ? "spinning-prize" : "final-prize"}>{spinningPrize}</p>
+      <img src={spinningImage} alt={spinningPrize} className="prize-image spinning-effect" />
+    </div>
     );
   };
 
