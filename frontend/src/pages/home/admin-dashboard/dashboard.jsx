@@ -475,7 +475,7 @@ const chartData = {
                   <img 
                     src="/bigwinner.webp" 
                     alt="" 
-                    style={{ width: "200px", height: "200px", objectFit: "cover" }} 
+                    style={{ width: "60%", height: "60%", objectFit: "cover" }} 
                   />
                 </Box>
               )}
