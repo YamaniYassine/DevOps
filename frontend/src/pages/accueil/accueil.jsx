@@ -89,7 +89,7 @@ const Accueil = () => {
                 </div>
             </div>
             <div class="row-container3">
-                <div class="content-container2">
+                <div style={{ width: "60%", height: "60%", objectFit: "cover", alignItems: "center" }} >
                 <img src="/bigwinner.webp" alt="" />
                 </div>
             </div>
