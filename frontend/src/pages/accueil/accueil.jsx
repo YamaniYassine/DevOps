@@ -25,11 +25,16 @@ const Accueil = () => {
 
             <div class="row-container3">
                 <div class="content-container2">
-                    <h2 class="title2">Les bienfaits du thé vert pour la santé</h2>
-                    <p class="description2">Le thé est une boisson chaude appréciée dans le monde entier depuis des siècles. Cette boisson raffinée et délicate est non seulement délicieuse, mais elle offre également une multitude de bienfaits pour la santé. De l'arôme subtil du thé vert aux notes épicées du chai, il existe une variété de thés pour tous les goûts. Découvrez la richesse de cette tradition millénaire et offrez-vous une expérience gustative inoubliable avec notre sélection de thés de qualité supérieure.</p>
+                    <h2 class="title2">🎁 Les Gains du Jeu Concours ThéTipTop 🎉</h2>
+                </div>
+            </div>
+            <div class="row-container3">
+                <div class="content-container2">
+                    <h2 class="title2">🍃 Boîte de 100g de Thé Détox</h2>
+                    <p class="description2">Un mélange raffiné de plantes et de thés verts spécialement conçu pour purifier votre corps et revitaliser votre esprit. Profitez d’une infusion légère et rafraîchissante, idéale pour une routine bien-être au quotidien. 🌱✨</p>
                 </div>
                 <div class="image-container2">
-                    <img src="/gain1.webp" alt="" />
+                    <img src="/gain4.webp" alt="" />
                 </div>
             </div>
             <div class="row-container3">
@@ -37,15 +42,20 @@ const Accueil = () => {
                     <img src="/gain2.webp" alt="" />
                 </div>
                 <div class="content-container2">
-                    <h2 class="title2">Le thé noir, une boisson savoureuse pour toutes les occasions</h2>
-                    <p class="description2">Le thé est une boisson universelle qui se décline en une grande variété de saveurs et de parfums en fonction de son lieu d'origine. Du thé noir corsé d'Assam au thé vert léger de Chine en passant par les infusions de plantes aromatiques d'Afrique du Sud, il y en a pour tous les goûts. Découvrez les arômes uniques de différentes cultures à travers notre sélection de thés du monde entier. Plongez-vous dans une aventure gustative et laissez-vous transporter à travers les saveurs et les traditions de chaque région.</p>
+                    <h2 class="title2">🍵 Boîte de 100g de Thé Signature</h2>
+                    <p class="description2">Notre thé emblématique, soigneusement sélectionné pour offrir une expérience gustative unique. Un équilibre parfait entre saveurs riches et arômes délicats, parfait pour les amateurs de thé qui recherchent l’excellence. ☕🌟</p>
                 </div>
             </div>
             <div class="row-container3">
                 <div class="content-container2">
-                    <h2 class="title2">Nos Produits</h2>
+                    <h2 class="title2">🎁 Coffret Découverte – Valeur 39€</h2>
+                    <p class="description2">Un coffret élégant comprenant une sélection exclusive de nos meilleurs thés. Parfait pour explorer de nouvelles saveurs et découvrir les bienfaits de chaque infusion. Une invitation au voyage à travers des arômes subtils et raffinés. 🎀🍂</p>
+                </div>
+                <div class="image-container2">
+                    <img src="/gain5.webp" alt="" />
                 </div>
             </div>
+            
             <div className="row-container4">
                 <div className="products-section">
                     <div className="product-card">
