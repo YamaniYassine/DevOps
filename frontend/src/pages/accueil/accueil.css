@@ -14,6 +14,7 @@
   margin: 2rem 0;
   gap: 2rem;
   width: 100%;
+  justify-content: center;
 }
   
 .content-container2 {
@@ -65,8 +66,9 @@
   }
   
   .image-container2 img {
-    width: 32rem;
-    height: 42rem;
+    width: 30rem;
+    height: 25rem;
+    border-radius: 10px;
   }
   
   @media (max-width: 768px) {
