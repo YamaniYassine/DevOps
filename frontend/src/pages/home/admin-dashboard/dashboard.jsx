@@ -57,6 +57,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [emailFilter, setEmailFilter] = useState("");
+  const [roleFilter, setRoleFilter] = useState("");
   const [showEmployeeForm, setShowEmployeeForm] = useState(false);
   const [employeeData, setEmployeeData] = useState({ name: "", email: "", password: "employee", confirmPassword: "employee" });
   const [grandGagnant, setGrandGagnant] = useState(null);
@@ -68,6 +69,15 @@ const Dashboard = () => {
   const handleTabChange = (event, newValue) => {
     setTab(newValue);
   };
+
+  const filteredUsers = roleFilter
+  ? users.filter((u) =>
+      (u.role === 1 && roleFilter === "Admin") ||
+      (u.role === 2 && roleFilter === "Employee") ||
+      (u.role === 3 && roleFilter === "User") 
+    )
+  : users;
+
 
   const handleAddEmployee = () => {
     dispatch(AddEmployee({ ...employeeData }));
@@ -250,6 +260,33 @@ const chartData = {
               </Button>
             </Box>
           )}
+          <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+            <Button 
+              variant={roleFilter === "" ? "contained" : "outlined"} 
+              onClick={() => setRoleFilter("")}
+            >
+              All
+            </Button>
+            <Button 
+              variant={roleFilter === "User" ? "contained" : "outlined"} 
+              onClick={() => setRoleFilter("User")}
+            >
+              Users
+            </Button>
+            <Button 
+              variant={roleFilter === "Employee" ? "contained" : "outlined"} 
+              onClick={() => setRoleFilter("Employee")}
+            >
+              Employees
+            </Button>
+            <Button 
+              variant={roleFilter === "Admin" ? "contained" : "outlined"} 
+              onClick={() => setRoleFilter("Admin")}
+            >
+              Admins
+            </Button>
+          </Box>
+
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -260,28 +297,22 @@ const chartData = {
                   <TableCell>Actions</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {users.map((u) => (
-                  <TableRow key={u._id}>
-                    <TableCell>{u.name}</TableCell>
-                    <TableCell>{u.email}</TableCell>
-                    <TableCell>
-                      {u.role === 1
-                        ? "Admin"
-                        : u.role === 2
-                        ? "Employee"
-                        : "User"}
-                    </TableCell>
-                    <TableCell>
-                      {u.role !== 1 && (
-                        <Button variant="contained" color="error" onClick={() => handleDeleteUser(u._id)}>
-                          Supprimer
-                        </Button>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+              {filteredUsers.map((u) => (
+                <TableRow key={u._id}>
+                  <TableCell>{u.name}</TableCell>
+                  <TableCell>{u.email}</TableCell>
+                  <TableCell>
+                    {u.role === 1 ? "Admin" : u.role === 2 ? "Employee" : "User"}
+                  </TableCell>
+                  <TableCell>
+                    {u.role !== 1 && (
+                      <Button variant="contained" color="error" onClick={() => handleDeleteUser(u._id)}>
+                        Supprimer
+                      </Button>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
             </Table>
           </TableContainer>
         </Box>
