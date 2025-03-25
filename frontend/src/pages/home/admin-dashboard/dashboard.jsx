@@ -74,7 +74,7 @@ const Dashboard = () => {
   ? users.filter((u) =>
       (u.role === 1 && roleFilter === "Admin") ||
       (u.role === 2 && roleFilter === "Employee") ||
-      (u.role === 3 && roleFilter === "User") 
+      (u.role === 0 && roleFilter === "User") 
     )
   : users;
 
