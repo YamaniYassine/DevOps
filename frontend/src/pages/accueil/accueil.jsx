@@ -34,13 +34,13 @@ const Accueil = () => {
                     <img src="/gain1.webp" alt="" />
                 </div>
                 <div class="content-container2">
-                    <h2 class="title2">🍵 Infuseur à Thé – L’Accessoire Idéal pour une Infusion Parfaite</h2>
+                    <h3 class="title2">🍵 Infuseur à Thé – L’Accessoire Idéal pour une Infusion Parfaite</h3>
                     <p class="description2">Préparez votre thé en toute simplicité avec cet infuseur à thé en acier inoxydable. Son design élégant et fonctionnel permet une infusion homogène en laissant s’épanouir pleinement les arômes de votre thé préféré.</p>
                 </div>
             </div>
             <div class="row-container3">
                 <div class="content-container2">
-                    <h2 class="title2">🍃 Boîte de 100g de Thé Détox – Votre allié bien-être</h2>
+                    <h3 class="title2">🍃 Boîte de 100g de Thé Détox – Votre allié bien-être</h3>
                     <p class="description2">Un mélange raffiné de plantes et de thés verts spécialement conçu pour purifier votre corps et revitaliser votre esprit. Profitez d’une infusion légère et rafraîchissante, idéale pour une routine bien-être au quotidien. 🌱✨</p>
                 </div>
                 <div class="image-container2">
@@ -52,13 +52,13 @@ const Accueil = () => {
                     <img src="/gain2.webp" alt="" />
                 </div>
                 <div class="content-container2">
-                    <h2 class="title2">🍵 Boîte de 100g de Thé Signature – L’excellence à chaque tasse</h2>
+                    <h3 class="title2">🍵 Boîte de 100g de Thé Signature – L’excellence à chaque tasse</h3>
                     <p class="description2">Notre thé emblématique, soigneusement sélectionné pour offrir une expérience gustative unique. Un équilibre parfait entre saveurs riches et arômes délicats, parfait pour les amateurs de thé qui recherchent l’excellence. ☕🌟</p>
                 </div>
             </div>
             <div class="row-container3">
                 <div class="content-container2">
-                    <h2 class="title2">🎁 Coffret Découverte – Un voyage sensoriel à travers les saveurs (Valeur : 39€)</h2>
+                    <h3 class="title2">🎁 Coffret Découverte – Un voyage sensoriel à travers les saveurs (Valeur : 39€)</h3>
                     <p class="description2">Un coffret élégant comprenant une sélection exclusive de nos meilleurs thés. Parfait pour explorer de nouvelles saveurs et découvrir les bienfaits de chaque infusion. Une invitation au voyage à travers des arômes subtils et raffinés. 🎀🍂</p>
                 </div>
                 <div class="image-container2">
@@ -71,7 +71,7 @@ const Accueil = () => {
                     <img src="/gain3.webp" alt="" />
                 </div>
                 <div class="content-container2">
-                    <h2 class="title2">🎁 Coffret Découverte – Une Sélection de Thés d’Exception (Valeur : 69€)</h2>
+                    <h3 class="title2">🎁 Coffret Découverte – Une Sélection de Thés d’Exception (Valeur : 69€)</h3>
                     <p class="description2">Plongez dans un univers de saveurs raffinées avec ce coffret découverte premium, composé d’une sélection de thés d’exception. Chaque infusion est une invitation au voyage, révélant des notes délicates et équilibrées qui raviront les palais les plus exigeants.</p>
                 </div>
             </div>
