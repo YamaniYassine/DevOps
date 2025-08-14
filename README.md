@@ -52,9 +52,8 @@ cd DevOps
 Backend (local) :
 ```bash
 cd backend
-cp config.env.example .env   # remplir les variables
 npm install
-npm run start                # ou `node server.js`
+npm run start
 ```
 
 Frontend (local) :
@@ -73,7 +72,6 @@ docker-compose up --build
 
 # Variables d'environnement (exemple)
 
-Crée `backend/config.env.example` et **ne commite jamais** les valeurs réelles.
 
 | Variable | Exemple | Description |
 |---|---|---|
@@ -239,3 +237,4 @@ app.get('/health', (req, res) => {
 - Si ce projet t’a été utile, un ⭐️ sur le repo serait grandement apprécié !
 
 ---
+
